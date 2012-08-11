@@ -4,8 +4,6 @@
 
 	app.Map = function() {
 
-        var entities;
-
 		function Map() {
 			this.entities = [];
 		}
