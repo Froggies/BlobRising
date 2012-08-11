@@ -8,22 +8,23 @@
 	app.Game = function() {
 
 		var loop;
+		var isRun;
 
 		function Game() {
 			this.loop = {};
-			alert("game constructor !");
+			this.isRun = false;
 		}
 
 		Game.prototype.start = function() {
-			alert("starting with 50 fps...");
-			this.loop = setTimeout(function() {
-				// main loop instructions goes here
+			this.loop = setInterval(function() {
+			    console.log("loop game");
 			}, 1000/50);
+			this.isRun = true;
 		}
-
+		
 		Game.prototype.end = function() {
-			alert("ending main loop");
-			clearTimeout(this.loop);
+		    clearInterval(this.loop);
+		    this.isRun = false;
 		}
 
 		return Game;
