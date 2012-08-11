@@ -48,8 +48,13 @@
             var x= event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
             var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
             var ctx = canvas.getContext('2d');
-	        ctx.strokeStyle = 'white';
-	        ctx.strokeRect(x, y, 10, 10);
+	        var rect = new app.shapes.Rectangle();
+	        rect.x = x;
+	        rect.y = y;
+	        rect.width = 10;
+	        rect.height = 10;
+	        rect.fill = false;
+	        rect.draw(ctx);
         }
     }
     canvas.addEventListener("mousedown", mouseClickOnCanvas, false);
