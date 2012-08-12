@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	var game = new app.Game();
+	var game;
 	var machineSelected = "";
 	
 	document.body.style.backgroundColor = 'black';
@@ -24,6 +24,9 @@
 	menu.style.display = 'inline-block';
 	menu.style.verticalAlign = 'top';
 	menu.style.width = '25%';
+
+	game = new app.Game(ctx);
+
 	menu.appendChild(createToggleButton("Start", function() {
 	    if(game.isRun) {
 	        this.innerHTML = "Restart";

@@ -19,7 +19,7 @@
 
 		Rectangle.prototype.draw = function(context) {
 			Rectangle.super.draw.call(this);
-			console.log(this.x);
+			// console.log(this.x);
 			context.strokeStyle = 'white';
 			if (this.fill === true) {
     			context.fillRect(this.x,this.y,this.width,this.height);

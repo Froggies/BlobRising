@@ -9,20 +9,30 @@
 
 	app.Game = function() {
 
-		function Game() {
+		function Game(context) {
 			this.loop = {};
-			this.canvas = document.getElementById("game");
+			this.context = context;
 		}
 
 		Game.prototype.init = function() {
 			this.entity = new Entity(10, 10);
-			this.entity.draw();
+			this.entity.draw(this.context);
+		}
+
+		Game.prototype.clear = function() {
+			var canvas = this.context.canvas;
+			this.context.clearRect(
+				0, 0, canvas.width, canvas.height
+			);
 		}
 
 		Game.prototype.start = function() {
 			this.init();
+			var that = this;
 			this.loop = setInterval(function() {
-			    console.log("loop game");
+				that.entity.update($V([10, 1]));
+				that.clear();
+				that.entity.draw(that.context);
 			}, 1000/50);
 			this.isRun = true;
 		}
