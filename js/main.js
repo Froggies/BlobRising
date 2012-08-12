@@ -1,8 +1,10 @@
 (function() {
 
 	"use strict";
+	
+	var canvas = document.createElement("canvas");
 
-	var game = new app.Game();
+	var game = new app.Game(maps, canvas.getContext('2d'));
 	var machineSelected = "";
 	
 	document.body.style.backgroundColor = 'black';
@@ -10,7 +12,6 @@
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 	
-	var canvas = document.createElement("canvas");
 	canvas.style.display = 'inline';
 	canvas.id = "canvas";
 	canvas.width = parseInt(width * 0.7);

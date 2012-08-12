@@ -10,7 +10,6 @@
 		return typeof variable !== "undefined" && variable !== null;
 	};
 
-
 	// inheritance utility, took from coffe script project
 	// http://coffeescript.org
   	var __hasProp = {}.hasOwnProperty;
@@ -28,5 +27,22 @@
   	 	child.super = parent.prototype; 
   	 	return child; 
  	};
+ 	
+ 	// retrive a class with her name
+ 	// str full qualified name (with package.subpackage.ClassName)
+ 	app.js.stringToClass = function(str) {
+      var arr = str.split(".");
+
+      var fn = (window || this);
+      for (var i = 0, len = arr.length; i < len; i++) {
+        fn = fn[arr[i]];
+      }
+
+      if (typeof fn !== "function") {
+        throw new Error("function not found");
+      }
+
+      return  fn;
+    };
 
 })();
