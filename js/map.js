@@ -4,11 +4,17 @@
 	
 	var stringToClass = app.js.stringToClass;
 
-	app.Map = function() {
+	app.Map = {};
 
-        var shape;
-        var staticEntities;
-        var menuEntities;
+	// units vector 
+	app.Map.i = $V([0, 1, 0]);
+	app.Map.j = $V([1, 0, 0]);
+
+    var shape;
+    var staticEntities;
+    var menuEntities;
+
+	app.Map = function() {
 
 		function Map() {
 		    this.shape = new app.shapes.Rectangle();
@@ -34,8 +40,10 @@
 		    this.shape.draw(context);
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
+		        entity.context = context;
 		        console.log("map::deserialize::draw");
 		        console.log(entity);
+		        entity.update($V([1, 1]));
 		        entity.shape.draw(context);
 		    }
 		}

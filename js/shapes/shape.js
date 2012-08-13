@@ -4,22 +4,15 @@
 	
 	app.shapes = app.shapes || {};
 
-
 	app.shapes.Shape = function() {
 
-		var x;
-        var y;
-        var width;
-        var height;
-        var center;        
-
-		function Shape() {
-			this.x = 0;
-			this.y = 0;
-			this.width = 0;
-			this.height = 0;
+		function Shape(x, y, width, height) {
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
 			this.center = {};
-			Shape.prototype.calculCenter.call(this);
+			this.calculCenter();
 		}
 
 		Shape.prototype.draw = function(context) {
