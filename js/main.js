@@ -1,6 +1,8 @@
 (function() {
 
 	"use strict";
+	
+	var canvas = document.createElement("canvas");
 
 	var game;
 	var machineSelected = "";
@@ -10,7 +12,6 @@
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 	
-	var canvas = document.createElement("canvas");
 	canvas.style.display = 'inline';
 	canvas.id = "canvas";
 	canvas.width = parseInt(width * 0.7);
@@ -25,7 +26,7 @@
 	menu.style.verticalAlign = 'top';
 	menu.style.width = '25%';
 
-	game = new app.Game(ctx);
+	game = new app.Game(maps, ctx);
 
 	menu.appendChild(createToggleButton("Start", function() {
 	    if(game.isRun) {
