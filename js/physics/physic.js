@@ -12,6 +12,7 @@
 			var x = this.entity.forme.x;
 			var y = this.entity.forme.y;
 			this.position = $V([x, y]);
+			this.angle = $V([1, 1]);
 		}
 
 		Physic.prototype.update = function(translation) {
@@ -24,42 +25,35 @@
 			var maxHeight = canvas.height;
 			var maxWidth = canvas.width;
 
-			console.log("x : " + x);
-			console.log("y : " + y);
-			console.log("maxWidth : " + maxWidth);
-			console.log("maxHeight : " + maxHeight);
-			console.log("width : " + width);
-			console.log("height : " + height);
-			var angle;
-			if (y <= 0)  {
-                angle = $V([x, 1]);
-            }
-            else if (y >= (maxHeight - height)) {
-                angle = $V([x, -1]);
-            }
+			console.log("this.angle : " +this.angle.inspect());
 
-            if (x <= 0)  {
-                angle = $V([1, y]);
-            }
-            else if (x >= (maxWidth - width)) {
-                angle = $V([-1, y]);
-            }
+            var rawX = x + (this.speed * this.angle.elements[0]);
+            var rawY = y + (this.speed * this.angle.elements[1]);
+            // optimization, we dont need much precision
+            var newX = Number(rawX.toFixed(2));
+            var newY = Number(rawY.toFixed(2));
 
-            if(!isDefined(angle)) {
-            	angle = $V([1, 1]);
-            }
+            this.position = $V([newX, newY]);
 
-            console.log("angle x : " +angle.elements[0]);
-            console.log("angle y : " +angle.elements[1]);
-
-            this.position = this.position.add(angle);
+            console.log("new position : " + this.position.inspect());
 
 			this.entity.forme = new app.shapes.Rectangle(
-				this.position[0] * this.speed, 
-				this.position[1] * this.speed,
+				this.position.elements[0], 
+				this.position.elements[1],
 				100,
 				100
 			);
+
+			// calculate next frame angle
+			if (y <= 0)  {
+                this.angle = $V([this.angle.elements[0], 1]);
+            } else if (x <= 0)  {
+                this.angle = $V([1, this.angle.elements[1]]);
+            } else if (y <= 0 || y >= (maxHeight - height)) {
+                this.angle = $V([this.angle.elements[0], -1]);
+            } else if (x >= (maxWidth - width)) {
+                this.angle = $V([-1, this.angle.elements[1]]);
+            }
 		}
 
 		return Physic;

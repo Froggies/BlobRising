@@ -4,6 +4,13 @@
 	
 	var stringToClass = app.js.stringToClass;
 
+	app.Map = {};
+
+	// units vector 
+	app.Map.i = $V([0, 1, 0]);
+	app.Map.j = $V([1, 0, 0]);
+
+
 	app.Map = function() {
 
 		function Map(serializedMap) {

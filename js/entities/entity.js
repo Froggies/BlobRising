@@ -13,7 +13,7 @@
 			var x = 10, y = 10;
 			this.context = context;
 			this.forme = new app.shapes.Rectangle(x, y, 100, 100);
-			this.physic = new app.physics.Physic(this, 1);
+			this.physic = new app.physics.Physic(this, 2);
 		}
 
 		Entity.prototype.update = function(translation) {
