@@ -9,21 +9,29 @@
 		var listSerializedMap;
 		var currentIndexMap;
 		var currentMap;
-		var drawContext;
+		var canvas;
 
-		function Game(listSeralizedMap, drawContext) {
+		function Game(listSeralizedMap, canvas) {
 			this.loop = {};
 			this.isRun = false;
 			this.currentIndexMap = 0;
 			this.listSerializedMap = listSeralizedMap;
-			this.drawContext = drawContext;
+			this.canvas = canvas;
+			this.currentMap = new app.Map();
+			this.currentMap.shape.width = canvas.width;
+			this.currentMap.shape.height = canvas.height;
+			this.currentMap.draw(canvas.getContext('2d'));
 		}
 
 		Game.prototype.start = function() {
-		    this.currentMap = new app.Map(this.listSerializedMap[this.currentIndexMap]);
-		    this.currentMap.draw(this.drawContext);
+		    this.currentMap.deserialize(this.listSerializedMap[this.currentIndexMap]);
+		    var instance = this;
 			this.loop = setInterval(function() {
-			    console.log("loop game");
+			    instance.canvas.width = instance.canvas.width;//clear
+			    var context = instance.canvas.getContext('2d');
+			    instance.currentMap.draw(context);
+			    instance.currentMap.staticEntities[0].shape.x = instance.currentMap.staticEntities[0].shape.x + 1;
+			    instance.currentMap.draw(context);
 			}, 1000/50);
 			this.isRun = true;
 		}

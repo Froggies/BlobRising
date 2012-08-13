@@ -6,13 +6,16 @@
 
 	app.Map = function() {
 
+        var shape;
         var staticEntities;
         var menuEntities;
 
-		function Map(serializedMap) {
+		function Map() {
+		    this.shape = new app.shapes.Rectangle();
+		    this.shape.x = 0;
+		    this.shape.y = 0;
 			this.staticEntities = [];
 			this.menuEntities = [];
-			Map.prototype.deserialize.call(this, serializedMap);
 		}
 		
 		Map.prototype.deserialize = function(serializedMap) {
@@ -28,6 +31,7 @@
 		}
 		
 		Map.prototype.draw = function(context) {
+		    this.shape.draw(context);
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
 		        console.log("map::deserialize::draw");

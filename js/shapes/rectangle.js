@@ -20,11 +20,12 @@
 		Rectangle.prototype.draw = function(context) {
 			Rectangle.super.draw.call(this);
 			console.log(this.x);
-			context.strokeStyle = 'white';
 			if (this.fill === true) {
+			    context.fillStyle = '#FF33A1';
     			context.fillRect(this.x,this.y,this.width,this.height);
     		}
     		else {
+    		    context.strokeStyle = '#01ffdd';
     		    context.strokeRect(this.x,this.y,this.width,this.height);
     		}
 		};

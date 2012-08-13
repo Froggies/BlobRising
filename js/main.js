@@ -4,7 +4,7 @@
 	
 	var canvas = document.createElement("canvas");
 
-	var game = new app.Game(maps, canvas.getContext('2d'));
+	var game = new app.Game(maps, canvas);
 	var machineSelected = "";
 	
 	document.body.style.backgroundColor = 'black';
@@ -16,9 +16,6 @@
 	canvas.id = "canvas";
 	canvas.width = parseInt(width * 0.7);
 	canvas.height = height - 21;
-	var ctx = canvas.getContext('2d');
-	ctx.strokeStyle = 'white';
-	ctx.strokeRect(0, 0, canvas.width, canvas.height);
 	document.body.appendChild(canvas);
 	
 	var menu = document.createElement("div");
@@ -65,9 +62,9 @@
 	    var height = window.innerHeight;
 	    canvas.width = parseInt(width * 0.7);
 	    canvas.height = height - 21;
-	    var ctx = canvas.getContext('2d');
-	    ctx.strokeStyle = 'white';
-	    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+	    game.currentMap.shape.width = canvas.width;
+	    game.currentMap.shape.height = canvas.height;
+	    game.currentMap.draw(canvas.getContext('2d'));
     }
     
     function createToggleButton(name, callback) {
