@@ -6,21 +6,20 @@
 
 	app.gameplay.Entity = function() {
 
-		function Entity(x, y) {
+		function Entity(context) {
 			this.formes = [];
+			var x = 10, y = 10;
+			this.context = context;
 			this.forme = new app.shapes.Rectangle(x, y, 100, 100);
-			this.position = $V([x, y]);
+			this.physic = new app.physics.Physic(this, 1);
 		}
 
 		Entity.prototype.update = function(translation) {
-			this.position = this.position.add(translation);
-			var x = this.position.elements[0];
-			var y = this.position.elements[1];
-			this.forme = new app.shapes.Rectangle(x, y, 100, 100);
+			this.physic.update(translation);
 		}
 
-		Entity.prototype.draw = function(context) {
-			this.forme.draw(context);
+		Entity.prototype.draw = function() {
+			this.forme.draw(this.context);
 		}
 
 		return Entity;

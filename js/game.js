@@ -15,8 +15,8 @@
 		}
 
 		Game.prototype.init = function() {
-			this.entity = new Entity(10, 10);
-			this.entity.draw(this.context);
+			this.entity = new Entity(this.context);
+			this.entity.draw();
 		}
 
 		Game.prototype.clear = function() {
@@ -30,9 +30,9 @@
 			this.init();
 			var that = this;
 			this.loop = setInterval(function() {
-				that.entity.update($V([10, 1]));
+				that.entity.update($V([1, 1]));
 				that.clear();
-				that.entity.draw(that.context);
+				that.entity.draw();
 			}, 1000/50);
 			this.isRun = true;
 		}
