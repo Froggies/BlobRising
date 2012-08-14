@@ -20,18 +20,6 @@
 			this.menuEntities = [];
 		}
 		
-		Map.prototype.deserialize = function(serializedMap) {
-		    for(var entityIndex in serializedMap.staticEntities) {
-	            console.log("map::deserialize::deserialize");
-	            var entityClass = stringToClass(serializedMap.staticEntities[entityIndex]["class"]);
-	            var entity = new entityClass();
-	            console.log(entity);
-	            entity.deserialize(serializedMap.staticEntities[entityIndex])
-	            this.staticEntities.push(entity);
-		    }
-		    this.finalPuit = {blob:0};
-		}
-		
 		Map.prototype.draw = function(context) {
 		    this.shape.draw(context);
 		    for(var entityIndex in this.staticEntities) {
@@ -40,7 +28,7 @@
 		        console.log("map::deserialize::draw");
 		        console.log(entity);
 		        entity.update($V([1, 1]));
-		        entity.shape.draw(context);
+		        entity.draw(context);
 		    }
 		}
 		
