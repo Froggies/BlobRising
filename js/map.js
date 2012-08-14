@@ -28,7 +28,11 @@
 		        console.log("map::deserialize::draw");
 		        console.log(entity);
 		        entity.update($V([1, 1]));
-		        entity.draw(context);
+		        if(entity instanceof app.entities.Blob) {
+		            entity.draw(context, this);
+		        } else {
+		            entity.draw(context);
+		        }
 		    }
 		}
 		

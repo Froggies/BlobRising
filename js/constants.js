@@ -9,7 +9,7 @@ var maps = [
         "staticEntities":
         [
             {
-                "class":"app.entities.Entity", 
+                "class":"app.entities.Blob", 
                 "shape": {
                     "class":"app.shapes.Rectangle",
                     "x":1,

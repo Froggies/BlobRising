@@ -2,8 +2,6 @@
 
 	"use strict";
 	
-	var stringToClass = app.js.stringToClass;
-	
 	app.entities = app.entities || {};
 
 	app.entities.Entity = function() {
