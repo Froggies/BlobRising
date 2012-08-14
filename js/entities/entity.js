@@ -10,12 +10,8 @@
 	
 	    var context;
 	
-		function Entity(context) {
+		function Entity() {
 			this.formes = [];
-			var x = 10, y = 10;
-			this.context = context;
-			this.forme = new app.shapes.Rectangle(x, y, 100, 100);
-			this.physic = new app.physics.Physic(this, 2);
 		}
 
 		Entity.prototype.update = function(translation) {
@@ -29,7 +25,8 @@
 		Entity.prototype.deserialize = function(serializedShape) {
 		    var shapeClass = stringToClass(serializedShape.shape["class"]);
             this.shape = new shapeClass();
-	        this.shape.deserialize(serializedShape.shape)
+	        this.shape.deserialize(serializedShape.shape);
+	        this.physic = new app.physics.Physic(this, 2);
 		}
 
 		return Entity;

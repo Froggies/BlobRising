@@ -9,8 +9,8 @@
 		function Physic(entity, speed) {
 			this.entity = entity;
 			this.speed = speed;
-			var x = this.entity.forme.x;
-			var y = this.entity.forme.y;
+			var x = this.entity.shape.x;
+			var y = this.entity.shape.y;
 			this.position = $V([x, y]);
 			this.angle = $V([1, 1]);
 		}
@@ -19,8 +19,8 @@
 			var x = this.position.elements[0];
 			var y = this.position.elements[1];
 
-			var height = this.entity.forme.height;
-			var width = this.entity.forme.width;
+			var height = this.entity.shape.height;
+			var width = this.entity.shape.width;
 			var canvas = this.entity.context.canvas;
 			var maxHeight = canvas.height;
 			var maxWidth = canvas.width;

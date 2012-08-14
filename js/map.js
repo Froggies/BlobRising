@@ -6,10 +6,6 @@
 
 	app.Map = {};
 
-	// units vector 
-	app.Map.i = $V([0, 1, 0]);
-	app.Map.j = $V([1, 0, 0]);
-
     var shape;
     var staticEntities;
     var menuEntities;
