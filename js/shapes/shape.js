@@ -16,7 +16,6 @@
 		}
 
 		Shape.prototype.draw = function(context) {
-		    console.log("shape::draw::dans draw");
 		}
 
         Shape.prototype.calculCenter = function() {

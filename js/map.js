@@ -25,8 +25,6 @@
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
 		        entity.context = context;
-		        console.log("map::deserialize::draw");
-		        console.log(entity);
 		        entity.update($V([1, 1]));
 		        if(entity instanceof app.entities.Blob) {
 		            entity.draw(context, this);

@@ -42,6 +42,7 @@
       return  fn;
     };
     
+    // deserialize json to BlobRising object
     app.js.deserialize = function(serialized) {
         var objectClass = app.js.stringToClass(serialized["class"]);
         var objectInstance = new objectClass();
@@ -60,6 +61,11 @@
             }
         }
         return objectInstance;
+    }
+    
+    app.js.arrayRemove = function(array, object) {
+        var idx = array.indexOf(object);
+        if(idx!=-1) array.splice(idx, 1);
     }
 
 })();

@@ -25,8 +25,6 @@
 			var maxHeight = canvas.height;
 			var maxWidth = canvas.width;
 
-			console.log("this.angle : " +this.angle.inspect());
-
             var rawX = x + (this.speed * this.angle.elements[0]);
             var rawY = y + (this.speed * this.angle.elements[1]);
             // optimization, we dont need much precision
@@ -34,8 +32,6 @@
             var newY = Number(rawY.toFixed(2));
 
             this.position = $V([newX, newY]);
-
-            console.log("new position : " + this.position.inspect());
 
 			this.entity.shape.x = this.position.elements[0]; 
 			this.entity.shape.y = this.position.elements[1];
