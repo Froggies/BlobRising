@@ -8,10 +8,12 @@
 	
 	    var age;
 	    var imAlive;
+	    var shape;
 	
 		function Entity() {
 		    this.age = 0;
 		    this.imAlive = true;
+		    this.shape = new app.shapes.Rectangle();
 		}
 		
 		Entity.prototype.init = function() {

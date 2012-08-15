@@ -14,7 +14,6 @@ var maps = [
             {
                 "class":"app.entities.Source", 
                 "shape": {
-                    "class":"app.shapes.Rectangle",
                     "x":1,
                     "y":2,
                     "width":50,

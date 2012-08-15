@@ -43,9 +43,14 @@
     };
     
     // deserialize json to BlobRising object
-    app.js.deserialize = function(serialized) {
-        var objectClass = app.js.stringToClass(serialized["class"]);
-        var objectInstance = new objectClass();
+    app.js.deserialize = function(serialized, objectSource) {
+        var objectInstance;
+        if(app.js.isDefined(serialized["class"])) {
+            var objectClass = app.js.stringToClass(serialized["class"]);
+            objectInstance = new objectClass();
+        } else {
+            objectInstance = objectSource;
+        }
         for(var key in serialized) {
             if(key != "class") {
                 if(serialized[key] instanceof Array) {
@@ -54,7 +59,7 @@
                         objectInstance[key].push(app.js.deserialize(serialized[key][o]));
                     }
                 } else if(typeof serialized[key] == "object") {
-                    objectInstance[key] = app.js.deserialize(serialized[key]);
+                    objectInstance[key] = app.js.deserialize(serialized[key], objectInstance[key]);
                 } else {
                     objectInstance[key] = serialized[key];
                 }
