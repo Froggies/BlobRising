@@ -12,6 +12,7 @@
 		var currentIndexMap;
 		var currentMap;
 		var context;
+		var canvas;
 
 	app.Game = function() {
 
@@ -19,6 +20,7 @@
 			this.loop = {};
 			this.currentIndexMap = 0;
 			this.listSerializedMap = listSeralizedMap;
+			this.canvas = canvas;
 			this.context = canvas.getContext('2d');
 			this.init();
 		}
