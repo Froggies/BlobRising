@@ -6,19 +6,33 @@
 
 	app.entities.Entity = function() {
 	
+	    var age;
+	    var imAlive;
+	
 		function Entity() {
+		    this.age = 0;
+		    this.imAlive = true;
 		}
 		
 		Entity.prototype.init = function() {
-		    this.physic = new app.physics.Physic(this, 2);
+		    
 		}
 
 		Entity.prototype.update = function(translation, map) {
-			// TO BE OVERRIDE
+			this.incrementMyAge(map);
 		}
 
 		Entity.prototype.draw = function(context) {
 			this.shape.draw(context);
+		}
+		
+		Entity.prototype.incrementMyAge = function(map) {
+		    this.age++;
+	    }
+	    
+	    Entity.prototype.dead = function(map) {
+		    this.imAlive = false;
+		    app.js.arrayRemove(map.staticEntities, this);
 		}
 		
 		return Entity;

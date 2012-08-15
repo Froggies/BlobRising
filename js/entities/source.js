@@ -12,19 +12,16 @@
 		inherit(Source, Entity);
 		
 		var nbBlob;
-		var age;
 		var lostNb;
 		var lostTime;
 		
 		function Source() {
 			Source.super.constructor.apply(this);
-			this.nbBlob = 10;
-			this.age = 0;
-		    this.lostTime = 8000;
+			this.nbBlob = 100;
+		    this.lostTime = 100;
 		};
 		
 		Source.prototype.update = function(translation, map) {
-		    // physic do nothing
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
 			    var subblob = new app.entities.Blob();
@@ -32,11 +29,7 @@
 		        subblob.init();
 		        map.staticEntities.push(subblob);
 			}
-			this.incrementMyAge(map);
-		}
-		
-		Source.prototype.incrementMyAge = function(map) {
-		    this.age++;
+			Source.super.update.call(this, translation, map);
 		}
 		
 		Source.prototype.isBirthday = function() {

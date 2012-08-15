@@ -13,6 +13,7 @@
 		
 		var nbBlob;
 		var timeToLostMolecule;
+		var physic;
 		
 		function Blob() {
 			Blob.super.constructor.apply(this);
@@ -21,6 +22,7 @@
 		
 		Blob.prototype.init = function() {
 		    Blob.super.init.call(this);
+		    this.physic = new app.physics.Physic(this, 2);
 		    this.timeToLostMolecule = (this.maxAge / this.nbBlob);
 		    this.timeToLostMolecule = Number(this.timeToLostMolecule.toFixed(0));
 		}
