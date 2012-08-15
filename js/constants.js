@@ -19,7 +19,7 @@ var maps = [
                 }
             },
             {
-                "class":"app.entities.Entity", 
+                "class":"app.entities.Blob", 
                 "shape": {
                     "class":"app.shapes.Rectangle",
                     "x":20,
@@ -29,7 +29,7 @@ var maps = [
                 }
             },
             {
-                "class":"app.entities.Entity", 
+                "class":"app.entities.Blob", 
                 "shape": {
                     "class":"app.shapes.Rectangle",
                     "x":200,

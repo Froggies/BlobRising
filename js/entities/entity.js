@@ -8,9 +8,12 @@
 	
 		function Entity() {
 		}
+		
+		Entity.prototype.init = function() {
+		    this.physic = new app.physics.Physic(this, 2);
+		}
 
 		Entity.prototype.update = function(translation) {
-		    this.physic = new app.physics.Physic(this, 2);
 			this.physic.update(translation);
 		}
 

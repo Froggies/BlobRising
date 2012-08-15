@@ -20,6 +20,13 @@
 			this.menuEntities = [];
 		}
 		
+		Map.prototype.init = function() {
+		    for(var entityIndex in this.staticEntities) {
+		        var entity = this.staticEntities[entityIndex];
+		        entity.init();
+		    }
+		}
+		
 		Map.prototype.draw = function(context) {
 		    this.shape.draw(context);
 		    for(var entityIndex in this.staticEntities) {
