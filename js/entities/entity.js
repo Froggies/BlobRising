@@ -13,8 +13,8 @@
 		    this.physic = new app.physics.Physic(this, 2);
 		}
 
-		Entity.prototype.update = function(translation) {
-			this.physic.update(translation);
+		Entity.prototype.update = function(translation, map) {
+			// TO BE OVERRIDE
 		}
 
 		Entity.prototype.draw = function(context) {

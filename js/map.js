@@ -32,12 +32,8 @@
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
 		        entity.context = context;
-		        entity.update($V([1, 1]));
-		        if(entity instanceof app.entities.Blob) {
-		            entity.draw(context, this);
-		        } else {
-		            entity.draw(context);
-		        }
+	            entity.update($V([1, 1]), this);
+		        entity.draw(context);
 		    }
 		}
 		

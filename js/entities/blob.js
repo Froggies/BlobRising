@@ -3,70 +3,49 @@
 	"use strict";
 
     var 
-		Entity = app.entities.Entity,
+		Molecule = app.entities.Molecule,
 		inherit = app.js.inherit,
 		isDefined = app.js.isDefined;
 
 	app.entities.Blob = function() {
 
-		inherit(Blob, Entity);
+		inherit(Blob, Molecule);
 		
-		var age = 0;
-		var timeToLive;
-		var lostNb = 1;
-		var lostTime = 20;
-		var imAlive = true;
+		var nbBlob;
+		var timeToLostMolecule;
 		
 		function Blob() {
 			Blob.super.constructor.apply(this);
-			this.age = 0;
-			this.lostNb = 1;
-			this.lostTime = 10;
-			this.imAlive = true;
+			this.nbBlob = 100;
 		};
 		
-		Blob.prototype.defineTimeToLive = function(time) {
-		    this.timeToLive = time;
+		Blob.prototype.init = function() {
+		    Blob.super.init.call(this);
+		    this.timeToLostMolecule = (this.maxAge / this.nbBlob);
+		    this.timeToLostMolecule = Number(this.timeToLostMolecule.toFixed(0));
 		}
 		
-		Blob.prototype.update = function(translation) {
-		    if(!isDefined(this.timeToLive)) {
-		        Blob.super.update.call(this, translation);
-		    }
-		}
-
-		Blob.prototype.draw = function(context, map) {
-			Blob.super.draw.call(this, context);
-			this.incrementMyAge(map);
-			if(this.isBirthday() && !isDefined(this.timeToLive)) {
-			    var subblob = new app.entities.Blob();
-		        subblob.defineTimeToLive(30);
-		        subblob.shape = new app.shapes.Rectangle(this.shape.x-30,this.shape.y-30,30,30);
+		Blob.prototype.update = function(translation, map) {
+		    if(this.isBirthday() && this.nbBlob > 0) {
+		        this.nbBlob--;
+			    var subblob = new app.entities.Molecule();
+		        subblob.shape = new app.shapes.Rectangle();
+		        subblob.shape.width = this.shape.width;
+		        subblob.shape.height = this.shape.height;
+		        subblob.shape.x = this.shape.x;
+		        subblob.shape.y = this.shape.y;
+		        subblob.maxAge = 100;
+		        subblob.init();
 		        map.staticEntities.push(subblob);
 			}
-		};
-		
-		Blob.prototype.incrementMyAge = function(map) {
-		    this.age++;
-		    if(isDefined(this.timeToLive) && isDefined(map)) {
-		        this.timeToLive--;
-		        this.shape.width--;
-		        this.shape.height--;
-		        if(this.timeToLive <= 0) {
-		            this.dead(map);
-		        }
-	        }
+			this.physic.update(translation);
+			Blob.super.update.call(this, translation, map);
 		}
 		
 		Blob.prototype.isBirthday = function() {
-		    return this.age % this.lostTime == 0 && this.imAlive;
+		    return this.age % this.timeToLostMolecule == 0 && this.imAlive;
 		}
 		
-		Blob.prototype.dead = function(map) {
-		    this.imAlive = false;
-		    app.js.arrayRemove(map.staticEntities, this);
-		}
-
 		return Blob;
 
 	}();
