@@ -4,10 +4,8 @@ var maps = [
         "class":"app.Map",
         "menuEntities":
         [
-            {
-                "class":"app.entities.Source",
-                "nb":3
-            }
+            {"class":"app.entities.Source","nb":5},
+            {"class":"app.entities.Blob","nb":5}
         ],
         "staticEntities":
         [

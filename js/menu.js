@@ -6,17 +6,18 @@
 
 		var entitySelected;
 		var game;
+		var divMenu;
 
 		function Menu(game) {
 		    this.entitySelected = "";
 		    this.game = game;
 			// construct view
-			var menu = document.createElement("div");
-	        menu.style.display = 'inline-block';
-	        menu.style.verticalAlign = 'top';
-	        menu.style.width = '18%';
+			this.divMenu = document.createElement("div");
+	        this.divMenu.style.display = 'inline-block';
+	        this.divMenu.style.verticalAlign = 'top';
+	        this.divMenu.style.width = '18%';
 
-	        menu.appendChild(
+	        this.divMenu.appendChild(
 	            this.createToggleButton(
 	                "Start", 
 	                function() {
@@ -29,19 +30,20 @@
                         }
                     }
                 ));
-            var that = this;
-            menu.appendChild(
-                this.createToggleButton(
-                    "Aimants (3)", 
-                    function() {app.Menu.prototype.clickAimant.call(that);}
-                ));
-            document.body.appendChild(menu);
-            
-            canvas.addEventListener("mousedown", 
-                function(event) {app.Menu.prototype.mouseClickOnCanvas.call(that, event);}, false);
+            this.load(game.currentMap);
 		};
 		
-		Menu.prototype.clickAimant = function() {
+		Menu.prototype.load = function(map) {
+		    // add buttons related to map
+		    var that = this;
+		    for(var entityIndex in map.menuEntities) {
+		        var entity = map.menuEntities[entityIndex];
+		        var menuItem = new app.MenuItem(this, entity, entity.nb, this.clickItemMenu);
+            }
+            document.body.appendChild(this.divMenu);
+		}
+		
+		Menu.prototype.clickItemMenu = function() {
             if(this.entitySelected == "aimant") {
                 this.entitySelected = "";
             } else {
@@ -49,28 +51,6 @@
             }
             console.log("clickAimant " + this.entitySelected);
             console.log(this);
-        }
-		
-		Menu.prototype.load = function(map) {
-		    // add buttons related to map
-		}
-		
-		Menu.prototype.mouseClickOnCanvas = function(event) {
-		    console.log("mouseclick " + this.entitySelected);
-		    console.log(this);
-            if(this.entitySelected == "aimant") {
-                var canvas = this.game.canvas;
-                var x= event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
-                var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-                var subblob = new app.entities.Source();
-		        subblob.shape = new app.shapes.Rectangle();
-		        subblob.shape.width = 50;
-		        subblob.shape.height = 50;
-		        subblob.shape.x = x;
-		        subblob.shape.y = y;
-		        subblob.init();
-		        this.game.currentMap.staticEntities.push(subblob);
-            }
         }
 		
 		Menu.prototype.createToggleButton = function(name, callback) {

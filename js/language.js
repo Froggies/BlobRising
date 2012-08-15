@@ -31,6 +31,7 @@
  	// retrive a class with her name
  	// str full qualified name (with package.subpackage.ClassName)
  	app.js.stringToClass = function(str) {
+ 	  console.log(str);
       var arr = str.split(".");
       var fn = (window || this);
       for (var i = 0, len = arr.length; i < len; i++) {
@@ -44,15 +45,16 @@
     
     // deserialize json to BlobRising object
     app.js.deserialize = function(serialized, objectSource) {
-        var objectInstance;
+        var objectInstance = {};
         if(app.js.isDefined(serialized["class"])) {
             var objectClass = app.js.stringToClass(serialized["class"]);
             objectInstance = new objectClass();
-        } else {
+        } else if(app.js.isDefined(objectSource)) {
             objectInstance = objectSource;
         }
         for(var key in serialized) {
-            if(key != "class") {
+            // keep it comment : for menuItem use
+            // if(key != "class") {
                 if(serialized[key] instanceof Array) {
                     objectInstance[key] = []
                     for(var o in serialized[key]) {
@@ -63,7 +65,7 @@
                 } else {
                     objectInstance[key] = serialized[key];
                 }
-            }
+            // }
         }
         return objectInstance;
     }
@@ -71,6 +73,18 @@
     app.js.arrayRemove = function(array, object) {
         var idx = array.indexOf(object);
         if(idx!=-1) array.splice(idx, 1);
+    }
+    
+    // Returns the class name of the argument or undefined if
+    // it's not a valid JavaScript object.
+    app.js.getObjectClass = function(obj) {
+        if (obj && obj.constructor && obj.constructor.toString) {
+            var arr = obj.constructor.toString().match(/function\s*(\w+)/);
+            if (arr && arr.length == 2) {
+                return arr[1];
+            }
+        }
+        return undefined;
     }
 
 })();
