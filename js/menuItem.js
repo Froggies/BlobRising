@@ -57,15 +57,12 @@
                 var canvas = this.menuContainer.game.canvas;
                 var x= event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
                 var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-                //var classEntity = app.js.stringToClass(this.entity.class);
-                //var subblob = new classEntity();
-                // TODO : clone entity to subblob
-		        var subblob = app.js.deserialize(this.entity);
-		        subblob.shape.x = x;
-		        subblob.shape.y = y;
-		        subblob.init();
-		        subblob.draw(canvas.getContext('2d'));
-		        this.menuContainer.game.currentMap.staticEntities.push(subblob);
+		        var entity = app.js.clone(this.entity);
+		        entity.shape.x = x;
+		        entity.shape.y = y;
+		        entity.init();
+		        entity.draw(canvas.getContext('2d'));
+		        this.menuContainer.game.currentMap.staticEntities.push(entity);
             }
 		}
 
