@@ -7,10 +7,12 @@
 		var entitySelected;
 		var game;
 		var divMenu;
+		var menuItems;
 
 		function Menu(game) {
 		    this.entitySelected = "";
 		    this.game = game;
+		    this.menuItems = [];
 			// construct view
 			this.divMenu = document.createElement("div");
 	        this.divMenu.style.display = 'inline-block';
@@ -40,18 +42,18 @@
 		    for(var entityIndex in map.menuEntities) {
 		        var entity = map.menuEntities[entityIndex];
 		        var menuItem = new app.MenuItem(this, entity, entity.nb, this.clickItemMenu);
+		        this.menuItems.push(menuItem);
             }
             document.body.appendChild(this.divMenu);
 		}
 		
-		Menu.prototype.clickItemMenu = function() {
-            if(this.entitySelected == "aimant") {
-                this.entitySelected = "";
-            } else {
-                this.entitySelected = "aimant";
+		Menu.prototype.clickItemMenu = function(menuItem) {
+            for(var itemIndex in this.menuItems) {
+                var item = this.menuItems[itemIndex];
+                if(item != menuItem) {
+                    item.unselect();
+                }
             }
-            console.log("clickAimant " + this.entitySelected);
-            console.log(this);
         }
 		
 		Menu.prototype.createToggleButton = function(name, callback) {

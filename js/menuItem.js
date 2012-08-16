@@ -42,12 +42,17 @@
             this.isSelected = !this.isSelected;
             if(this.isSelected) {
                 this.div.style.color = 'red';
+                if(app.js.isDefined(this.callback)) {
+	                this.callback.call(this.menuContainer, this);
+	            }
             } else {
                 this.div.style.color = 'white';
             }
-            if(app.js.isDefined(this.callback)) {
-	            this.callback.call(this.menuContainer);
-	        }
+		}
+		
+		MenuItem.prototype.unselect = function() {
+		    this.isSelected = false;
+		    this.div.style.color = 'white';
 		}
 		
 		MenuItem.prototype.onCanvasClick = function(event) {
