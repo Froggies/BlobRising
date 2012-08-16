@@ -32,6 +32,9 @@
 		        var entity = map.staticEntities[entityIndex];
 		        if(app.js.getObjectClass(entity) == "Wall" && this.isCollision(entity)) {
 		            this.dead(map);
+		        } else if(app.js.getObjectClass(entity) == "Well" && this.isCollision(entity)) {
+		            this.dead(map);
+		            entity.nbBlobMax--;
 		        }
 		    }
 		    if(this.isBirthday() && this.nbBlob > 0) {
