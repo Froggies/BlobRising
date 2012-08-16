@@ -21,11 +21,12 @@
 			this.blobEntities = [];
 		}
 		
-		Map.prototype.init = function() {
+		Map.prototype.init = function(context) {
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
 		        entity.init();
 		    }
+		    this.shape.draw(context);
 		}
 		
 		Map.prototype.draw = function(context) {
@@ -46,7 +47,7 @@
 		
 		Map.prototype.isWin = function() {
 		    var win = false;
-		    if(this.finalPuit.blob > 0) {
+		    if(false && this.finalPuit.blob > 0) {
 		        win = true;
 		    }
 		    return win;

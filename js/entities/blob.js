@@ -28,6 +28,12 @@
 		}
 		
 		Blob.prototype.update = function(translation, map) {
+		    for(var entityIndex in map.blobEntities) {
+		        var entity = map.staticEntities[entityIndex];
+		        if(app.js.getObjectClass(entity) == "Wall" && this.isCollision(entity)) {
+		            this.dead(map);
+		        }
+		    }
 		    if(this.isBirthday() && this.nbBlob > 0) {
 		        this.nbBlob--;
 			    var subblob = new app.entities.Molecule();

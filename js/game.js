@@ -22,6 +22,7 @@
 			this.listSerializedMap = listSeralizedMap;
 			this.canvas = canvas;
 			this.context = canvas.getContext('2d');
+			this.timeLoop = 50;
 			this.init();
 		}
 
@@ -29,8 +30,7 @@
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap]);
 			this.currentMap.shape.width = this.context.canvas.width;
 			this.currentMap.shape.height = this.context.canvas.height;
-			this.currentMap.init();
-			this.currentMap.draw(this.context);
+			this.currentMap.init(this.context);
 		}
 
 		Game.prototype.clear = function() {
@@ -42,7 +42,7 @@
 			this.loop = setInterval(function() {
 				that.clear();
 				that.currentMap.draw(that.context);
-			}, 1000/50);
+			}, 1000/this.timeLoop);
 			this.isRun = true;
 		}
 		

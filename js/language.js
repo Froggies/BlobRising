@@ -44,7 +44,6 @@
     
     // deserialize json to BlobRising object
     app.js.deserialize = function(serialized, objectSource) {
-        console.log(serialized);
         var objectInstance = {};
         if(app.js.isDefined(serialized) && app.js.isDefined(serialized["class"])) {
             var objectClass = app.js.stringToClass(serialized["class"]);

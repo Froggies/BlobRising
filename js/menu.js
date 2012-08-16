@@ -30,6 +30,7 @@
                         }
                     }
                 ));
+            this.createSliderTime(game);
             this.load(game.currentMap);
 		};
 		
@@ -65,6 +66,32 @@
             btn.style.height = '50px';
             btn.style.margin = 'auto';
             return btn;
+        }
+        
+        Menu.prototype.createSliderTime = function(game) {
+            var divSlider = document.createElement("div");
+            divSlider.style.color = 'white';
+            divSlider.style.border = '1px solid white';
+            divSlider.style.display = 'block';
+            divSlider.style.width = '80%';
+            divSlider.style.height = '50px';
+            divSlider.style.margin = 'auto';
+            var sliderTime = document.createElement("input");
+            sliderTime.type = "range";
+            sliderTime.min = 10;
+            sliderTime.max = 850;
+            sliderTime.value = 50;
+            sliderTime.step = 10;
+            sliderTime.style.display = 'block';
+            sliderTime.style.width = '80%';
+            sliderTime.style.margin = 'auto';
+            sliderTime.onchange = function() {
+                game.timeLoop = sliderTime.value;
+                game.end();
+                game.start();
+            };
+            divSlider.appendChild(sliderTime);
+            this.divMenu.appendChild(divSlider);
         }
 
 		return Menu;
