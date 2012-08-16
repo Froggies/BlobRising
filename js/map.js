@@ -18,6 +18,7 @@
 		    this.shape.y = 0;
 			this.staticEntities = [];
 			this.menuEntities = [];
+			this.blobEntities = [];
 		}
 		
 		Map.prototype.init = function() {
@@ -31,6 +32,12 @@
 		    this.shape.draw(context);
 		    for(var entityIndex in this.staticEntities) {
 		        var entity = this.staticEntities[entityIndex];
+		        entity.context = context;
+	            entity.update($V([1, 1]), this);
+		        entity.draw(context);
+		    }
+		    for(var entityIndex in this.blobEntities) {
+		        var entity = this.blobEntities[entityIndex];
 		        entity.context = context;
 	            entity.update($V([1, 1]), this);
 		        entity.draw(context);

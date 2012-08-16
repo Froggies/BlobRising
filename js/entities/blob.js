@@ -38,6 +38,8 @@
 		        subblob.shape.y = this.shape.y;
 		        subblob.maxAge = 100;
 		        subblob.init();
+		        // in static because haven't physics
+		        // can be go in blobEntities if it's necessary
 		        map.staticEntities.push(subblob);
 			}
 			this.physic.update(translation);

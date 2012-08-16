@@ -57,12 +57,10 @@
                 var canvas = this.menuContainer.game.canvas;
                 var x= event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
                 var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-                var classEntity = app.js.stringToClass(this.entity.class);
-                var subblob = new classEntity();
+                //var classEntity = app.js.stringToClass(this.entity.class);
+                //var subblob = new classEntity();
                 // TODO : clone entity to subblob
-		        subblob.shape = new app.shapes.Rectangle();
-		        subblob.shape.width = 50;
-		        subblob.shape.height = 50;
+		        var subblob = app.js.deserialize(this.entity);
 		        subblob.shape.x = x;
 		        subblob.shape.y = y;
 		        subblob.init();

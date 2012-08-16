@@ -34,7 +34,9 @@
 	    
 	    Entity.prototype.dead = function(map) {
 		    this.imAlive = false;
-		    app.js.arrayRemove(map.staticEntities, this);
+		    if(!app.js.arrayRemove(map.blobEntities, this)) {
+		        app.js.arrayRemove(map.staticEntities, this)
+		    }
 		}
 		
 		return Entity;

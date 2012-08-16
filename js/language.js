@@ -31,7 +31,6 @@
  	// retrive a class with her name
  	// str full qualified name (with package.subpackage.ClassName)
  	app.js.stringToClass = function(str) {
- 	  console.log(str);
       var arr = str.split(".");
       var fn = (window || this);
       for (var i = 0, len = arr.length; i < len; i++) {
@@ -45,8 +44,9 @@
     
     // deserialize json to BlobRising object
     app.js.deserialize = function(serialized, objectSource) {
+        console.log(serialized);
         var objectInstance = {};
-        if(app.js.isDefined(serialized["class"])) {
+        if(app.js.isDefined(serialized) && app.js.isDefined(serialized["class"])) {
             var objectClass = app.js.stringToClass(serialized["class"]);
             objectInstance = new objectClass();
         } else if(app.js.isDefined(objectSource)) {
@@ -70,9 +70,18 @@
         return objectInstance;
     }
     
+    // clone all properties of an object into other object build with class propertie
+    app.js.clone = function(object) {
+        // O yeah it's work ^^
+        return app.js.deserialize(object);
+    }
+    
+    // remove an object in array
+    // why js hasn't this method ?
     app.js.arrayRemove = function(array, object) {
         var idx = array.indexOf(object);
         if(idx!=-1) array.splice(idx, 1);
+        return idx!=-1;
     }
     
     // Returns the class name of the argument or undefined if
