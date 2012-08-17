@@ -12,10 +12,14 @@
 			this.width = width;
 			this.height = height;
 			this.center = {};
-			this.calculCenter();
 		}
-
+        
+        Shape.prototype.init = function() {
+            this.calculCenter();
+		}
+        
 		Shape.prototype.draw = function(context) {
+		    this.calculCenter();
 		}
 
         Shape.prototype.calculCenter = function() {

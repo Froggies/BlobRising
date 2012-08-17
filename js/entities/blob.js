@@ -28,14 +28,20 @@
 		}
 		
 		Blob.prototype.update = function(translation, map) {
-		    for(var entityIndex in map.blobEntities) {
+		    for(var entityIndex in map.staticEntities) {
 		        var entity = map.staticEntities[entityIndex];
-		        if(app.js.getObjectClass(entity) == "Wall" && this.isCollision(entity)) {
+		        var isCollision = this.isCollision(entity);
+		        if(app.js.getObjectClass(entity) == "Wall" && isCollision) {
 		            this.dead(map);
-		        } else if(app.js.getObjectClass(entity) == "Well" && this.isCollision(entity)) {
+		        } else if(app.js.getObjectClass(entity) == "Well" && isCollision) {
 		            this.dead(map);
 		            entity.nbBlobMax--;
 		        }
+		        var isInRadius = this.collision.isInRaduis(this, entity);
+		        if(app.js.getObjectClass(entity) == "Well" && isInRadius) {
+		            this.physic.angle = $V([0.5, -0.5]);
+		        }
+		        
 		    }
 		    if(this.isBirthday() && this.nbBlob > 0) {
 		        this.nbBlob--;

@@ -14,10 +14,12 @@
 		    this.age = 0;
 		    this.imAlive = true;
 		    this.shape = new app.shapes.Rectangle();
+		    this.collision = new app.physics.Collision();
+		    this.radius = 0;
 		}
 		
 		Entity.prototype.init = function() {
-		    
+		    this.shape.init();
 		}
 
 		Entity.prototype.update = function(translation, map) {
@@ -40,16 +42,7 @@
 		}
 		
 		Entity.prototype.isCollision = function(entity) {
-		    var x2 = entity.shape.x;
-            var y2 = entity.shape.y;
-            var h2 = entity.shape.height;
-            var l2 = entity.shape.width;
-                    
-            if(x2+l2 < this.shape.x || x2 > this.shape.x+this.shape.width
-            || y2+h2 < this.shape.y || y2 > this.shape.y+this.shape.height)
-                    return false
-            else                            
-                    return true;
+		    return this.collision.isCollision(this, entity);
 		}
 		
 		return Entity;
