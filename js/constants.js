@@ -13,8 +13,20 @@ var maps = [
         [
             {
                 "class":"app.entities.Well", 
+                "nbBlobMax":100,
                 "shape": {
-                    "x":310,
+                    "x":500,
+                    "y":150,
+                    "width":50,
+                    "height":50,
+                    "fill":true
+                }
+            },
+            {
+                "class":"app.entities.Source", 
+                "nbBlob":5,
+                "shape": {
+                    "x":700,
                     "y":240,
                     "width":30,
                     "height":30,
@@ -22,10 +34,11 @@ var maps = [
                 }
             },
             {
-                "class":"app.entities.Well", 
+                "class":"app.entities.Source", 
+                "nbBlob":5,
                 "shape": {
-                    "x":500,
-                    "y":120,
+                    "x":50,
+                    "y":50,
                     "width":30,
                     "height":30,
                     "fill":true
@@ -33,9 +46,20 @@ var maps = [
             },
             {
                 "class":"app.entities.Source", 
-                "nbBlob":1,
+                "nbBlob":5,
                 "shape": {
                     "x":50,
+                    "y":200,
+                    "width":30,
+                    "height":30,
+                    "fill":true
+                }
+            },
+            {
+                "class":"app.entities.Source", 
+                "nbBlob":5,
+                "shape": {
+                    "x":500,
                     "y":50,
                     "width":30,
                     "height":30,

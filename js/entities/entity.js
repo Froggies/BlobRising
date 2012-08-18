@@ -27,6 +27,14 @@
 		}
 
 		Entity.prototype.draw = function(context) {
+			if(app.js.isDefined(this.radius)) {
+			    var r = new app.shapes.Rectangle();
+			    r.x = this.shape.x - (this.radius/4);
+			    r.y = this.shape.y - (this.radius/4);
+			    r.width = this.radius;
+			    r.height = this.radius;
+			    r.draw(context);
+			}
 			this.shape.draw(context);
 		}
 		

@@ -25,7 +25,7 @@
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
 			    var subblob = new app.entities.Blob();
-		        subblob.shape = new app.shapes.Rectangle(this.shape.x+30,this.shape.y+30,30,30);
+		        subblob.shape = new app.shapes.Rectangle(this.shape.x,this.shape.y,30,30);
 		        subblob.init();
 		        map.blobEntities.push(subblob);
 			}

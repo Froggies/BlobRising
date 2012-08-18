@@ -26,21 +26,20 @@
 		}
 		
 		Collision.prototype.isInRaduis = function(blob, entity) {
-		    this.nextDirection(blob, entity);
 		    if(entity.radius > 0) {
 		        var x = blob.shape.x;
                 var y = blob.shape.y;
                 var h = blob.shape.height;
                 var l = blob.shape.width;
 		        
-		        var x2 = entity.shape.x;
-                var y2 = entity.shape.y;
+		        var x2 = entity.shape.x - entity.radius/4;
+                var y2 = entity.shape.y - entity.radius/4;
                 var h2 = entity.shape.height + entity.radius;
                 var l2 = entity.shape.width + entity.radius;
 
                 if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
                     return false;
-                } else {                            
+                } else {        
                     return true;
                 }
             }
@@ -53,12 +52,30 @@
 	        
 	        var xb = entity.shape.x;
             var yb = entity.shape.y;
-		    
-		    var sinAlphaBeta = (yb - ya) / (Math.sqrt(Math.pow(xb - xa, 2) + Math.pow(yb - ya, 2)));
-            var AlphaBeta = Math.asin(sinAlphaBeta)
-            if (xb < xa) {AlphaBeta = 180 - AlphaBeta;}
-            var alpha = AlphaBeta - 10;//???
-            console.log(alpha);
+            
+            relativX = xb - xa;
+            relativZ = yb - ya;
+
+            var angle = Math.atan2(relativZ,relativX)/(Math.PI/180);
+            var newX = Math.cos(angle);
+            var newY = Math.sin(angle);
+            var newAngle;
+            if(xa < xb && ya < yb) {
+                console.log("gauche dessus");
+                newAngle = $V([-newX, -newY]);
+            } else if(xa < xb && ya > yb) {
+                console.log("gauche dessous");
+                newAngle = $V([newX, newY]);
+            } else if(xa > xb && ya < yb) {
+                console.log("droite dessus");
+                newAngle = $V([newX, newY]);
+            } else {
+                console.log("droite dessous");
+                newAngle = $V([newX, newY]);
+            }
+            if(app.js.getObjectClass(entity) == "Well" && blob.physic.angle.angleFrom(newAngle) < 1) {
+                blob.physic.angle = newAngle;
+            }
 		}
 		
 		Collision.prototype.pointDistant = function(blob, entity) {

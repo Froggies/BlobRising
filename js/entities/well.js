@@ -21,7 +21,7 @@
 		Well.prototype.init = function() {
 		    Well.super.init.call(this);
 		    this.radius = Math.max(this.shape.width, this.shape.height);
-		    this.radius += 20;
+		    this.radius += 80;
 		}
 		
 		Well.prototype.update = function(translation, map) {

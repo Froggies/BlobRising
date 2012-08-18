@@ -12,7 +12,7 @@
 			var x = this.entity.shape.x;
 			var y = this.entity.shape.y;
 			this.position = $V([x, y]);
-			this.angle = $V([1, 1]);
+			this.angle = $V([1, -0.4]);
 		}
 
 		Physic.prototype.update = function(translation) {
@@ -35,7 +35,11 @@
 
 			this.entity.shape.x = this.position.elements[0]; 
 			this.entity.shape.y = this.position.elements[1];
-
+            
+            if(app.js.getObjectClass(this.entity) == "Molecule") {
+		        console.log(this.entity.shape.x);
+	        }            
+            
 			// calculate next frame angle
 			if (y <= 0)  {
                 this.angle = $V([this.angle.elements[0], 1]);
@@ -46,6 +50,9 @@
             } else if (x >= (maxWidth - width)) {
                 this.angle = $V([-1, this.angle.elements[1]]);
             }
+            if(app.js.getObjectClass(this.entity) == "Molecule") {
+		        console.log(this.entity.shape.x);
+	        }
 		}
 
 		return Physic;

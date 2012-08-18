@@ -39,7 +39,7 @@
 		        }
 		        var isInRadius = this.collision.isInRaduis(this, entity);
 		        if(app.js.getObjectClass(entity) == "Well" && isInRadius) {
-		            this.physic.angle = $V([0.5, -0.5]);
+		            this.collision.nextDirection(this, entity);
 		        }
 		        
 		    }
@@ -53,6 +53,11 @@
 		        subblob.shape.y = this.shape.y;
 		        subblob.maxAge = 100;
 		        subblob.init();
+		        //var xv = this.physic.angle.elements[0];
+		        //xv = xv/2;
+		        //var yv = this.physic.angle.elements[1];
+		        //yv = yv/2;
+		        //subblob.mphysic.angle = $V([xv, yv]);
 		        // in static because haven't physics
 		        // can be go in blobEntities if it's necessary
 		        map.staticEntities.push(subblob);
