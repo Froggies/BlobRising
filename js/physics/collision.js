@@ -34,8 +34,8 @@
 		        
 		        var x2 = entity.shape.x - entity.radius/4;
                 var y2 = entity.shape.y - entity.radius/4;
-                var h2 = entity.shape.height + entity.radius;
-                var l2 = entity.shape.width + entity.radius;
+                var h2 = entity.radius;
+                var l2 = entity.radius;
 
                 if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
                     return false;
@@ -65,10 +65,10 @@
                 newAngle = $V([-newX, -newY]);
             } else if(xa < xb && ya > yb) {
                 console.log("gauche dessous");
-                newAngle = $V([newX, newY]);
+                newAngle = $V([newX, -newY]);
             } else if(xa > xb && ya < yb) {
                 console.log("droite dessus");
-                newAngle = $V([newX, newY]);
+                newAngle = $V([-newX, newY]);
             } else {
                 console.log("droite dessous");
                 newAngle = $V([newX, newY]);

@@ -12,7 +12,7 @@
 			var x = this.entity.shape.x;
 			var y = this.entity.shape.y;
 			this.position = $V([x, y]);
-			this.angle = $V([1, -0.4]);
+			this.angle = $V([-1, -0.3]);
 		}
 
 		Physic.prototype.update = function(translation) {
