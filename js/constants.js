@@ -1,3 +1,8 @@
+var logLevel = 1;
+var devName = "m@n";
+var className = "Collision";
+console.log("Logs start for " + devName + " with " + logLevel + " level");
+
 var maps = [
     {
         "name":"1ere map",

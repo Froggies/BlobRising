@@ -61,16 +61,16 @@
             var newY = Math.sin(angle);
             var newAngle;
             if(xa < xb && ya < yb) {
-                console.log("gauche dessus");
+                app.js.log(1, "m@n", "gauche dessus", this);
                 newAngle = $V([-newX, -newY]);
             } else if(xa < xb && ya > yb) {
-                console.log("gauche dessous");
+                app.js.log(1, "m@n", "gauche dessous", this);
                 newAngle = $V([newX, -newY]);
             } else if(xa > xb && ya < yb) {
-                console.log("droite dessus");
+                app.js.log(1, "m@n", "droite dessus", this);
                 newAngle = $V([-newX, newY]);
             } else {
-                console.log("droite dessous");
+                app.js.log(1, "m@n", "droite dessous", this);
                 newAngle = $V([newX, newY]);
             }
             if(app.js.getObjectClass(entity) == "Well" && blob.physic.angle.angleFrom(newAngle) < 1) {

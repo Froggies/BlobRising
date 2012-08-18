@@ -95,4 +95,23 @@
         return undefined;
     }
 
+    // Display msg in console if 
+    // level == constants.logLevel and
+    // devNames contains constants.devName 
+    // if constants.className == "" so display all
+    // else if object isDefined && constants.className == object.className so display
+    // if withTrace = true then display stacktrace
+    app.js.log = function(level, devNames, msg, object, withTrace) {
+        if(level == logLevel && devNames.indexOf(devName) > -1) {
+            if(className == "") {
+                console.log(msg);
+            } else if(app.js.isDefined(object) && app.js.getObjectClass(object) == className) {
+                console.log(msg);
+            }
+            if(app.js.isDefined(withTrace) && withTrace === true) {
+                console.trace();
+            }
+        }
+    }
+
 })();
