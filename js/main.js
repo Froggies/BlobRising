@@ -29,7 +29,7 @@
 	    canvas.height = height - 21;
 	    game.currentMap.shape.width = canvas.width;
 	    game.currentMap.shape.height = canvas.height;
-	    game.currentMap.draw(canvas.getContext('2d'));
+	    game.currentMap.draw(canvas.getContext('2d'), false);
     }
     
 })();

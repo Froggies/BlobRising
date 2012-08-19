@@ -44,9 +44,7 @@
 	    
 	    Entity.prototype.dead = function(map) {
 		    this.imAlive = false;
-		    if(!app.js.arrayRemove(map.blobEntities, this)) {
-		        app.js.arrayRemove(map.staticEntities, this)
-		    }
+		    app.js.arrayRemove(map.staticEntities, this);
 		}
 		
 		Entity.prototype.isCollision = function(entity) {

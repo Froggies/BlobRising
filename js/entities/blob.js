@@ -27,7 +27,7 @@
 		    this.timeToLostMolecule = Number(this.timeToLostMolecule.toFixed(0));
 		}
 		
-		Blob.prototype.update = function(translation, map) {
+		Blob.prototype.update = function(translation, context, map) {
 		    for(var entityIndex in map.staticEntities) {
 		        var entity = map.staticEntities[entityIndex];
 		        var isCollision = this.isCollision(entity);
@@ -58,16 +58,21 @@
 		        //var yv = this.physic.angle.elements[1];
 		        //yv = yv/2;
 		        //subblob.mphysic.angle = $V([xv, yv]);
-		        // in static because haven't physics
+		        // in none because haven't physics
 		        // can be go in blobEntities if it's necessary
-		        map.staticEntities.push(subblob);
+		        map.noneEntities.push(subblob);
 			}
-			this.physic.update(translation);
+			this.physic.update(translation, context.canvas.width, context.canvas.height);
 			Blob.super.update.call(this, translation, map);
 		}
 		
 		Blob.prototype.isBirthday = function() {
 		    return this.age % this.timeToLostMolecule == 0 && this.imAlive;
+		}
+		
+		Blob.prototype.dead = function(map) {
+		    this.imAlive = false;
+		    app.js.arrayRemove(map.blobEntities, this)
 		}
 		
 		return Blob;

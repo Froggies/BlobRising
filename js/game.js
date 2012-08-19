@@ -30,7 +30,8 @@
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap]);
 			this.currentMap.shape.width = this.context.canvas.width;
 			this.currentMap.shape.height = this.context.canvas.height;
-			this.currentMap.init(this.context);
+			this.currentMap.init();
+			this.currentMap.draw(this.context, false);
 		}
 
 		Game.prototype.clear = function() {
@@ -41,7 +42,7 @@
 			var that = this;
 			this.loop = setInterval(function() {
 				that.clear();
-				that.currentMap.draw(that.context);
+				that.currentMap.draw(that.context, true);
 			}, 1000/this.timeLoop);
 			this.isRun = true;
 		}

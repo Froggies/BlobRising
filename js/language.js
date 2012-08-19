@@ -78,6 +78,9 @@
     // remove an object in array
     // why js hasn't this method ?
     app.js.arrayRemove = function(array, object) {
+        if(!app.js.isDefined(array)) {
+            console.trace();
+        }
         var idx = array.indexOf(object);
         if(idx!=-1) array.splice(idx, 1);
         return idx!=-1;

@@ -9,6 +9,8 @@
     var shape;
     var staticEntities;
     var menuEntities;
+    var blobEntities;
+    var noneEntities;
 
 	app.Map = function() {
 
@@ -19,29 +21,53 @@
 			this.staticEntities = [];
 			this.menuEntities = [];
 			this.blobEntities = [];
+			this.noneEntities = [];
 		}
 		
 		Map.prototype.init = function(context) {
-		    for(var entityIndex in this.staticEntities) {
-		        var entity = this.staticEntities[entityIndex];
+		    var len = this.staticEntities.length;
+		    var entity;
+		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		        entity = this.staticEntities[entityIndex];
 		        entity.init();
 		    }
-		    this.shape.draw(context);
 		}
 		
-		Map.prototype.draw = function(context) {
+		Map.prototype.draw = function(context, withUpdate) {
 		    this.shape.draw(context);
-		    for(var entityIndex in this.staticEntities) {
-		        var entity = this.staticEntities[entityIndex];
-		        entity.context = context;
-	            entity.update($V([1, 1]), this);
-		        entity.draw(context);
+		    var len = this.staticEntities.length;
+		    var entity;
+		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		        entity = this.staticEntities[entityIndex];
+		        if(app.js.isDefined(entity)) {
+		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
+	                    entity.update($V([1, 1]), this);
+                    }
+		            entity.draw(context);
+	            }
 		    }
-		    for(var entityIndex in this.blobEntities) {
-		        var entity = this.blobEntities[entityIndex];
-		        entity.context = context;
-	            entity.update($V([1, 1]), this);
-		        entity.draw(context);
+		    len = this.blobEntities.length;
+		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		        entity = this.blobEntities[entityIndex];
+		        if(app.js.isDefined(entity)) {
+		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
+	                    entity.update($V([1, 1]), context, this);
+	                }
+		            entity.draw(context);
+	            }
+		    }
+		    len = this.noneEntities.length;
+		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		        entity = this.noneEntities[entityIndex];
+		        if(app.js.isDefined(entity)) {
+		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
+                        entity.update($V([1, 1]), this);
+                    }
+                    entity.draw(context);
+                } else {
+                    app.js.log(10,"m@n", "TRACE :", this);
+                    console.trace();
+                }
 		    }
 		}
 		

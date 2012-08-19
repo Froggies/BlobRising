@@ -27,26 +27,20 @@
 		    this.initialHeight = this.shape.height;
 		}
 		
-		Molecule.prototype.update = function(translation, map) {
-		    Molecule.super.update.call(this, translation, map);
-		    if(app.js.getObjectClass(this) == "Molecule") {
-		        //this.mphysic.update(translation);
-		    }
-		}
-		
 		Molecule.prototype.incrementMyAge = function(map) {
 		    Molecule.super.incrementMyAge.call(this, map);
 	        if(this.age < this.maxAge && this.shape.width > 0) {
                 this.shape.width = this.initialWidth - ((this.initialWidth / this.maxAge) * this.age);
                 this.shape.height = this.initialHeight - ((this.initialHeight / this.maxAge) * this.age);
-                if(app.js.getObjectClass(this) == "Molecule") {
-                    // TODO y initial instead of 50 !
-                    // this.shape.y = 50 + (this.initialHeight-this.shape.height)/2;
-                    // this.shape.x = 50 + (this.initialWidth-this.shape.width)/2;
-                }
 	        } else {
 	            this.dead(map);
 	        }
+		}
+		
+		Molecule.prototype.dead = function(map) {
+		    this.imAlive = false;
+		    app.js.log(1,"m@n", map.noneEntities, this);
+		    app.js.arrayRemove(map.noneEntities, this)
 		}
 		
 		return Molecule;
