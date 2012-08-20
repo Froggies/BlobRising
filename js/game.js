@@ -28,8 +28,6 @@
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap]);
-			this.currentMap.shape.width = this.context.canvas.width;
-			this.currentMap.shape.height = this.context.canvas.height;
 			this.currentMap.init();
 			this.currentMap.draw(this.context, false);
 		}

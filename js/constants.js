@@ -1,4 +1,4 @@
-var logLevel = 1;
+var logLevel = 2;
 var devName = "m@n";
 var className = "";
 console.log("Logs start for " + devName + " with " + logLevel + " level");

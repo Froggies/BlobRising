@@ -17,7 +17,7 @@
 			this.divMenu = document.createElement("div");
 	        this.divMenu.style.display = 'inline-block';
 	        this.divMenu.style.verticalAlign = 'top';
-	        this.divMenu.style.width = '18%';
+	        this.divMenu.style.width = '17%';
 
 	        this.divMenu.appendChild(
 	            this.createToggleButton(

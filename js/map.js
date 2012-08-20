@@ -15,9 +15,6 @@
 	app.Map = function() {
 
 		function Map() {
-		    this.shape = new app.shapes.Rectangle();
-		    this.shape.x = 0;
-		    this.shape.y = 0;
 			this.staticEntities = [];
 			this.menuEntities = [];
 			this.blobEntities = [];
@@ -34,7 +31,6 @@
 		}
 		
 		Map.prototype.draw = function(context, withUpdate) {
-		    this.shape.draw(context);
 		    var len = this.staticEntities.length;
 		    var entity;
 		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
