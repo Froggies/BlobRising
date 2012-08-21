@@ -14,7 +14,8 @@ var maps = [
                     "x":1,
                     "y":2,
                     "width":50,
-                    "height":50
+                    "height":50,
+                    "fill":false
                 }
             },
             {
@@ -24,7 +25,8 @@ var maps = [
                     "x":20,
                     "y":20,
                     "width":50,
-                    "height":50
+                    "height":50,
+                    "fill":false
                 }
             }
         ]

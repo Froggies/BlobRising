@@ -6,11 +6,12 @@
 
 	app.shapes.Shape = function() {
 
-		function Shape(x, y, width, height) {
+		function Shape(x, y, width, height, fill) {
 			this.x = x;
 			this.y = y;
 			this.width = width;
 			this.height = height;
+			this.fill = fill;
 			this.center = {};
 			this.calculCenter();
 		}
