@@ -20,6 +20,29 @@ var maps = [
                 "class":"app.entities.Source", 
                 "nbBlob":100,
                 "shape": {
+                    "class":"app.shapes.Rectangle",
+                    "x":1,
+                    "y":2,
+                    "width":50,
+                    "height":50,
+                    "fill":false
+                }
+            },
+            {
+                "class":"app.entities.Entity", 
+                "shape": {
+                    "class":"app.shapes.Ellipse",
+                    "x":20,
+                    "y":20,
+                    "width":50,
+                    "height":50,
+                    "fill":false
+                }
+            },
+            {
+                "class":"app.entities.Entity", 
+                "shape": {
+                    "class":"app.shapes.Ellipse",
                     "x":700,
                     "y":150,
                     "width":50,
@@ -31,10 +54,11 @@ var maps = [
                 "class":"app.entities.Well", 
                 "nbBlobMax":5,
                 "shape": {
-                    "x":500,
-                    "y":50,
-                    "width":30,
-                    "height":30,
+                    "class":"app.shapes.Rectangle",
+                    "x":300,
+                    "y":200,
+                    "width":50,
+                    "height":50, 
                     "fill":true
                 }
             },
@@ -42,11 +66,12 @@ var maps = [
                 "class":"app.entities.Well", 
                 "nbBlobMax":5,
                 "shape": {
-                    "x":500,
-                    "y":180,
-                    "width":30,
-                    "height":30,
-                    "fill":true
+                    "class":"app.shapes.Rectangle",
+                    "x":350,
+                    "y":220,
+                    "width":50,
+                    "height":50,
+                    "fill":false
                 }
             }
         ]
