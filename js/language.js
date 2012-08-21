@@ -42,24 +42,79 @@
       return  fn;
     };
     
-    app.js.deserialize = function(serialized) {
-        var objectClass = app.js.stringToClass(serialized["class"]);
-        var objectInstance = new objectClass();
+    // deserialize json to BlobRising object
+    app.js.deserialize = function(serialized, objectSource) {
+        var objectInstance = {};
+        if(app.js.isDefined(serialized) && app.js.isDefined(serialized["class"])) {
+            var objectClass = app.js.stringToClass(serialized["class"]);
+            objectInstance = new objectClass();
+        } else if(app.js.isDefined(objectSource)) {
+            objectInstance = objectSource;
+        }
         for(var key in serialized) {
-            if(key != "class") {
+            // keep it comment : for menuItem use
+            // if(key != "class") {
                 if(serialized[key] instanceof Array) {
                     objectInstance[key] = []
                     for(var o in serialized[key]) {
                         objectInstance[key].push(app.js.deserialize(serialized[key][o]));
                     }
                 } else if(typeof serialized[key] == "object") {
-                    objectInstance[key] = app.js.deserialize(serialized[key]);
+                    objectInstance[key] = app.js.deserialize(serialized[key], objectInstance[key]);
                 } else {
                     objectInstance[key] = serialized[key];
                 }
-            }
+            // }
         }
         return objectInstance;
+    }
+    
+    // clone all properties of an object into other object build with class propertie
+    app.js.clone = function(object) {
+        // O yeah it's work ^^
+        return app.js.deserialize(object);
+    }
+    
+    // remove an object in array
+    // why js hasn't this method ?
+    app.js.arrayRemove = function(array, object) {
+        if(!app.js.isDefined(array)) {
+            console.trace();
+        }
+        var idx = array.indexOf(object);
+        if(idx!=-1) array.splice(idx, 1);
+        return idx!=-1;
+    }
+    
+    // Returns the class name of the argument or undefined if
+    // it's not a valid JavaScript object.
+    app.js.getObjectClass = function(obj) {
+        if (obj && obj.constructor && obj.constructor.toString) {
+            var arr = obj.constructor.toString().match(/function\s*(\w+)/);
+            if (arr && arr.length == 2) {
+                return arr[1];
+            }
+        }
+        return undefined;
+    }
+
+    // Display msg in console if 
+    // level == constants.logLevel and
+    // devNames contains constants.devName 
+    // if constants.className == "" so display all
+    // else if object isDefined && constants.className == object.className so display
+    // if withTrace = true then display stacktrace
+    app.js.log = function(level, devNames, msg, object, withTrace) {
+        if(level == logLevel && devNames.indexOf(devName) > -1) {
+            if(className == "") {
+                console.log(msg);
+            } else if(app.js.isDefined(object) && app.js.getObjectClass(object) == className) {
+                console.log(msg);
+            }
+            if(app.js.isDefined(withTrace) && withTrace === true) {
+                console.trace();
+            }
+        }
     }
 
 })();

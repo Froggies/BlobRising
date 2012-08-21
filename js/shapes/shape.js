@@ -13,11 +13,14 @@
 			this.height = height;
 			this.fill = fill;
 			this.center = {};
-			this.calculCenter();
 		}
-
+        
+        Shape.prototype.init = function() {
+            this.calculCenter();
+		}
+        
 		Shape.prototype.draw = function(context) {
-		    console.log("shape::draw::dans draw");
+		    this.calculCenter();
 		}
 
         Shape.prototype.calculCenter = function() {

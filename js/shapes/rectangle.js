@@ -16,8 +16,6 @@
 
 		Rectangle.prototype.draw = function(context) {
 			Rectangle.super.draw.call(this);
-			console.log("draw x : : " + this.x);
-			console.log("draw y : : " + this.y);
 			if (this.fill === true) {
 //			    context.shadowOffsetX = 0;
 //                context.shadowOffsetY = 0;
