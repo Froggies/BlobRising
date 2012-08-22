@@ -4,13 +4,6 @@
 
 	app.MenuItem = function() {
 
-        var menuContainer;
-        var entity;
-        var nb;
-        var callback;
-		var div;
-		var isSelected;
-
 		function MenuItem(menuContainer, entity, nb, callback) {
 		    this.isSelected = false;
 		    this.menuContainer = menuContainer;

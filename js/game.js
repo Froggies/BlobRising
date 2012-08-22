@@ -6,14 +6,6 @@
 		isDefined = app.js.isDefined,
 		Entity = app.entities.Entity;
 
-		var loop;
-		var isRun;
-		var listSerializedMap;
-		var currentIndexMap;
-		var currentMap;
-		var context;
-		var canvas;
-
 	app.Game = function() {
 
 		function Game(listSeralizedMap, canvas) {

@@ -11,10 +11,6 @@
 
 		inherit(Blob, Molecule);
 		
-		var nbBlob;
-		var timeToLostMolecule;
-		var physic;
-		
 		function Blob() {
 			Blob.parent.constructor.apply(this);
 			this.nbBlob = 100;

@@ -11,10 +11,6 @@
 
 		inherit(Source, Entity);
 		
-		var nbBlob;
-		var lostNb;
-		var lostTime;
-		
 		function Source() {
 			Source.parent.constructor.apply(this);
 			this.nbBlob = 100;

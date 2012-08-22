@@ -6,10 +6,6 @@
 
 	app.entities.Entity = function() {
 	
-	    var age;
-	    var imAlive;
-	    var shape;
-	
 		function Entity() {
 		    this.age = 0;
 		    this.imAlive = true;

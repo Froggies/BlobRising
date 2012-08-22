@@ -5,7 +5,6 @@
 	var canvas = document.createElement("canvas");
 
 	var game = new app.Game(maps, canvas);
-	var machineSelected = "";
 	
 	document.body.style.backgroundColor = 'black';
 	

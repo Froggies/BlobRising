@@ -11,10 +11,6 @@
 
 		inherit(Molecule, Entity);
 		
-		var maxAge;
-		var initialWidth;
-		var initialHeight;
-		
 		function Molecule() {
 			Molecule.parent.constructor.apply(this);
 			this.maxAge = 1000;
