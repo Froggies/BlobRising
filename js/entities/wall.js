@@ -12,11 +12,11 @@
 		inherit(Wall, Entity);
 		
 		function Wall() {
-			Wall.super.constructor.apply(this);
+			Wall.parent.constructor.apply(this);
 		};
 		
 		Wall.prototype.update = function(translation, map) {
-		    Wall.super.update.call(this, translation, map);
+		    Wall.parent.update.call(this, translation, map);
 		}
 		
 		return Wall;

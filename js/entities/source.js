@@ -16,7 +16,7 @@
 		var lostTime;
 		
 		function Source() {
-			Source.super.constructor.apply(this);
+			Source.parent.constructor.apply(this);
 			this.nbBlob = 100;
 		    this.lostTime = 100;
 		};
@@ -29,7 +29,7 @@
 		        subblob.init();
 		        map.blobEntities.push(subblob);
 			}
-			Source.super.update.call(this, translation, map);
+			Source.parent.update.call(this, translation, map);
 		}
 		
 		Source.prototype.isBirthday = function() {

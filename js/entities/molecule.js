@@ -16,19 +16,19 @@
 		var initialHeight;
 		
 		function Molecule() {
-			Molecule.super.constructor.apply(this);
+			Molecule.parent.constructor.apply(this);
 			this.maxAge = 1000;
 		};
 		
 		Molecule.prototype.init = function() {
-		    Molecule.super.init.call(this);
+		    Molecule.parent.init.call(this);
 		    //this.mphysic = new app.physics.Physic(this, 2);
 		    this.initialWidth = this.shape.width;
 		    this.initialHeight = this.shape.height;
 		}
 		
 		Molecule.prototype.incrementMyAge = function(map) {
-		    Molecule.super.incrementMyAge.call(this, map);
+		    Molecule.parent.incrementMyAge.call(this, map);
 	        if(this.age < this.maxAge && this.shape.width > 0) {
                 this.shape.width = this.initialWidth - ((this.initialWidth / this.maxAge) * this.age);
                 this.shape.height = this.initialHeight - ((this.initialHeight / this.maxAge) * this.age);

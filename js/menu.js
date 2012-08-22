@@ -32,6 +32,16 @@
                         }
                     }
                 ));
+            this.divMenu.appendChild(
+	            this.createToggleButton(
+	                "Show none entities", 
+	                function() {
+	                    game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
+	                    if(!game.currentMap.showNoneEntities) {
+	                        game.currentMap.noneEntities = [];
+	                    }
+                    }
+                ));
             this.createSliderTime(game);
             this.load(game.currentMap);
 		};

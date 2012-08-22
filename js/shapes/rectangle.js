@@ -11,11 +11,11 @@
 		inherit(Rectangle, Shape);
 		
 		function Rectangle() {
-			Rectangle.super.constructor.apply(this, arguments);
+			Rectangle.parent.constructor.apply(this, arguments);
 		};
 
 		Rectangle.prototype.draw = function(context) {
-			Rectangle.super.draw.call(this);
+			Rectangle.parent.draw.call(this);
 			if (this.fill === true) {
 //			    context.shadowOffsetX = 0;
 //                context.shadowOffsetY = 0;

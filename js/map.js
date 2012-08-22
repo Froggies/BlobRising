@@ -6,15 +6,10 @@
 
 	app.Map = {};
 
-    var shape;
-    var staticEntities;
-    var menuEntities;
-    var blobEntities;
-    var noneEntities;
-
 	app.Map = function() {
 
 		function Map() {
+		    this.showNoneEntities = true;
 			this.staticEntities = [];
 			this.menuEntities = [];
 			this.blobEntities = [];
@@ -52,19 +47,20 @@
 		            entity.draw(context);
 	            }
 		    }
-		    len = this.noneEntities.length;
-		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
-		        entity = this.noneEntities[entityIndex];
-		        if(app.js.isDefined(entity)) {
-		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
-                        entity.update($V([1, 1]), this);
+		    if(this.showNoneEntities) {
+		        len = this.noneEntities.length;
+		        for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		            entity = this.noneEntities[entityIndex];
+		            if(app.js.isDefined(entity)) {
+		                if(app.js.isDefined(withUpdate) && withUpdate === true) {
+                            entity.update($V([1, 1]), this);
+                        }
+                        entity.draw(context);
+                    } else {
+                        app.js.log(10,"m@n", "TRACE :", this);
                     }
-                    entity.draw(context);
-                } else {
-                    app.js.log(10,"m@n", "TRACE :", this);
-                    console.trace();
-                }
-		    }
+		        }
+	        }
 		}
 		
 		Map.prototype.isWin = function() {

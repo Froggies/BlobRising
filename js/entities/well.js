@@ -14,12 +14,12 @@
 		var nbBlobMax;
 		
 		function Well() {
-			Well.super.constructor.apply(this);
+			Well.parent.constructor.apply(this);
 			this.nbBlobMax = 1;
 		};
 		
 		Well.prototype.init = function() {
-		    Well.super.init.call(this);
+		    Well.parent.init.call(this);
 		    this.radius = Math.max(this.shape.width, this.shape.height);
 		    this.radius += 80;
 		}
@@ -28,7 +28,7 @@
 		    if(this.nbBlobMax <= 0) {
 		        this.dead(map);
 		    } else {
-		        Well.super.update.call(this, translation, map);
+		        Well.parent.update.call(this, translation, map);
 		    }
 		}
 		
