@@ -9,10 +9,10 @@ var maps = [
         "class":"app.Map",
         "menuEntities":
         [
-            {"class":"app.entities.Source","shape":{"width":30,"height":30,"fill":true},"nb":5, "nbBlob":1},
-            {"class":"app.entities.Blob","shape":{"width":30,"height":30},"nb":5},
-            {"class":"app.entities.Wall","shape":{"width":30,"height":100,"fill":true},"nb":5},
-            {"class":"app.entities.Well","shape":{"width":10,"height":100,"fill":true},"nb":5,"nbBlobMax":10}
+            {"class":"app.entities.Source","shape":{"width":30,"height":30,"fill":true,"color":"#00FFFF"},"nb":5, "nbBlob":1},
+            {"class":"app.entities.Blob","shape":{"width":30,"height":30,"color":"#00FFFF"},"nb":5},
+            {"class":"app.entities.Wall","shape":{"width":30,"height":100,"fill":true,"color":"#00FFFF"},"nb":5},
+            {"class":"app.entities.Well","shape":{"width":10,"height":100,"fill":true,"color":"#00FFFF"},"nb":5,"nbBlobMax":10}
         ],
         "staticEntities":
         [
@@ -25,7 +25,9 @@ var maps = [
                     "y":2,
                     "width":50,
                     "height":50,
-                    "fill":false
+                    "fill":false,
+                    "gradient":true,
+                    "color":"#00FFFF"
                 }
             },
             {
@@ -36,7 +38,9 @@ var maps = [
                     "y":20,
                     "width":50,
                     "height":50,
-                    "fill":false
+                    "fill":false,
+                    "gradient":true,
+                    "color":"#00FFFF"
                 }
             },
             {
@@ -47,7 +51,9 @@ var maps = [
                     "y":150,
                     "width":50,
                     "height":50,
-                    "fill":true
+                    "fill":true,
+                    "gradient":true,
+                    "color":"#00FFFF"
                 }
             },
             {
@@ -59,7 +65,9 @@ var maps = [
                     "y":200,
                     "width":50,
                     "height":50, 
-                    "fill":true
+                    "fill":true,
+                    "gradient":true,
+                    "color":"#00FFFF"
                 }
             },
             {
@@ -71,7 +79,9 @@ var maps = [
                     "y":220,
                     "width":50,
                     "height":50,
-                    "fill":false
+                    "fill":false,
+                    "gradient":false    ,
+                    "color":"#00FFFF"
                 }
             }
         ]

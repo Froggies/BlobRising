@@ -25,7 +25,10 @@
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
 			    var subblob = new app.entities.Blob();
-		        subblob.shape = new app.shapes.Rectangle(this.shape.x,this.shape.y,30,30);
+		        subblob.shape = new app.shapes.Ellipse(this.shape.x,this.shape.y,30,30);
+		        subblob.shape.gradient = true;
+		        subblob.shape.color = "#00FF00";
+		        subblob.shape.fill = false;
 		        subblob.init();
 		        map.blobEntities.push(subblob);
 			}
