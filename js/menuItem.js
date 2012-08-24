@@ -78,6 +78,7 @@
 		        var entity = app.js.clone(this.entity);
 		        entity.shape.x = x;
 		        entity.shape.y = y;
+		        entity.draw(canvas.getContext('2d'));
 		        this.menuContainer.game.currentMap.staticEntities.push(entity);
             }
 		}

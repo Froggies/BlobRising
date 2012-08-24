@@ -5,30 +5,23 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 
 var maps = [
     {
-        "name":"1ere map",
-        "class":"app.Map",
         "menuEntities":
         [
-            {"class":"app.entities.Source","nb":5},
-            {"class":"app.entities.Wall","nb":5},
-            {"class":"app.entities.Well","nb":5,"nbBlobMax":10}
+            {"class":"Source","nb":5},
+            {"class":"Wall","nb":5},
+            {"class":"Well","nb":5,"nbBlobMax":10}
         ],
         "staticEntities":
         [
             {
-                "class":"app.entities.Source", 
-                "shape": {
-                    "x":400,
-                    "y":50
-                }
-            },
-            {
-                "class":"app.entities.Well", 
+                "class":"Well",
                 "shape": {
                     "x":300,
                     "y":200
                 }
             }
-        ]
+        ],
+        "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
+        "endWell":{"shape": {"x":500,"y":100}}
     }
 ]

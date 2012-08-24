@@ -46,25 +46,24 @@
     app.js.deserialize = function(serialized, objectSource) {
         var objectInstance = {};
         if(app.js.isDefined(serialized) && app.js.isDefined(serialized["class"])) {
-            var objectClass = app.js.stringToClass(serialized["class"]);
+            var objectClass = app.js.stringToClass("app.entities."+serialized["class"]);
             objectInstance = new objectClass();
         } else if(app.js.isDefined(objectSource)) {
             objectInstance = objectSource;
         }
         for(var key in serialized) {
-            // keep it comment : for menuItem use
-            // if(key != "class") {
-                if(serialized[key] instanceof Array) {
-                    objectInstance[key] = []
-                    for(var o in serialized[key]) {
-                        objectInstance[key].push(app.js.deserialize(serialized[key][o]));
-                    }
-                } else if(typeof serialized[key] == "object") {
-                    objectInstance[key] = app.js.deserialize(serialized[key], objectInstance[key]);
-                } else {
-                    objectInstance[key] = serialized[key];
+            if(serialized[key] instanceof Array) {
+                if(!app.js.isDefined(objectInstance[key])) {
+                    objectInstance[key] = [];
                 }
-            // }
+                for(var o in serialized[key]) {
+                    objectInstance[key].push(app.js.deserialize(serialized[key][o]));
+                }
+            } else if(typeof serialized[key] == "object") {
+                objectInstance[key] = app.js.deserialize(serialized[key], objectInstance[key]);
+            } else {
+                objectInstance[key] = serialized[key];
+            }
         }
         return objectInstance;
     }

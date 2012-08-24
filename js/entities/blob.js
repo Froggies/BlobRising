@@ -28,7 +28,7 @@
 		            this.dead(map);
 		        } else if(app.js.getObjectClass(entity) == "Well" && isCollision) {
 		            this.dead(map);
-		            entity.nbBlobMax--;
+		            entity.nbBlob++;
 		        }
 		        var isInRadius = this.collision.isInRaduis(this, entity);
 		        if(app.js.getObjectClass(entity) == "Well" && isInRadius) {

@@ -2,10 +2,6 @@
 
 	"use strict";
 
-	var 
-		isDefined = app.js.isDefined,
-		Entity = app.entities.Entity;
-
 	app.Game = function() {
 
 		function Game(listSeralizedMap, canvas) {
@@ -19,7 +15,7 @@
 		}
 
 		Game.prototype.init = function() {
-			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap]);
+			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap], new app.Map());
 			this.currentMap.draw(this.context, false);
 		}
 

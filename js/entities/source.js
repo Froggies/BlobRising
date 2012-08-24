@@ -16,6 +16,7 @@
 			this.nbBlob = 100;
 		    this.lostTime = 100;
 		    this.maxAge = 100;
+		    this.degreeBlob = 120;
 		    this.shape = new app.shapes.Rectangle(0,0,50,50,true,true,"#00FFFF");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
@@ -23,7 +24,7 @@
 		Source.prototype.update = function(translation, map) {
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
-			    var subblob = new app.entities.Blob(30,30,Math.floor(Math.random()*361));
+			    var subblob = new app.entities.Blob(30,30,this.degreeBlob);
 		        subblob.shape.x = this.shape.x;
 		        subblob.shape.y = this.shape.y;
 		        map.blobEntities.push(subblob);

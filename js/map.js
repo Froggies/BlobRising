@@ -14,6 +14,11 @@
 			this.menuEntities = [];
 			this.blobEntities = [];
 			this.noneEntities = [];
+			this.startSource = new app.entities.Source();
+			this.endWell = new app.entities.Well();
+			this.endWell.final = true;
+			this.staticEntities.push(this.startSource);
+			this.staticEntities.push(this.endWell);
 		}
 		
 		Map.prototype.draw = function(context, withUpdate) {
@@ -54,7 +59,7 @@
 		
 		Map.prototype.isWin = function() {
 		    var win = false;
-		    if(false && this.finalPuit.blob > 0) {
+		    if(this.endWell.nbBlob > 0) {
 		        win = true;
 		    }
 		    return win;
