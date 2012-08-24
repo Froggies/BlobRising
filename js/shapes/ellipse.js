@@ -16,26 +16,30 @@
 
 		Ellipse.prototype.draw = function(context) {
 			Ellipse.parent.draw.call(this);
+			context.save()
 			context.beginPath();
             context.arc(this.x, this.y, this.width/2, 0, Math.PI*2, false); 
             context.closePath();
             if (this.fill === true) {
-            	context.shadowOffsetX = 0;
-                context.shadowOffsetY = 0;
-                context.shadowBlur = 30;
-                context.shadowColor = "#FE2EC8"
-                context.fillStyle = '#FF0080';
+                if (this.gradient === true) {
+			        context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
+			    }
+			    else {
+                    context.fillStyle = this.color;
+                }
                 context.fill();
             }
             else {
-                context.shadowOffsetX = 0;
-                context.shadowOffsetY = 0;
-                context.shadowBlur = 30;
-                context.shadowColor = "#FE2EC8"
-                context.lineWidth = 2;
-                context.strokeStyle = '#FF0080';
-                context.stroke();
+                if (this.gradient === true) {
+			        context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
+			        context.fill();
+			    }
+			    else {
+                    context.strokeStyle = this.color;
+                    context.stroke();
+                }
             }
+            context.restore();
 		};
 
 		return Ellipse;

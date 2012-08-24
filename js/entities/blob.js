@@ -21,6 +21,7 @@
 		    this.physic = new app.physics.Physic(this, 2);
 		    this.timeToLostMolecule = (this.maxAge / this.nbBlob);
 		    this.timeToLostMolecule = Number(this.timeToLostMolecule.toFixed(0));
+		    this.shape.fill=true;
 		}
 		
 		Blob.prototype.update = function(translation, context, map) {
@@ -43,11 +44,14 @@
 		        this.nbBlob--;
 		        if(map.showNoneEntities) {
 			        var subblob = new app.entities.Molecule();
-		            subblob.shape = new app.shapes.Rectangle();
+		            subblob.shape = new app.shapes.Ellipse();
 		            subblob.shape.width = this.shape.width;
 		            subblob.shape.height = this.shape.height;
 		            subblob.shape.x = this.shape.x;
 		            subblob.shape.y = this.shape.y;
+		            subblob.shape.gradient = true;
+		            subblob.shape.fill = false;
+		            subblob.shape.color = "#FF00FF";
 		            subblob.maxAge = 100;
 		            subblob.init();
 		            //var xv = this.physic.angle.elements[0];

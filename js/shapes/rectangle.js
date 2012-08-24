@@ -16,27 +16,26 @@
 
 		Rectangle.prototype.draw = function(context) {
 			Rectangle.parent.draw.call(this);
+			context.save();
 			if (this.fill === true) {
-//			    context.shadowOffsetX = 0;
-//                context.shadowOffsetY = 0;
-//                context.shadowBlur = 30;
-//                context.shadowColor = "#FE2EC8"
-                    context.shadowColor = "#FE2EC8";
-                    context.shadowOffsetX = 0;
-                    context.shadowOffsetY = 0;
-                    context.shadowBlur = 100    ;
-			    context.fillStyle = '#F781D8';
-    			context.fillRect(this.x,this.y,this.width,this.height);
+			    if (this.gradient === true) {
+			        context.fillStyle = Rectangle.parent.drawGradient.call(this, context, true);
+			    }
+			    else {
+                    context.fillStyle = this.color;
+                }
+    		    context.fillRect(this.x,this.y,this.width,this.height);
     		}
     		else {
-        		context.shadowOffsetX = 0;
-                context.shadowOffsetY = 0;
-                context.shadowBlur = 30;
-                context.shadowColor = "#81F7F3"
-         		context.lineWidth = 2;
-    		    context.strokeStyle = '#01ffdd';
+        		if (this.gradient === true) {
+			            context.strokeStyle = Rectangle.parent.drawGradient.call(this, context, true);
+			    }
+			    else {
+			        context.strokeStyle = this.color;
+			    }
     		    context.strokeRect(this.x,this.y,this.width,this.height);
     		}
+    		context.restore();
 		};
 
 		return Rectangle;
