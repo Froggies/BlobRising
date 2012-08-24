@@ -19,14 +19,14 @@ var maps = [
                 "class":"app.entities.Source", 
                 "shape": {
                     "x":1,
-                    "y":2,
+                    "y":2
                 }
             },
             {
                 "class":"app.entities.Well", 
                 "shape": {
                     "x":300,
-                    "y":200,
+                    "y":200
                 }
             }
         ]

@@ -31,27 +31,28 @@
         }
         
         Shape.prototype.drawGradient = function(context, linear) {
+            var colors; 
             if (linear === true) {
                 var gradient=context.createLinearGradient(this.x, this.y, this.x + this.width, this.y);            
-                gradient.addColorStop("0", 'rgba(0,0,0,0)');
-                gradient.addColorStop("0.5", this.color);
-                gradient.addColorStop("1", 'rgba(0,0,0,0)');
-
+                colors = ['rgba(0,0,0,0)',this.color,'rgba(0,0,0,0)'];
             }
-            else {            
+            else {      
+                var c,c2;     
                 if(this.fill === true) {
-                    var gradient = context.createRadialGradient(this.x, this.y, this.width, this.x, this.y, this.width/4);
-                    gradient.addColorStop("0", this.color);
-                    gradient.addColorStop("0.5", 'rgba(0,0,0,0)');
-                    gradient.addColorStop("1.0", this.color);
+                    c = this.width/4;
+                    c2 = this.width;
+                    colors = [this.color,'rgba(0,0,0,0)',this.color];
                 }
                 else {
-                    var gradient = context.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.width/2);
-                    gradient.addColorStop("0", 'rgba(255,255,255,0)');
-                    gradient.addColorStop("0.5", this.color);
-                    gradient.addColorStop("1", 'rgba(255,255,255,0)');
+                    c = this.width/2;
+                    c2 = 0;
+                    colors = ['rgba(255,255,255,0)',this.color,'rgba(255,255,255,0)']
                 }
+                var gradient = context.createRadialGradient(this.x, this.y, c2, this.x, this.y,c);
             }
+            gradient.addColorStop("0", colors[0]);
+            gradient.addColorStop("0.5", colors[1]);
+            gradient.addColorStop("1.0", colors[2]);
             return gradient;
         }
         
