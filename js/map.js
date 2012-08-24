@@ -30,7 +30,7 @@
 		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
 	                    entity.update($V([1, 1]), this);
                     }
-		            entity.draw(context);
+		            entity.draw(context, this);
 	            }
 		    }
 		    len = this.blobEntities.length;
@@ -40,7 +40,7 @@
 		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
 	                    entity.update($V([1, 1]), context, this);
 	                }
-		            entity.draw(context);
+		            entity.draw(context, this);
 	            }
 		    }
 		    if(this.showNoneEntities) {
@@ -51,7 +51,7 @@
 		                if(app.js.isDefined(withUpdate) && withUpdate === true) {
                             entity.update($V([1, 1]), this);
                         }
-                        entity.draw(context);
+                        entity.draw(context, this);
                     }
 		        }
 	        }

@@ -46,7 +46,7 @@
 		    this.isRun = false;
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
-		        window.alert("YOU WIN LEVEL !!");
+		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
 		        this.currentIndexMap = this.currentIndexMap + 1;
 		        this.init();
 		        this.start();

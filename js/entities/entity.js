@@ -18,8 +18,8 @@
 			this.incrementMyAge(map);
 		}
 
-		Entity.prototype.draw = function(context) {
-			if(app.js.isDefined(this.radius)) {
+		Entity.prototype.draw = function(context, map) {
+			if(app.js.isDefined(this.radius) && app.js.isDefined(map) && map.showNoneEntities) {
 			    var e = new app.shapes.Ellipse();
 			    e.x = this.shape.x + (this.shape.width/2);
 			    e.y = this.shape.y + (this.shape.height/2);
