@@ -20,7 +20,6 @@
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap]);
-			this.currentMap.init();
 			this.currentMap.draw(this.context, false);
 		}
 

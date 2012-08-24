@@ -16,15 +16,6 @@
 			this.noneEntities = [];
 		}
 		
-		Map.prototype.init = function(context) {
-		    var len = this.staticEntities.length;
-		    var entity;
-		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
-		        entity = this.staticEntities[entityIndex];
-		        entity.init();
-		    }
-		}
-		
 		Map.prototype.draw = function(context, withUpdate) {
 		    var len = this.staticEntities.length;
 		    var entity;

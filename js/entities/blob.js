@@ -40,7 +40,6 @@
 		        this.nbBlob--;
 		        if(map.showNoneEntities) {
 			        var subblob = new app.entities.Molecule(this.shape.width, this.shape.height);
-		            subblob.init();
 		            subblob.shape.x = this.shape.x;
 		            subblob.shape.y = this.shape.y;
 		            // in none because haven't physics

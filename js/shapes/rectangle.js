@@ -15,7 +15,6 @@
 		};
 
 		Rectangle.prototype.draw = function(context) {
-			Rectangle.parent.draw.call(this);
 			context.save();
 			if (this.fill === true) {
 			    if (this.gradient === true) {

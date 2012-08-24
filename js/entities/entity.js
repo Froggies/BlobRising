@@ -14,10 +14,6 @@
 		    this.radius = 0;
 		}
 		
-		Entity.prototype.init = function() {
-		    this.shape.init();
-		}
-
 		Entity.prototype.update = function(translation, map) {
 			this.incrementMyAge(map);
 		}

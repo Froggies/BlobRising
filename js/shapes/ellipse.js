@@ -15,7 +15,6 @@
 		};
 
 		Ellipse.prototype.draw = function(context) {
-			Ellipse.parent.draw.call(this);
 			context.save()
 			context.beginPath();
             context.arc(this.x, this.y, this.width/2, 0, Math.PI*2, false); 

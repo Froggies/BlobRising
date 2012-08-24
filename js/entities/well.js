@@ -17,13 +17,8 @@
 			Well.parent.constructor.apply(this);
 			this.nbBlobMax = 5;
 			this.shape = new app.shapes.Rectangle(0,0,50,50,true,true,"#FF30F0");
+			this.radius = Math.max(this.shape.width, this.shape.height) + 80;
 		};
-		
-		Well.prototype.init = function() {
-		    Well.parent.init.call(this);
-		    this.radius = Math.max(this.shape.width, this.shape.height);
-		    this.radius += 80;
-		}
 		
 		Well.prototype.update = function(translation, map) {
 		    if(this.nbBlobMax <= 0) {

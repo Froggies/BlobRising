@@ -14,21 +14,7 @@
 			this.fill = fill;
 			this.gradient = gradient;
 			this.color = color;
-			this.center = {};
 		}
-        
-        Shape.prototype.init = function() {
-            this.calculCenter();
-		}
-        
-		Shape.prototype.draw = function(context) {
-		    this.calculCenter();
-		}
-
-        Shape.prototype.calculCenter = function() {
-            this.center.x = this.x+(this.width/2);
-			this.center.y = this.y+(this.height/2);
-        }
         
         Shape.prototype.drawGradient = function(context, linear) {
             var colors; 
