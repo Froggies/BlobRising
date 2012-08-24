@@ -15,7 +15,7 @@
 		};
 
 		Ellipse.prototype.draw = function(context) {
-			context.save()
+			//context.save();
 			context.beginPath();
             context.arc(this.x, this.y, this.width/2, 0, Math.PI*2, false); 
             context.closePath();
@@ -38,7 +38,7 @@
                     context.stroke();
                 }
             }
-            context.restore();
+//            context.restore();
 		};
 
 		return Ellipse;
