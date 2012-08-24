@@ -23,7 +23,7 @@
 		Source.prototype.update = function(translation, map) {
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
-			    var subblob = new app.entities.Blob(30,30);
+			    var subblob = new app.entities.Blob(30,30,Math.floor(Math.random()*361));
 		        subblob.shape.x = this.shape.x;
 		        subblob.shape.y = this.shape.y;
 		        map.blobEntities.push(subblob);

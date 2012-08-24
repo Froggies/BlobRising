@@ -18,8 +18,8 @@ var maps = [
             {
                 "class":"app.entities.Source", 
                 "shape": {
-                    "x":1,
-                    "y":2
+                    "x":400,
+                    "y":50
                 }
             },
             {

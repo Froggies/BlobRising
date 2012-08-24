@@ -11,11 +11,11 @@
 
 		inherit(Blob, Molecule);
 		
-		function Blob(width, height) {
+		function Blob(width, height, startDegree) {
 			Blob.parent.constructor.apply(this, arguments);
 			this.nbBlob = 100;
 			this.maxAge = 1000;
-			this.physic = new app.physics.Physic(this, 2);
+			this.physic = new app.physics.Physic(this, 2, startDegree);
 		    this.shape = new app.shapes.Ellipse(0,0,width,height,true,true,"#00FF00");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};

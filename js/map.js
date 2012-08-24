@@ -47,8 +47,6 @@
                             entity.update($V([1, 1]), this);
                         }
                         entity.draw(context);
-                    } else {
-                        app.js.log(10,"m@n", "TRACE :", this);
                     }
 		        }
 	        }

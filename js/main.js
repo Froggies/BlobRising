@@ -55,12 +55,12 @@
 	machineryExplainDiv.style.right = '5%';
 	document.body.appendChild(machineryExplainDiv);
 	
-	divPlay.onclick = function() {
-	    this.style.display = 'none';
+	//divPlay.onclick = function() {
+	    divPlay.style.display = 'none';
 	    blobExplainDiv.style.display = 'none';
 	    machineryExplainDiv.style.display = 'none';
 	    game.init();
-	}
+	//}
 	
     window.onresize = function(event) {
         var width = window.innerWidth;
