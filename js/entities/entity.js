@@ -20,12 +20,20 @@
 
 		Entity.prototype.draw = function(context) {
 			if(app.js.isDefined(this.radius)) {
-			    var r = new app.shapes.Rectangle();
-			    r.x = this.shape.x - (this.radius/4);
-			    r.y = this.shape.y - (this.radius/4);
-			    r.width = this.radius;
-			    r.height = this.radius;
-			    r.draw(context);
+			    var e = new app.shapes.Ellipse();
+			    e.x = this.shape.x + (this.shape.width/2);
+			    e.y = this.shape.y + (this.shape.height/2);
+			    e.width = this.radius;
+			    e.height = this.radius;
+			    e.color = "rgba(0,0,0,1)";
+                context.save();                
+			    context.shadowColor = this.shape.color;
+                context.shadowOffsetX = 0;
+                context.shadowOffsetY = 0;
+                context.shadowBlur = 6;
+			    
+			    e.draw(context);
+			    context.restore();
 			}
 			this.shape.draw(context);
 		}

@@ -17,7 +17,7 @@
 		    this.lostTime = 100;
 		    this.maxAge = 100;
 		    this.degreeBlob = 120;
-		    this.shape = new app.shapes.Rectangle(0,0,50,50,true,true,"#00FFFF");
+		    this.shape = new app.shapes.Rectangle(0,0,50,35,true,true,"#00FFFF");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
 		
