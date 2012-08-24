@@ -12,6 +12,7 @@
 		inherit(Well, Entity);
 		
 		function Well() {
+		    this.class = "Well";
 			Well.parent.constructor.apply(this);
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;

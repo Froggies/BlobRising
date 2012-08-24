@@ -26,9 +26,11 @@
 	                    if(game.isRun) {
 	                        this.innerHTML = "Restart";
 	                        game.pause();
+	                        new app.editor.Serialization(game.currentMap);
 	                    } else {
 	                        this.innerHTML = "Pause";
 	                        game.start();
+	                        new app.editor.Serialization(game.currentMap);
                         }
                     }
                 ));
