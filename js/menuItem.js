@@ -20,7 +20,7 @@
             var that = this;
             menuContainer.game.canvas.addEventListener(
                 "mousedown", 
-                function() {app.MenuItem.prototype.onCanvasClick.call(that, event);},
+                function(event) {app.MenuItem.prototype.onCanvasClick.call(that, event);},
                 false);
 		};
 		
@@ -73,7 +73,7 @@
 		        this.nb--;
 		        this.updateDisplayName();
                 var canvas = this.menuContainer.game.canvas;
-                var x= event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
+                var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
                 var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
 		        var entity = app.js.clone(this.entity);
 		        entity.shape.x = x;

@@ -25,7 +25,7 @@
 	                function() {
 	                    if(game.isRun) {
 	                        this.innerHTML = "Restart";
-	                        game.end();
+	                        game.pause();
 	                    } else {
 	                        this.innerHTML = "Pause";
 	                        game.start();
@@ -99,7 +99,7 @@
             sliderTime.style.margin = 'auto';
             sliderTime.onchange = function() {
                 game.timeLoop = sliderTime.value;
-                game.end();
+                game.pause();
                 game.start();
             };
             divSlider.appendChild(sliderTime);

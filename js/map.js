@@ -57,12 +57,12 @@
 	        }
 		}
 		
+		Map.prototype.isFinish = function() {
+		    return this.startSource.nbBlob == 0 && this.blobEntities.length == 0;
+		}
+		
 		Map.prototype.isWin = function() {
-		    var win = false;
-		    if(this.endWell.nbBlob > 0) {
-		        win = true;
-		    }
-		    return win;
+		    return this.endWell.nbBlob > 0;
 		}
 
 		return Map;

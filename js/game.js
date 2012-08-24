@@ -26,22 +26,38 @@
 		Game.prototype.start = function() {
 			var that = this;
 			this.loop = setInterval(function() {
-				that.clear();
-				that.currentMap.draw(that.context, true);
+			    if(!that.currentMap.isFinish()) {
+				    that.clear();
+				    that.currentMap.draw(that.context, true);
+				} else {
+				    that.end();
+				}
 			}, 1000/this.timeLoop);
 			this.isRun = true;
+		}
+		
+		Game.prototype.pause = function() {
+		    this.isRun = false;
+		    clearInterval(this.loop);
 		}
 		
 		Game.prototype.end = function() {
 		    clearInterval(this.loop);
 		    this.isRun = false;
-		    if(this.currentMap.isWin() && this.currentIndexMap < this.listSerializedMap.length) {
-		        //game win
-		        this.currentIndexMap = this.currentIndexMap + 1;
-		    } else if(this.currentMap.isWin()) {
+		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
+		        window.alert("YOU WIN LEVEL !!");
+		        this.currentIndexMap = this.currentIndexMap + 1;
+		        this.init();
+		        this.start();
+		    } else if(this.currentMap.isWin()) {
+		        //game win
+		        window.alert("YOU WIN GAME !!");
 		    } else {
 		        //map loose
+		        window.alert("YOU LOOSE !!");
+		        this.init();
+		        this.start();
 		    }
 		}
 

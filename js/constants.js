@@ -23,5 +23,25 @@ var maps = [
         ],
         "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
         "endWell":{"shape": {"x":500,"y":100}}
+    },
+    {
+        "menuEntities":
+        [
+            {"class":"Source","nb":5},
+            {"class":"Wall","nb":5},
+            {"class":"Well","nb":5,"nbBlobMax":10}
+        ],
+        "staticEntities":
+        [
+            {
+                "class":"Well",
+                "shape": {
+                    "x":200,
+                    "y":200
+                }
+            }
+        ],
+        "startSource":{"degreeBlob":60,"shape": {"x":50,"y":100}},
+        "endWell":{"shape": {"x":500,"y":100}}
     }
 ]

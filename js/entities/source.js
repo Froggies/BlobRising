@@ -13,7 +13,7 @@
 		
 		function Source() {
 			Source.parent.constructor.apply(this);
-			this.nbBlob = 100;
+			this.nbBlob = 10;
 		    this.lostTime = 100;
 		    this.maxAge = 100;
 		    this.degreeBlob = 120;
@@ -25,8 +25,8 @@
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
 			    var subblob = new app.entities.Blob(30,30,this.degreeBlob);
-		        subblob.shape.x = this.shape.x;
-		        subblob.shape.y = this.shape.y;
+		        subblob.shape.x = this.shape.x + this.shape.width/2;
+		        subblob.shape.y = this.shape.y + this.shape.height/2;
 		        map.blobEntities.push(subblob);
 			}
 			Source.parent.update.call(this, translation, map);
