@@ -15,17 +15,17 @@
 			Source.parent.constructor.apply(this);
 			this.nbBlob = 100;
 		    this.lostTime = 100;
+		    this.maxAge = 100;
+		    this.shape = new app.shapes.Rectangle(0,0,50,50,true,true,"#00FFFF");
+		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
 		
 		Source.prototype.update = function(translation, map) {
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
-			    var subblob = new app.entities.Blob();
-		        subblob.shape = new app.shapes.Ellipse(this.shape.x,this.shape.y,30,30);
-		        subblob.shape.gradient = true;
-		        subblob.shape.color = "#00FF00";
-		        subblob.shape.fill = false;
-		        subblob.init();
+			    var subblob = new app.entities.Blob(30,30);
+		        subblob.shape.x = this.shape.x;
+		        subblob.shape.y = this.shape.y;
 		        map.blobEntities.push(subblob);
 			}
 			Source.parent.update.call(this, translation, map);

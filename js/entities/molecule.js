@@ -11,17 +11,13 @@
 
 		inherit(Molecule, Entity);
 		
-		function Molecule() {
+		function Molecule(width, height) {
 			Molecule.parent.constructor.apply(this);
-			this.maxAge = 1000;
+			this.maxAge = 100;
+			this.shape = new app.shapes.Ellipse(0,0,width,height,false,true,"#FF0000");
+		    this.initialWidth = width;
+		    this.initialHeight = height;
 		};
-		
-		Molecule.prototype.init = function() {
-		    Molecule.parent.init.call(this);
-		    //this.mphysic = new app.physics.Physic(this, 2);
-		    this.initialWidth = this.shape.width;
-		    this.initialHeight = this.shape.height;
-		}
 		
 		Molecule.prototype.incrementMyAge = function(map) {
 		    Molecule.parent.incrementMyAge.call(this, map);
@@ -35,7 +31,6 @@
 		
 		Molecule.prototype.dead = function(map) {
 		    this.imAlive = false;
-		    app.js.log(1,"m@n", map.noneEntities, this);
 		    app.js.arrayRemove(map.noneEntities, this)
 		}
 		

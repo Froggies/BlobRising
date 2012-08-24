@@ -11,18 +11,14 @@
 
 		inherit(Blob, Molecule);
 		
-		function Blob() {
-			Blob.parent.constructor.apply(this);
+		function Blob(width, height) {
+			Blob.parent.constructor.apply(this, arguments);
 			this.nbBlob = 100;
+			this.maxAge = 1000;
+			this.physic = new app.physics.Physic(this, 2);
+		    this.shape = new app.shapes.Ellipse(0,0,width,height,true,true,"#00FF00");
+		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
-		
-		Blob.prototype.init = function() {
-		    Blob.parent.init.call(this);
-		    this.physic = new app.physics.Physic(this, 2);
-		    this.timeToLostMolecule = (this.maxAge / this.nbBlob);
-		    this.timeToLostMolecule = Number(this.timeToLostMolecule.toFixed(0));
-		    this.shape.fill=true;
-		}
 		
 		Blob.prototype.update = function(translation, context, map) {
 		    for(var entityIndex in map.staticEntities) {
@@ -43,22 +39,10 @@
 		    if(this.isBirthday() && this.nbBlob > 0) {
 		        this.nbBlob--;
 		        if(map.showNoneEntities) {
-			        var subblob = new app.entities.Molecule();
-		            subblob.shape = new app.shapes.Ellipse();
-		            subblob.shape.width = this.shape.width;
-		            subblob.shape.height = this.shape.height;
+			        var subblob = new app.entities.Molecule(this.shape.width, this.shape.height);
+		            subblob.init();
 		            subblob.shape.x = this.shape.x;
 		            subblob.shape.y = this.shape.y;
-		            subblob.shape.gradient = true;
-		            subblob.shape.fill = false;
-		            subblob.shape.color = "#FF00FF";
-		            subblob.maxAge = 100;
-		            subblob.init();
-		            //var xv = this.physic.angle.elements[0];
-		            //xv = xv/2;
-		            //var yv = this.physic.angle.elements[1];
-		            //yv = yv/2;
-		            //subblob.mphysic.angle = $V([xv, yv]);
 		            // in none because haven't physics
 		            // can be go in blobEntities if it's necessary
 		            map.noneEntities.push(subblob);
