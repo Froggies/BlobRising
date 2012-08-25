@@ -2,8 +2,6 @@
 
 	"use strict";
 	
-	app.editor = app.editor || {};
-
     var 
 		Entity = app.entities.Entity,
 		isDefined = app.js.isDefined;
@@ -11,16 +9,19 @@
 	app.editor.Serialization = function() {
 
 		function Serialization(map) {
-			var myJSONText = JSON.stringify(this.reduce(map));
+		    this.map = map;
 			this.divMenu = document.createElement("div");
 	        this.divMenu.style.display = 'inline-block';
 	        this.divMenu.style.verticalAlign = 'top';
 	        this.divMenu.style.width = '100%';
 	        this.divMenu.style.height = '17%';
 	        this.divMenu.style.color = 'white';
-	        this.divMenu.innerHTML = myJSONText;
 	        document.body.appendChild(this.divMenu);
 		};
+		
+		Serialization.prototype.show = function() {
+		    this.divMenu.innerHTML = JSON.stringify(this.reduce(this.map));
+		}
 		
 		Serialization.prototype.reduce = function(map) {
 		    var reduce = {};

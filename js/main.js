@@ -5,6 +5,8 @@
 	var canvas = document.createElement("canvas");
 
 	var game = new app.Game(maps, canvas);
+	// TODO remove this for contest
+	new app.editor.Editor(game);
 	
 	document.body.style.backgroundColor = 'black';
 	
