@@ -33,11 +33,13 @@
 		    reduce["staticEntities"] = [];
 		    for(var key in map.staticEntities) {
 		        var staticEntity = map.staticEntities[key];
-		        reduce["staticEntities"].push(
-		            {"class":staticEntity["class"],"shape":{"x":staticEntity.shape["x"],"y":staticEntity.shape["y"]}});
+		        if(staticEntity != map.startSource && staticEntity != map.endWell) {
+		            reduce["staticEntities"].push(
+		                {"class":staticEntity["class"],"shape":{"x":staticEntity.shape["x"],"y":staticEntity.shape["y"]}});
+	            }
 		    }
-		    reduce["startSource"] = {"degreeBlob":map.startSource.degreeBlob,"shape":{"x":map.startSource.shape["x"],"y":map.startSource.shape["y"]}};
-		    reduce["endWell"] = {"shape":{"x":map.endWell.shape["x"],"y":map.endWell.shape["y"]}};
+		    reduce["startSource"] = {"degreeBlob":map.startSource.degreeBlob,"shape":{"x":map.startSource.shape.x,"y":map.startSource.shape.y}};
+		    reduce["endWell"] = {"shape":{"x":map.endWell.shape.x,"y":map.endWell.shape.y}};
 		    return reduce;
 		}
 		

@@ -12,8 +12,10 @@
 
 		function Editor(game) {
 		    this.game = game;
+		    this.selected = "";
 		    this.buildSerializationDiv(); 
 		    this.buildMenuEntities();
+		    this.destroyCurrentMap();
 		    this.serialization = new app.editor.Serialization(game.currentMap);
 		}
 		
@@ -54,16 +56,56 @@
             document.body.appendChild(div);
 		}
 		
+		Editor.prototype.destroyCurrentMap = function() {
+		    this.game.listSerializedMap = [""];
+		    this.game.init();
+		    this.game.currentMap.draw(this.game.context, false);
+		}
+		
 		Editor.prototype.onCanvasClick = function(event) {
-            var canvas = this.game.canvas;
+		    var canvas = this.game.canvas;
             var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
-            var y= event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-            var objClass = app.js.stringToClass("app.entities."+this.selected);
-	        var entity = new objClass();
-	        entity.shape.x = x;
-	        entity.shape.y = y;
-	        entity.draw(canvas.getContext('2d'));
-	        this.game.currentMap.staticEntities.push(entity);
+            var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
+		    if(this.selected != "") {
+                var objClass = app.js.stringToClass("app.entities."+this.selected);
+                var entity = new objClass();
+                entity.shape.x = x;
+                entity.shape.y = y;
+                entity.draw(canvas.getContext('2d'));
+                this.game.currentMap.staticEntities.push(entity);
+	        } else if(!app.js.isDefined(this.entitySelected)) {
+	          var entitiesCount = this.game.currentMap.staticEntities.length;
+	          var found = false;
+	          for(var i=0; i<entitiesCount && !found; i++) {
+	            var entity = this.game.currentMap.staticEntities[i];
+	            if(this.isClick(entity, x, y)) {
+	                found = true;
+	                this.entitySelected = entity;
+	            }
+	          }  
+	        } else if(app.js.isDefined(this.entitySelected)) {
+	            this.entitySelected.shape.x = x;
+	            this.entitySelected.shape.y = y;
+	            this.game.clear();
+	            this.game.currentMap.draw(this.game.context, false);
+	            this.entitySelected = null;
+	        }
+		}
+		
+		Editor.prototype.isClick = function(entity, x, y) {
+            var h = 1;
+            var l = 1;
+		    
+		    var x2 = entity.shape.x;
+            var y2 = entity.shape.y;
+            var h2 = entity.shape.height;
+            var l2 = entity.shape.width;
+                    
+            if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
+                return false;
+            } else {                            
+                return true;
+            }
 		}
 		
 		Editor.prototype.buildDiv = function(name) {

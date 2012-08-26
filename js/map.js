@@ -2,10 +2,6 @@
 
 	"use strict";
 	
-	var stringToClass = app.js.stringToClass;
-
-	app.Map = {};
-
 	app.Map = function() {
 
 		function Map() {
