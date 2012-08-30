@@ -12,7 +12,6 @@
 		inherit(Wall, Entity);
 		
 		function Wall() {
-		    this.className = "Wall";
 			Wall.parent.constructor.apply(this);
 			this.shape = new app.shapes.Rectangle(0,0,50,50,true,true,"#F0F0F0");
 		};

@@ -4,26 +4,23 @@
 	
 	app.editor = app.editor || {};
 
-    var 
-		Entity = app.entities.Entity,
-		isDefined = app.js.isDefined;
+    var isDefined = app.js.isDefined;
 
 	app.editor.Editor = function() {
 
 		function Editor(game) {
 		    this.game = game;
-		    this.selected = "";
 		    this.buildSerializationDiv(); 
 		    this.buildMenuEntities();
 		    this.destroyCurrentMap();
-		    this.serialization = new app.editor.Serialization(game.currentMap);
+		    this.serialization = new app.editor.Serialization();
 		}
 		
 		Editor.prototype.buildSerializationDiv = function() {
 		    var div = this.buildDiv("Serialization");
             var that = this;
             div.onclick = function() {
-                that.serialization.show();
+                that.serialization.show(that.game.currentMap);
             };
             document.body.appendChild(div);
 		}
@@ -34,24 +31,48 @@
                 "mousedown", 
                 function(event) {app.editor.Editor.prototype.onCanvasClick.call(that, event);},
                 false);
-            var divEntitySelected = this.buildDiv("Selected");
-            document.body.appendChild(divEntitySelected);
+            this.game.canvas.addEventListener(
+                "mousemove", 
+                function(event) {app.editor.Editor.prototype.onCanvasMove.call(that, event);},
+                false);
 		    var div = this.buildDiv("Source");
             div.onclick = function() {
-                that.selected = "Source";
-                divEntitySelected.innerHTML = that.selected;
+                if(isDefined(that.entitySelected)) {
+                    that.entitySelected = null;
+                    that.game.clear();
+                    that.game.currentMap.draw(that.game.context, false);
+                } else {
+                    var objClass = app.js.stringToClass("app.entities.Source");
+                    var entity = new objClass();
+                    entity.className = "Source";
+                    that.entitySelected = entity;
+                }
             };
             document.body.appendChild(div);
             div = this.buildDiv("Wall");
             div.onclick = function() {
-                that.selected = "Wall";
-                divEntitySelected.innerHTML = that.selected;
+                if(isDefined(that.entitySelected)) {
+                    that.entitySelected = null;
+                    that.game.clear();
+                    that.game.currentMap.draw(that.game.context, false);
+                } else {
+                    var objClass = app.js.stringToClass("app.entities.Wall");
+                    var entity = new objClass();
+                    that.entitySelected = entity;
+                }
             };
             document.body.appendChild(div);
             div = this.buildDiv("Well");
             div.onclick = function() {
-                that.selected = "Well";
-                divEntitySelected.innerHTML = that.selected;
+                if(isDefined(that.entitySelected)) {
+                    that.entitySelected = null;
+                    that.game.clear();
+                    that.game.currentMap.draw(that.game.context, false);
+                } else {
+                    var objClass = app.js.stringToClass("app.entities.Well");
+                    var entity = new objClass();
+                    that.entitySelected = entity;
+                }
             };
             document.body.appendChild(div);
 		}
@@ -66,14 +87,7 @@
 		    var canvas = this.game.canvas;
             var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
             var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-		    if(this.selected != "") {
-                var objClass = app.js.stringToClass("app.entities."+this.selected);
-                var entity = new objClass();
-                entity.shape.x = x;
-                entity.shape.y = y;
-                entity.draw(canvas.getContext('2d'));
-                this.game.currentMap.staticEntities.push(entity);
-	        } else if(!app.js.isDefined(this.entitySelected)) {
+		    if(!isDefined(this.entitySelected)) {
 	          var entitiesCount = this.game.currentMap.staticEntities.length;
 	          var found = false;
 	          for(var i=0; i<entitiesCount && !found; i++) {
@@ -83,14 +97,28 @@
 	                this.entitySelected = entity;
 	            }
 	          }  
-	        } else if(app.js.isDefined(this.entitySelected)) {
+	        } else if(isDefined(this.entitySelected)) {
 	            this.entitySelected.shape.x = x;
 	            this.entitySelected.shape.y = y;
+	            this.game.currentMap.staticEntities.push(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected = null;
 	        }
 		}
+		
+		Editor.prototype.onCanvasMove = function(event) {
+		    var canvas = this.game.canvas;
+            var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
+            var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
+            if(isDefined(this.entitySelected)) {
+	            this.entitySelected.shape.x = x - this.entitySelected.shape.width / 2;
+	            this.entitySelected.shape.y = y - this.entitySelected.shape.height / 2;
+	            this.game.clear();
+	            this.game.currentMap.draw(this.game.context, false);
+	            this.entitySelected.shape.draw(this.game.context);
+            }
+        }
 		
 		Editor.prototype.isClick = function(entity, x, y) {
             var h = 1;

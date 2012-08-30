@@ -8,8 +8,7 @@
 
 	app.editor.Serialization = function() {
 
-		function Serialization(map) {
-		    this.map = map;
+		function Serialization() {
 			this.divMenu = document.createElement("div");
 	        this.divMenu.style.display = 'inline-block';
 	        this.divMenu.style.verticalAlign = 'top';
@@ -19,8 +18,8 @@
 	        document.body.appendChild(this.divMenu);
 		};
 		
-		Serialization.prototype.show = function() {
-		    this.divMenu.innerHTML = JSON.stringify(this.reduce(this.map));
+		Serialization.prototype.show = function(map) {
+		    this.divMenu.innerHTML = JSON.stringify(this.reduce(map));
 		}
 		
 		Serialization.prototype.reduce = function(map) {
@@ -28,14 +27,14 @@
 		    reduce["menuEntities"] = [];
 		    for(var key in map.menuEntities) {
 		        var menuItem = map.menuEntities[key];
-		        reduce["menuEntities"].push({"class":menuItem["class"],"nb":menuItem["nb"]});
+		        reduce["menuEntities"].push({"className":menuItem["className"],"nb":menuItem["nb"]});
 		    }
 		    reduce["staticEntities"] = [];
 		    for(var key in map.staticEntities) {
 		        var staticEntity = map.staticEntities[key];
 		        if(staticEntity != map.startSource && staticEntity != map.endWell) {
 		            reduce["staticEntities"].push(
-		                {"class":staticEntity["class"],"shape":{"x":staticEntity.shape["x"],"y":staticEntity.shape["y"]}});
+		                {"className":staticEntity["className"],"shape":{"x":staticEntity.shape["x"],"y":staticEntity.shape["y"]}});
 	            }
 		    }
 		    reduce["startSource"] = {"degreeBlob":map.startSource.degreeBlob,"shape":{"x":map.startSource.shape.x,"y":map.startSource.shape.y}};
