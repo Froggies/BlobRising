@@ -7,14 +7,14 @@ var maps = [
     {
         "menuEntities":
         [
-            {"class":"Source","nb":5},
-            {"class":"Wall","nb":5},
-            {"class":"Well","nb":5,"nbBlobMax":10}
+            {"className":"Source","nb":5},
+            {"className":"Wall","nb":5},
+            {"className":"Well","nb":5,"nbBlobMax":10}
         ],
         "staticEntities":
         [
             {
-                "class":"Well",
+                "className":"Well",
                 "shape": {
                     "x":300,
                     "y":200
@@ -27,14 +27,14 @@ var maps = [
     {
         "menuEntities":
         [
-            {"class":"Source","nb":5},
-            {"class":"Wall","nb":5},
-            {"class":"Well","nb":5,"nbBlobMax":10}
+            {"className":"Source","nb":5},
+            {"className":"Wall","nb":5},
+            {"className":"Well","nb":5,"nbBlobMax":10}
         ],
         "staticEntities":
         [
             {
-                "class":"Well",
+                "className":"Well",
                 "shape": {
                     "x":200,
                     "y":200

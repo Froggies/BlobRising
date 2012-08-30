@@ -92,7 +92,7 @@
 		        this.divName.style.cursor = 'default';
 			    this.div.appendChild(this.divName);
 			}
-			this.displayName = app.js.getObjectClass(this.entity)+"("+this.nb+")";
+			this.displayName = this.entity.className+"("+this.nb+")";
 			this.divName.innerHTML = this.displayName;
 		};
 
