@@ -12,17 +12,16 @@
 		inherit(Well, Entity);
 		
 		function Well() {
-		    this.class = "Well";
 			Well.parent.constructor.apply(this);
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;
-			this.final = false;
+			this.last = false;
 			this.shape = new app.shapes.Rectangle(0,0,50,35,true,true,"#FF30F0");
 			this.radius = Math.max(this.shape.width, this.shape.height) + 80;
 		};
 		
 		Well.prototype.update = function(translation, map) {
-		    if(this.nbBlobMax <= this.nbBlob && this.final !== true) {
+		    if(this.nbBlobMax <= this.nbBlob && this.last !== true) {
 		        this.dead(map);
 		    } else {
 		        Well.parent.update.call(this, translation, map);
