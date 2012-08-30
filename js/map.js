@@ -12,7 +12,7 @@
 			this.noneEntities = [];
 			this.startSource = new app.entities.Source();
 			this.endWell = new app.entities.Well();
-			this.endWell.isFinal = true;
+			this.endWell.last = true;
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
 		}
