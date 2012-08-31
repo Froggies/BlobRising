@@ -7,6 +7,7 @@
 		function Menu(game) {
 		    this.game = game;
 		    this.nbWell = 10;
+		    this.isFirstAddWell = true;
             var that = this;
             
             this.game.canvas.addEventListener(
@@ -49,6 +50,21 @@
 	                    game.clear();
 	                    game.currentMap.draw(game.context, false);
                     }  else if(charCode == 120) {
+                        if(that.isFirstAddWell) {
+                            that.isFirstAddWell = false;
+                            var helpDiv = document.getElementById('mainMenu');
+                            var oldInnerHtml = helpDiv.innerHTML;
+                            var oldDisplay = helpDiv.style.display;
+                            helpDiv.innerHTML = "Move your mouse and then click to add well !" 
+                            helpDiv.style.display = 'block';
+                            game.canvas.addEventListener(
+                                "mousedown", 
+                                function(event) {
+                                    helpDiv.innerHTML = oldInnerHtml;
+                                    helpDiv.style.display = oldDisplay;
+                                },
+                                false);
+                        }
                         that.addWell(game);
                     }
                 }
