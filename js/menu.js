@@ -38,13 +38,43 @@
 	                        scoreDiv.style.display = 'none';
                         }
                     } else if(charCode == 109) {
-                        game.timeLoop++;
+                        var helpDiv = document.getElementById('mainMenu');
+                        if(!app.js.isDefined(that.firstInnerHTML)) {
+                            that.firstInnerHTML = helpDiv.innerHTML;
+                            that.firstDisplay = helpDiv.style.display;
+                        } else {
+                            clearTimeout(that.timeout);
+                        }
+                        helpDiv.innerHTML = "Speed : " + game.timeLoop; 
+                        helpDiv.style.display = 'block';
+                        that.timeout = setTimeout(
+                            function(event) {
+                                helpDiv.innerHTML = that.firstInnerHTML;
+                                helpDiv.style.display = that.firstDisplay;
+                            }, 500);
+                        game.timeLoop += 10;
                         game.pause();
                         game.start();
                     }  else if(charCode == 108) {
-                        game.timeLoop--;
-                        game.pause();
-                        game.start();
+                        var helpDiv = document.getElementById('mainMenu');
+                        if(!app.js.isDefined(that.firstInnerHTML)) {
+                            that.firstInnerHTML = helpDiv.innerHTML;
+                            that.firstDisplay = helpDiv.style.display;
+                        } else {
+                            clearTimeout(that.timeoutDecrease);
+                        }
+                        helpDiv.innerHTML = "Speed : " + game.timeLoop; 
+                        helpDiv.style.display = 'block';
+                        that.timeoutDecrease = setTimeout(
+                            function(event) {
+                                helpDiv.innerHTML = that.firstInnerHTML;
+                                helpDiv.style.display = that.firstDisplay;
+                            }, 500);
+                        if(game.timeLoop > 0) {
+                            game.timeLoop -= 10;
+                            game.pause();
+                            game.start();
+                        }
                     } else if(charCode == 115) {
                         game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
 	                    if(!game.currentMap.showNoneEntities) {
