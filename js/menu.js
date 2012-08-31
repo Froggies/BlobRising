@@ -53,7 +53,7 @@
 	                    game.clear();
 	                    game.currentMap.draw(game.context, false);
                     }  else if(charCode == 120) {
-                        if(that.isFirstAddWell) {
+                        if(that.isFirstAddWell === true) {
                             that.isFirstAddWell = false;
                             var helpDiv = document.getElementById('mainMenu');
                             var oldInnerHtml = helpDiv.innerHTML;
@@ -80,7 +80,7 @@
                 var canvas = game.canvas;
                 var x = -100;
                 var y = -100;
-		        var entity = new app.entities.Well();
+		        var entity = app.js.clone(game.currentMap.menuWell);
 		        entity.shape.x = x;
 		        entity.shape.y = y;
 		        entity.draw(game.context);
