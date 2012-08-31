@@ -51,15 +51,17 @@
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
 		        this.currentIndexMap = this.currentIndexMap + 1;
+		        this.clear();
 		        this.init();
-		        this.start();
+		        this.pause();
 		    } else if(this.currentMap.isWin()) {
 		        //game win
-		        window.alert("YOU WIN GAME !!");
+		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
 		    } else {
 		        //map loose
 		        window.alert("YOU LOOSE !!");
 		        this.score--;
+		        this.clear();
 		        this.init();
 		        this.start();
 		    }

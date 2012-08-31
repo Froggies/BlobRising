@@ -18,14 +18,14 @@ var maps = [
             {
                 "className":"Wall",
                 "shape": {
-                    "x":500,
+                    "x":550,
                     "y":200,
                     "height":180
                 }
             }
         ],
         "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":100}}
+        "endWell":{"shape": {"x":500,"y":250}}
     },
     {
         "menuEntities":

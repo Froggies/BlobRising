@@ -7,7 +7,12 @@
 		function Menu(game) {
 		    this.game = game;
 		    this.nbWell = 10;
+		    this.nbWellInit = 10;
 		    this.isFirstAddWell = true;
+		    this.scoreDiv = document.getElementById('score');
+		    this.helpDiv = document.getElementById('mainMenu');
+            this.firstInnerHTML = this.helpDiv.innerHTML;
+            this.firstDisplay = this.helpDiv.style.display;
             var that = this;
             
             this.game.canvas.addEventListener(
@@ -26,54 +31,28 @@
                 if (charCode) {
                     // console.log("Character typed: " + charCode);
                     if(charCode == 32) {
-                        var helpDiv = document.getElementById('mainMenu');
-                        var scoreDiv = document.getElementById('score');
                         if(game.isRun) {
 	                        game.pause();
-	                        helpDiv.style.display = 'block';
-	                        scoreDiv.style.display = 'block';
+	                        that.showHelp();
 	                    } else {
 	                        game.start();
-	                        helpDiv.style.display = 'none';
-	                        scoreDiv.style.display = 'none';
+	                        that.hideHelp();
                         }
                     } else if(charCode == 109) {
-                        var helpDiv = document.getElementById('mainMenu');
-                        if(!app.js.isDefined(that.firstInnerHTML)) {
-                            that.firstInnerHTML = helpDiv.innerHTML;
-                            that.firstDisplay = helpDiv.style.display;
-                        } else {
-                            clearTimeout(that.timeout);
-                        }
-                        helpDiv.innerHTML = "Speed : " + game.timeLoop; 
-                        helpDiv.style.display = 'block';
-                        that.timeout = setTimeout(
-                            function(event) {
-                                helpDiv.innerHTML = that.firstInnerHTML;
-                                helpDiv.style.display = that.firstDisplay;
-                            }, 500);
+                        that.showHelp("Speed : " + game.timeLoop, 500);
                         game.timeLoop += 10;
-                        game.pause();
-                        game.start();
-                    }  else if(charCode == 108) {
-                        var helpDiv = document.getElementById('mainMenu');
-                        if(!app.js.isDefined(that.firstInnerHTML)) {
-                            that.firstInnerHTML = helpDiv.innerHTML;
-                            that.firstDisplay = helpDiv.style.display;
-                        } else {
-                            clearTimeout(that.timeoutDecrease);
-                        }
-                        helpDiv.innerHTML = "Speed : " + game.timeLoop; 
-                        helpDiv.style.display = 'block';
-                        that.timeoutDecrease = setTimeout(
-                            function(event) {
-                                helpDiv.innerHTML = that.firstInnerHTML;
-                                helpDiv.style.display = that.firstDisplay;
-                            }, 500);
-                        if(game.timeLoop > 0) {
-                            game.timeLoop -= 10;
+                        if(game.isRun) {
                             game.pause();
                             game.start();
+                        }
+                    }  else if(charCode == 108) {
+                        that.showHelp("Speed : " + game.timeLoop, 500);
+                        if(game.timeLoop > 0) {
+                            game.timeLoop -= 10;
+                            if(game.isRun) {
+                                game.pause();
+                                game.start();
+                            }
                         }
                     } else if(charCode == 115) {
                         game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
@@ -82,27 +61,52 @@
 	                    }
 	                    game.clear();
 	                    game.currentMap.draw(game.context, false);
-                    }  else if(charCode == 120) {
+                    } else if(charCode == 120) {
                         if(that.isFirstAddWell === true) {
                             that.isFirstAddWell = false;
-                            var helpDiv = document.getElementById('mainMenu');
-                            var oldInnerHtml = helpDiv.innerHTML;
-                            var oldDisplay = helpDiv.style.display;
-                            helpDiv.innerHTML = "Move your mouse and then click to add well !" 
-                            helpDiv.style.display = 'block';
-                            game.canvas.addEventListener(
-                                "mousedown", 
-                                function(event) {
-                                    helpDiv.innerHTML = oldInnerHtml;
-                                    helpDiv.style.display = oldDisplay;
-                                },
-                                false);
+                            that.showHelp("Move your mouse and then click to add well !", "mousedown");
                         }
                         that.addWell(game);
                     }
                 }
             };
-		};
+		}
+		
+		Menu.prototype.showHelp = function(msg, time) {
+            this.helpDiv.style.display = 'block';
+		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal logo
+		        this.scoreDiv.style.display = 'block';
+		        this.helpDiv.innerHTML = this.firstInnerHTML;
+	        } else if(time === "mousedown") {
+	            this.helpDiv.innerHTML = msg;
+	            var that = this;
+	            this.game.canvas.addEventListener(
+                    "mousedown", 
+                    function(event) {
+                        that.hideHelp();
+                        that.game.canvas.removeEventListener(this);
+                    },
+                    false);
+		    } else {
+		        clearTimeout(this.timeout);
+		        this.helpDiv.innerHTML = msg;
+		        var that = this;
+                this.timeout = setTimeout(
+                    function(event) {
+                        that.hideHelp();
+                    }, time);
+		    }
+		}
+		
+		Menu.prototype.hideHelp = function() {
+		    if(this.game.isRun) {
+		        this.helpDiv.style.display = 'none';
+                this.scoreDiv.style.display = 'none';
+            } else {
+                //return to standard menu
+                this.showHelp();
+            }
+		}
 		
 		Menu.prototype.addWell = function(game) {
 		    if(this.nbWell > 0) {
@@ -130,6 +134,7 @@
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected.shape.draw(this.game.context);
+	            this.showHelp("Well : " + this.nbWell + "/" + this.nbWellInit, 1000);
             }
         }
         
