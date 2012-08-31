@@ -6,13 +6,13 @@
 
 	var game = new app.Game(maps, canvas);
 	// TODO remove this for contest
-	new app.editor.Editor(game);
+	// new app.editor.Editor(game);
 	
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 	
-	canvas.width = parseInt(width * 0.8);
-	canvas.height = height - 21;
+	canvas.width = parseInt(width - 25);
+	canvas.height = height - 25;
 	document.body.appendChild(canvas);
 	
 	new app.Menu(game);

@@ -6,3 +6,11 @@
     display:inline;
     border:1px solid white;
 }
+
+.mainMenu {
+    position:absolute;
+    right:50px;
+    top:20px;
+    color:white;
+    position:absolute;
+}

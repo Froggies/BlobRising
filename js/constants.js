@@ -5,10 +5,8 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 
 var maps = [
     {
-        "menuEntities":
+        "nbWell":
         [
-            {"className":"Source","nb":5},
-            {"className":"Wall","nb":5},
             {"className":"Well","nb":5,"nbBlobMax":10}
         ],
         "staticEntities":

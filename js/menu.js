@@ -4,108 +4,109 @@
 
 	app.Menu = function() {
 
-		var entitySelected;
-		var game;
-		var divMenu;
-		var menuItems;
-
 		function Menu(game) {
-		    this.entitySelected = "";
 		    this.game = game;
-		    this.menuItems = [];
-			// construct view
-			this.divMenu = document.createElement("div");
-	        this.divMenu.style.display = 'inline-block';
-	        this.divMenu.style.verticalAlign = 'top';
-	        this.divMenu.style.width = '17%';
-
-	        this.divMenu.appendChild(
-	            this.createToggleButton(
-	                "Start", 
-	                function() {
-	                    if(game.isRun) {
-	                        this.innerHTML = "Restart";
+		    this.nbWell = 10;
+            var that = this;
+            
+            this.game.canvas.addEventListener(
+                "mousemove", 
+                function(event) {app.Menu.prototype.onCanvasMove.call(that, event);},
+                false);
+                
+            this.game.canvas.addEventListener(
+                "mousedown", 
+                function(event) {app.Menu.prototype.onCanvasClick.call(that, event);},
+                false);
+            
+            document.onkeypress = function(e) {
+                e = e || window.event;
+                var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
+                if (charCode) {
+                    console.log("Character typed: " + charCode);
+                    if(charCode == 32) {
+                        var helpDiv = document.getElementById('mainMenu');
+                        if(game.isRun) {
 	                        game.pause();
+	                        helpDiv.style.display = 'block';
 	                    } else {
-	                        this.innerHTML = "Pause";
 	                        game.start();
+	                        helpDiv.style.display = 'none';
                         }
-                    }
-                ));
-            this.divMenu.appendChild(
-	            this.createToggleButton(
-	                "Show none entities", 
-	                function() {
-	                    game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
+                    } else if(charCode == 109) {
+                        game.timeLoop++;
+                        game.pause();
+                        game.start();
+                    }  else if(charCode == 108) {
+                        game.timeLoop--;
+                        game.pause();
+                        game.start();
+                    } else if(charCode == 115) {
+                        game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
 	                    if(!game.currentMap.showNoneEntities) {
 	                        game.currentMap.noneEntities = [];
 	                    }
+	                    game.clear();
+	                    game.currentMap.draw(game.context, false);
+                    }  else if(charCode == 120) {
+                        that.addWell(game);
                     }
-                ));
-            this.createSliderTime(game);
-            this.load(game.currentMap);
+                }
+            };
 		};
 		
-		Menu.prototype.load = function(map) {
-		    // add buttons related to map
-		    var that = this;
-		    for(var entityIndex in map.menuEntities) {
-		        var entity = map.menuEntities[entityIndex];
-		        var menuItem = new app.MenuItem(this, entity, entity.nb, this.clickItemMenu);
-		        this.menuItems.push(menuItem);
+		Menu.prototype.addWell = function(game) {
+		    if(this.nbWell > 0) {
+		        this.nbWell--;
+                var canvas = game.canvas;
+                var x = -100;
+                var y = -100;
+		        var entity = new app.entities.Well();
+		        entity.shape.x = x;
+		        entity.shape.y = y;
+		        entity.draw(game.context);
+		        this.entitySelected = entity;
+		        game.currentMap.staticEntities.push(entity);
             }
-            document.body.appendChild(this.divMenu);
 		}
 		
-		Menu.prototype.clickItemMenu = function(menuItem) {
-            for(var itemIndex in this.menuItems) {
-                var item = this.menuItems[itemIndex];
-                if(item != menuItem) {
-                    item.unselect();
-                }
+		Menu.prototype.onCanvasMove = function(event) {
+		    var canvas = this.game.canvas;
+            var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
+            var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
+            if(app.js.isDefined(this.entitySelected)) {
+	            this.entitySelected.shape.x = x - this.entitySelected.shape.width / 2;
+	            this.entitySelected.shape.y = y - this.entitySelected.shape.height / 2;
+	            this.game.clear();
+	            this.game.currentMap.draw(this.game.context, false);
+	            this.entitySelected.shape.draw(this.game.context);
             }
         }
-		
-		Menu.prototype.createToggleButton = function(name, callback) {
-            var btn = document.createElement("div");
-            btn.id = 'btn'+name;
-            btn.style.color = 'white';
-            btn.style.border = '1px solid white';
-            btn.innerHTML = name;
-            btn.onclick = callback;
-            btn.style.display = 'block';
-            btn.style.width = '80%';
-            btn.style.height = '50px';
-            btn.style.margin = 'auto';
-            return btn;
-        }
         
-        Menu.prototype.createSliderTime = function(game) {
-            var divSlider = document.createElement("div");
-            divSlider.style.color = 'white';
-            divSlider.style.border = '1px solid white';
-            divSlider.style.display = 'block';
-            divSlider.style.width = '80%';
-            divSlider.style.height = '50px';
-            divSlider.style.margin = 'auto';
-            var sliderTime = document.createElement("input");
-            sliderTime.type = "range";
-            sliderTime.min = 10;
-            sliderTime.max = 850;
-            sliderTime.value = 50;
-            sliderTime.step = 10;
-            sliderTime.style.display = 'block';
-            sliderTime.style.width = '80%';
-            sliderTime.style.margin = 'auto';
-            sliderTime.onchange = function() {
-                game.timeLoop = sliderTime.value;
-                game.pause();
-                game.start();
-            };
-            divSlider.appendChild(sliderTime);
-            this.divMenu.appendChild(divSlider);
-        }
-
+        Menu.prototype.onCanvasClick = function(event) {
+		    var canvas = this.game.canvas;
+            var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
+            var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
+		    if(!app.js.isDefined(this.entitySelected)) {
+	          var entitiesCount = this.game.currentMap.staticEntities.length;
+	          var found = false;
+	          for(var i=0; i<entitiesCount && !found; i++) {
+	            var entity = this.game.currentMap.staticEntities[i];
+	            if(this.isClick(entity, x, y)) {
+	                found = true;
+	                this.entitySelected = entity;
+	            }
+	          }  
+	        } else if(app.js.isDefined(this.entitySelected)) {
+	            this.entitySelected.shape.x = x;
+	            this.entitySelected.shape.y = y;
+	            this.game.currentMap.staticEntities.push(this.entitySelected);
+	            this.game.clear();
+	            this.game.currentMap.draw(this.game.context, false);
+	            this.entitySelected = null;
+	        }
+		}
+		
 		return Menu;
 
 	}();
