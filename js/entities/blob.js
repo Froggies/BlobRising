@@ -16,7 +16,7 @@
 			this.nbBlob = 100;
 			this.maxAge = 1000;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
-		    this.shape = new app.shapes.Ellipse(0,0,width,height,true,true,"#00FF00","img/goutte3.png");
+		    this.shape = new app.shapes.Ellipse(0,0,width,height,true,true,"#00FF00","img/goutte.png");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
 		
