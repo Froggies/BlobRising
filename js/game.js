@@ -11,6 +11,7 @@
 			this.canvas = canvas;
 			this.context = canvas.getContext('2d');
 			this.timeLoop = 50;
+			this.score = 0;
 			this.init();
 		}
 
@@ -46,6 +47,8 @@
 		    this.isRun = false;
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
+		        this.score += this.currentMap.endWell.nbBlob;
+		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
 		        this.currentIndexMap = this.currentIndexMap + 1;
 		        this.init();
@@ -56,6 +59,7 @@
 		    } else {
 		        //map loose
 		        window.alert("YOU LOOSE !!");
+		        this.score--;
 		        this.init();
 		        this.start();
 		    }

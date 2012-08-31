@@ -24,15 +24,18 @@
                 e = e || window.event;
                 var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
                 if (charCode) {
-                    console.log("Character typed: " + charCode);
+                    // console.log("Character typed: " + charCode);
                     if(charCode == 32) {
                         var helpDiv = document.getElementById('mainMenu');
+                        var scoreDiv = document.getElementById('score');
                         if(game.isRun) {
 	                        game.pause();
 	                        helpDiv.style.display = 'block';
+	                        scoreDiv.style.display = 'block';
 	                    } else {
 	                        game.start();
 	                        helpDiv.style.display = 'none';
+	                        scoreDiv.style.display = 'none';
                         }
                     } else if(charCode == 109) {
                         game.timeLoop++;
@@ -81,6 +84,7 @@
 		        entity.shape.x = x;
 		        entity.shape.y = y;
 		        entity.draw(game.context);
+		        entity.isFromMenu = true;
 		        this.entitySelected = entity;
 		        game.currentMap.staticEntities.push(entity);
             }
@@ -90,7 +94,7 @@
 		    var canvas = this.game.canvas;
             var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
             var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
-            if(app.js.isDefined(this.entitySelected)) {
+            if(app.js.isDefined(this.entitySelected) && this.entitySelected.imAlive) {
 	            this.entitySelected.shape.x = x - this.entitySelected.shape.width / 2;
 	            this.entitySelected.shape.y = y - this.entitySelected.shape.height / 2;
 	            this.game.clear();
@@ -121,6 +125,25 @@
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected = null;
 	        }
+		}
+		
+		Menu.prototype.isClick = function(entity, x, y) {
+		    if(entity.isFromMenu === true) {
+                var h = 1;
+                var l = 1;
+		        
+		        var x2 = entity.shape.x;
+                var y2 = entity.shape.y;
+                var h2 = entity.shape.height;
+                var l2 = entity.shape.width;
+                        
+                if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
+                    return false;
+                } else {                         
+                    return true;
+                }
+            }
+            return false;
 		}
 		
 		return Menu;
