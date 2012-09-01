@@ -6,7 +6,7 @@
         <link rel="stylesheet" media="screen" href="css/game.css">
         <meta charset="UTF-8">
     </head>
-    <body>
+    <body class='body'>
     	<script src="js/app.js"></script>
         <script src="js/lib/vector.js"></script>
         <script src="js/constants.js"></script>
@@ -24,12 +24,23 @@
     	<script src="js/entities/well.js"></script>
     	<script src="js/map.js"></script>
     	<script src="js/game.js"></script>
-    	<script src="js/menuItem.js"></script>
     	<script src="js/menu.js"></script>
     	<!--No include that for contest -->
     	<script src="js/editor/editor.js"></script>
     	<script src="js/editor/serialization.js"></script>
     	<!-- main included last, will start the game -->
-    	<script src="js/main.js"></script>
+    	
+    	<div id='score' class='score'>Score : 0 Blob</div>
+    	<div id='mainMenu' class='mainMenu'>
+    	    <div>Start/Pause = space</div>
+	        <div>Add well = x</div>
+	        <div>Speed increase = m</div>
+	        <div>Speed decrease = l</div>
+	        <div>Show/Hide none entities = s</div>
+    	</div>
+    	<canvas id='canvas' class='canvas'>Your browser doesn't support canvas element !</canvas>
+    	
+        <script src="js/main.js"></script>
     </body>
+    
 </html>

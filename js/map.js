@@ -7,7 +7,7 @@
 		function Map() {
 		    this.showNoneEntities = true;
 			this.staticEntities = [];
-			this.menuEntities = [];
+			this.menuWell = new app.entities.Well();
 			this.blobEntities = [];
 			this.noneEntities = [];
 			this.startSource = new app.entities.Source();

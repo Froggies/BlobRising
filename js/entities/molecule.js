@@ -14,7 +14,7 @@
 		function Molecule(width, height) {
 			Molecule.parent.constructor.apply(this);
 			this.maxAge = 100;
-			this.shape = new app.shapes.Ellipse(0,0,width,height,false,true,"#FF0000");
+			this.shape = new app.shapes.Ellipse(0,0,width,height,false,true,"#FF0000", "img/goutte.png");
 		    this.initialWidth = width;
 		    this.initialHeight = height;
 		};
