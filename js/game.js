@@ -16,6 +16,7 @@
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap], new app.Map());
+			this.currentMap.resize();
 			this.currentMap.draw(this.context, false);
 			this.menu.init(this.currentMap);
 		}
