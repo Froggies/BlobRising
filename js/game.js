@@ -12,12 +12,12 @@
 			this.context = canvas.getContext('2d');
 			this.timeLoop = 50;
 			this.score = 0;
-			this.init();
 		}
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap], new app.Map());
 			this.currentMap.draw(this.context, false);
+			this.menu.init(this.currentMap);
 		}
 
 		Game.prototype.clear = function() {

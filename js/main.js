@@ -15,7 +15,8 @@
 	canvas.height = height - 25;
 	document.body.appendChild(canvas);
 	
-	new app.Menu(game);
+	var menu = new app.Menu(game);
+	game.menu = menu;
 	
     game.init();
 	
