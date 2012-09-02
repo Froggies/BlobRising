@@ -72,6 +72,12 @@
                 }
             };
             document.body.appendChild(div);
+            div = this.buildRangeDiv(10, "nbWell", "well at start");
+            document.body.appendChild(div);
+            div = this.buildRangeDiv(10, "nbBlobMax", "blob in each well");
+            document.body.appendChild(div);
+            div = this.buildRangeDiv(90, "degreeBlob", "degree for start blob in well");
+            document.body.appendChild(div);
 		}
 		
 		Editor.prototype.destroyCurrentMap = function() {
@@ -142,6 +148,21 @@
             div.style.width = '100px';
             div.style.height = '50px';
             div.style.margin = 'auto';
+            div.style.cursor = 'pointer';
+            div.style.verticalAlign = 'top';
+            return div;
+		}
+		
+		Editor.prototype.buildRangeDiv = function(defaultValue, id, msg) {
+		    var div = document.createElement("div");
+		    div.innerHTML = "<input id='"+id+"' type='text' style='width:50px' value='"+defaultValue+"'/> " + msg;
+            div.style.color = 'white';
+            div.style.border = '1px solid white';
+            div.style.display = 'inline-block';
+            div.style.width = '150px';
+            div.style.height = '50px';
+            div.style.margin = 'auto';
+            div.style.verticalAlign = 'top';
             return div;
 		}
 		
