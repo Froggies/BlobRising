@@ -150,7 +150,7 @@
 		}
 		
 		Editor.prototype.submitForm = function() {
-		    document.submitForm.submit();
+		    //document.submitForm.submit();
 		}
 		
 		Editor.prototype.buildDiv = function(name) {

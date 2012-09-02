@@ -19,11 +19,15 @@
 		};
 		
 		Serialization.prototype.getString = function(map) {
-		    return JSON.stringify(this.reduce(map));
+		    var serializedMap = JSON.stringify(this.reduce(map));
+		    this.divMenu.innerHTML = serializedMap;
+		    return serializedMap;
 		}
 		
 		Serialization.prototype.reduce = function(map) {
 		    var reduce = {};
+		    var canvas = document.getElementById("canvas");
+		    reduce.initSize = {"width":window.innerWidth,"height":window.innerHeight};
 		    reduce.menuWell = {"className":"Well","nb":this.numberFromRange("nbWell"),"nbBlobMax":this.numberFromRange("nbBlobMax")};
 		    reduce["staticEntities"] = [];
 		    for(var key in map.staticEntities) {

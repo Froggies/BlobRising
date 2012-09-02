@@ -6,8 +6,8 @@
 
 		function Map() {
 		    this.showNoneEntities = true;
-			this.staticEntities = [];
 			this.menuWell = {};
+			this.staticEntities = [];
 			this.blobEntities = [];
 			this.noneEntities = [];
 			this.startSource = new app.entities.Source();
@@ -15,6 +15,10 @@
 			this.endWell.last = true;
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
+		}
+		
+		Map.prototype.resize = function() {
+		    
 		}
 		
 		Map.prototype.draw = function(context, withUpdate) {

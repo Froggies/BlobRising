@@ -50,9 +50,12 @@
 		        this.score += this.currentMap.endWell.nbBlob;
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
+		        var showNoneEntities = this.currentMap.showNoneEntities;
 		        this.currentIndexMap = this.currentIndexMap + 1;
-		        this.clear();
 		        this.init();
+		        this.currentMap.showNoneEntities = showNoneEntities;
+		        this.clear();
+		        this.currentMap.draw(this.context, false);
 		        this.pause();
 		    } else if(this.currentMap.isWin()) {
 		        //game win
