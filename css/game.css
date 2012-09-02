@@ -14,6 +14,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor:default;
     position:absolute;
     left:20px;
     top:20px;
@@ -28,6 +29,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor:default;
     text-align:right;
     position:absolute;
     right:50px;

@@ -42,8 +42,7 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Source");
-                    var entity = new objClass();
+                    var entity = new app.entities.Source();
                     entity.className = "Source";
                     that.entitySelected = entity;
                 }
@@ -56,8 +55,7 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Wall");
-                    var entity = new objClass();
+                    var entity = new app.entities.Wall();
                     that.entitySelected = entity;
                 }
             };
@@ -69,8 +67,7 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Well");
-                    var entity = new objClass();
+                    var entity = new app.entities.Well();
                     that.entitySelected = entity;
                 }
             };
@@ -79,8 +76,8 @@
 		
 		Editor.prototype.destroyCurrentMap = function() {
 		    this.game.listSerializedMap = [""];
+		    this.game.clear();
 		    this.game.init();
-		    this.game.currentMap.draw(this.game.context, false);
 		}
 		
 		Editor.prototype.onCanvasClick = function(event) {

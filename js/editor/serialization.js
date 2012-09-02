@@ -24,11 +24,7 @@
 		
 		Serialization.prototype.reduce = function(map) {
 		    var reduce = {};
-		    reduce["menuEntities"] = [];
-		    for(var key in map.menuEntities) {
-		        var menuItem = map.menuEntities[key];
-		        reduce["menuEntities"].push({"className":menuItem["className"],"nb":menuItem["nb"]});
-		    }
+		    reduce.menuWell = {"className":"Well","nb":5,"nbBlobMax":10};
 		    reduce["staticEntities"] = [];
 		    for(var key in map.staticEntities) {
 		        var staticEntity = map.staticEntities[key];
