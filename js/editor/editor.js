@@ -20,7 +20,9 @@
 		    var div = this.buildDiv("Serialization");
             var that = this;
             div.onclick = function() {
-                that.serialization.show(that.game.currentMap);
+                var s = that.serialization.getString(that.game.currentMap);
+                that.buildSendDiv(div, s);
+                that.submitForm();
             };
             document.body.appendChild(div);
 		}
@@ -56,6 +58,7 @@
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
                     var entity = new app.entities.Wall();
+                    entity.className = "Wall";
                     that.entitySelected = entity;
                 }
             };
@@ -68,6 +71,7 @@
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
                     var entity = new app.entities.Well();
+                    entity.className = "Well";
                     that.entitySelected = entity;
                 }
             };
@@ -137,6 +141,16 @@
             } else {                            
                 return true;
             }
+		}
+		
+		Editor.prototype.buildSendDiv = function(inDiv, serializedMap) {
+		    var token = "c70fbf9545260fa04553c11c70087fe5";
+		    var content = "<form name='submitForm' action='http://getsimpleform.com/messages?form_api_token="+token+"' method='post'><input type='hidden' name='redirect_to' value='http://blobrising.github.com/BlobRising/' /><input type='hidden' name='map' value='"+serializedMap+"' /></form>";
+		    inDiv.innerHTML += content;
+		}
+		
+		Editor.prototype.submitForm = function() {
+		    document.submitForm.submit();
 		}
 		
 		Editor.prototype.buildDiv = function(name) {

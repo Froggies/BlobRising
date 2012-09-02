@@ -18,8 +18,8 @@
 	        document.body.appendChild(this.divMenu);
 		};
 		
-		Serialization.prototype.show = function(map) {
-		    this.divMenu.innerHTML = JSON.stringify(this.reduce(map));
+		Serialization.prototype.getString = function(map) {
+		    return JSON.stringify(this.reduce(map));
 		}
 		
 		Serialization.prototype.reduce = function(map) {
