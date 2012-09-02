@@ -25,7 +25,7 @@
 		    var entity;
 		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
 		        entity = this.staticEntities[entityIndex];
-		        if(app.js.isDefined(entity)) {
+		        if(app.js.isDefined(entity) && app.js.isDefined(this.initSize)) {
 		            entity.shape.x = (actualWidth * entity.shape.x) / this.initSize.width;
 		            entity.shape.y = (actualHeight * entity.shape.y) / this.initSize.height;
 	            }
