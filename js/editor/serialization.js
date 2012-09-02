@@ -21,7 +21,7 @@
 		Serialization.prototype.getString = function(map) {
 		    var serializedMap = JSON.stringify(this.reduce(map));
 		    this.divMenu.innerHTML = serializedMap;
-		    return serializedMap;
+		    return "\"" + serializedMap + "\"";
 		}
 		
 		Serialization.prototype.reduce = function(map) {

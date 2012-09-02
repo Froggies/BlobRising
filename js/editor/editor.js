@@ -145,12 +145,13 @@
 		
 		Editor.prototype.buildSendDiv = function(inDiv, serializedMap) {
 		    var token = "c70fbf9545260fa04553c11c70087fe5";
-		    var content = "<form name='submitForm' action='http://getsimpleform.com/messages?form_api_token="+token+"' method='post'><input type='hidden' name='redirect_to' value='http://blobrising.github.com/BlobRising/' /><input type='hidden' name='map' value='"+serializedMap+"' /></form>";
+		    var url_redirect = "http://blobrising.github.com/BlobRising/";
+		    var content = "<form name='submitForm' action='http://getsimpleform.com/messages?form_api_token="+token+"' method='post'><input type='hidden' name='redirect_to' value='"+url_redirect+"' /><input type='hidden' name='map' value='"+serializedMap+"' /></form>";
 		    inDiv.innerHTML += content;
 		}
 		
 		Editor.prototype.submitForm = function() {
-		    //document.submitForm.submit();
+		    document.submitForm.submit();
 		}
 		
 		Editor.prototype.buildDiv = function(name) {
