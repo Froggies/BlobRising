@@ -20,7 +20,9 @@
 		    var div = this.buildDiv("Serialization");
             var that = this;
             div.onclick = function() {
-                that.serialization.show(that.game.currentMap);
+                var s = that.serialization.getString(that.game.currentMap);
+                that.buildSendDiv(div, s);
+                that.submitForm();
             };
             document.body.appendChild(div);
 		}
@@ -42,8 +44,7 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Source");
-                    var entity = new objClass();
+                    var entity = new app.entities.Source();
                     entity.className = "Source";
                     that.entitySelected = entity;
                 }
@@ -56,8 +57,8 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Wall");
-                    var entity = new objClass();
+                    var entity = new app.entities.Wall();
+                    entity.className = "Wall";
                     that.entitySelected = entity;
                 }
             };
@@ -69,18 +70,24 @@
                     that.game.clear();
                     that.game.currentMap.draw(that.game.context, false);
                 } else {
-                    var objClass = app.js.stringToClass("app.entities.Well");
-                    var entity = new objClass();
+                    var entity = new app.entities.Well();
+                    entity.className = "Well";
                     that.entitySelected = entity;
                 }
             };
+            document.body.appendChild(div);
+            div = this.buildRangeDiv(10, "nbWell", "well at start");
+            document.body.appendChild(div);
+            div = this.buildRangeDiv(10, "nbBlobMax", "blob in each well");
+            document.body.appendChild(div);
+            div = this.buildRangeDiv(90, "degreeBlob", "degree for start blob in well");
             document.body.appendChild(div);
 		}
 		
 		Editor.prototype.destroyCurrentMap = function() {
 		    this.game.listSerializedMap = [""];
+		    this.game.clear();
 		    this.game.init();
-		    this.game.currentMap.draw(this.game.context, false);
 		}
 		
 		Editor.prototype.onCanvasClick = function(event) {
@@ -136,6 +143,17 @@
             }
 		}
 		
+		Editor.prototype.buildSendDiv = function(inDiv, serializedMap) {
+		    var token = "c70fbf9545260fa04553c11c70087fe5";
+		    var url_redirect = "http://blobrising.github.com/BlobRising/";
+		    var content = "<form name='submitForm' action='http://getsimpleform.com/messages?form_api_token="+token+"' method='post'><input type='hidden' name='redirect_to' value='"+url_redirect+"' /><input type='hidden' name='map' value='"+serializedMap+"' /></form>";
+		    inDiv.innerHTML += content;
+		}
+		
+		Editor.prototype.submitForm = function() {
+		    document.submitForm.submit();
+		}
+		
 		Editor.prototype.buildDiv = function(name) {
 		    var div = document.createElement("div");
 		    div.innerHTML = name;
@@ -145,6 +163,21 @@
             div.style.width = '100px';
             div.style.height = '50px';
             div.style.margin = 'auto';
+            div.style.cursor = 'pointer';
+            div.style.verticalAlign = 'top';
+            return div;
+		}
+		
+		Editor.prototype.buildRangeDiv = function(defaultValue, id, msg) {
+		    var div = document.createElement("div");
+		    div.innerHTML = "<input id='"+id+"' type='text' style='width:50px' value='"+defaultValue+"'/> " + msg;
+            div.style.color = 'white';
+            div.style.border = '1px solid white';
+            div.style.display = 'inline-block';
+            div.style.width = '150px';
+            div.style.height = '50px';
+            div.style.margin = 'auto';
+            div.style.verticalAlign = 'top';
             return div;
 		}
 		

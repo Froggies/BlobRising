@@ -12,12 +12,13 @@
 			this.context = canvas.getContext('2d');
 			this.timeLoop = 50;
 			this.score = 0;
-			this.init();
 		}
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap], new app.Map());
+			this.currentMap.resize();
 			this.currentMap.draw(this.context, false);
+			this.menu.init(this.currentMap);
 		}
 
 		Game.prototype.clear = function() {
@@ -50,9 +51,12 @@
 		        this.score += this.currentMap.endWell.nbBlob;
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
+		        var showNoneEntities = this.currentMap.showNoneEntities;
 		        this.currentIndexMap = this.currentIndexMap + 1;
-		        this.clear();
 		        this.init();
+		        this.currentMap.showNoneEntities = showNoneEntities;
+		        this.clear();
+		        this.currentMap.draw(this.context, false);
 		        this.pause();
 		    } else if(this.currentMap.isWin()) {
 		        //game win

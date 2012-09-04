@@ -6,8 +6,6 @@
 
 		function Menu(game) {
 		    this.game = game;
-		    this.nbWell = 10;
-		    this.nbWellInit = 10;
 		    this.isFirstAddWell = true;
 		    this.scoreDiv = document.getElementById('score');
 		    this.helpDiv = document.getElementById('mainMenu');
@@ -72,6 +70,27 @@
             };
 		}
 		
+		Menu.prototype.init = function(map) {
+		    this.nbWell = map.menuWell.nb;
+		    this.nbWellInit = this.nbWell;
+		}
+		
+		Menu.prototype.addWell = function(game) {
+		    if(this.nbWell > 0) {
+		        this.nbWell--;
+                var canvas = game.canvas;
+                var x = -100;
+                var y = -100;
+		        var entity = app.js.clone(game.currentMap.menuWell);
+		        entity.shape.x = x;
+		        entity.shape.y = y;
+		        entity.draw(game.context);
+		        entity.isFromMenu = true;
+		        this.entitySelected = entity;
+		        game.currentMap.staticEntities.push(entity);
+            }
+		}
+		
 		Menu.prototype.showHelp = function(msg, time) {
             this.helpDiv.style.display = 'block';
 		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal logo
@@ -84,7 +103,7 @@
                     "mousedown", 
                     function(event) {
                         that.hideHelp();
-                        that.game.canvas.removeEventListener(this);
+                        that.game.canvas.removeEventListener("mousedown", this, false);
                     },
                     false);
 		    } else {
@@ -105,22 +124,6 @@
             } else {
                 //return to standard menu
                 this.showHelp();
-            }
-		}
-		
-		Menu.prototype.addWell = function(game) {
-		    if(this.nbWell > 0) {
-		        this.nbWell--;
-                var canvas = game.canvas;
-                var x = -100;
-                var y = -100;
-		        var entity = app.js.clone(game.currentMap.menuWell);
-		        entity.shape.x = x;
-		        entity.shape.y = y;
-		        entity.draw(game.context);
-		        entity.isFromMenu = true;
-		        this.entitySelected = entity;
-		        game.currentMap.staticEntities.push(entity);
             }
 		}
 		
