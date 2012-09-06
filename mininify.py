@@ -24,7 +24,7 @@ optimise = 'SIMPLE'
 # destination for our concatented and compressed js file
 compressed = 'game.min.js'
 # files to be included in the zip
-files = ['index.html', compressed]
+files = ['index.html', "css/game.css", "img/magnet.gif", "img/source.gif", "img/wall_pattern.gif", "img/well.gif", "img/goutte.png", compressed]
 # target folder for all our zip files
 folder = 'blobrising'
 
@@ -92,6 +92,10 @@ index_file.close()
 # create folder for our game, if it doesnt exist
 if not os.path.exists(folder):
     os.makedirs(folder)
+if not os.path.exists(folder + "/css"):
+    os.makedirs(folder + "/css")
+if not os.path.exists(folder + "/img"):
+    os.makedirs(folder + "/img")
 
 # copy files into folder (to avoid creating a zip bomb)
 for filename in files:

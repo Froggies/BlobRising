@@ -120,7 +120,6 @@
             }
 
             cornerDistance = Math.pow(distance.x - rectangleWidth/2, 2) + Math.pow(distance.y - rectangleHeight/2, 2);
-            console.log(cornerDistance);
             return (cornerDistance <= Math.pow(radius, 2));
 		}
 
