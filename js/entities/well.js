@@ -16,7 +16,7 @@
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;
 			this.last = false;
-			this.shape = new app.shapes.Rectangle(0,0,50,35,true,true,"#FF30F0");
+			this.shape = new app.shapes.Rectangle(0,0,50,52,true,true,"#FFCC00");
 			this.radius = Math.max(this.shape.width, this.shape.height) + 80;
 		};
 		

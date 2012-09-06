@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .body {
     background-color: #262625;
     font-family: Tahoma;
@@ -7,40 +6,9 @@
 
 .canvas {
     background-color: black;
-    display: inline;
-    border: 2px solid #18F9FF;
-}
-
-
-.score {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    color: white;
-    background-color: #262625;
-    border: 1px dashed #18F9FF;
-    padding: 10px;
-}
-
-.mainMenu {
-    text-align: right;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: white;
-    position: absolute;
-    background-color: #262625;
-    border: 1px dashed #18F9FF;
-    padding: 10px;
-}
-=======
-.body {
-    background-color:black;
-}
-
-.canvas {
+    background: ;
     display:inline;
-    border:1px solid white;
+    border: 2px solid #18F9FF;
 }
 
 .score {
@@ -56,6 +24,9 @@
     top:20px;
     color:white;
     position:absolute;
+    background-color: #262625;
+    border: 1px dashed #18F9FF;
+    padding: 10px;
 }
 
 .mainMenu {
@@ -68,9 +39,11 @@
     cursor:default;
     text-align:right;
     position:absolute;
-    right:50px;
+    right:20px;
     top:20px;
     color:white;
     position:absolute;
+    background-color: #262625;
+    border: 1px dashed #18F9FF;
+    padding: 10px;
 }
->>>>>>> ea62319696c6b1e3e0be0c67914ec84e17fefa34
