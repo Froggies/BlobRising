@@ -13,7 +13,7 @@
 		
 		function Source() {
 			Source.parent.constructor.apply(this);
-			this.nbBlob = 10;
+			this.nbBlob = 1;
 		    this.lostTime = 100;
 		    this.maxAge = 100;
 		    this.degreeBlob = 120;

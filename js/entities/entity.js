@@ -10,7 +10,6 @@
 		    this.age = 0;
 		    this.imAlive = true;
 		    this.shape = new app.shapes.Rectangle();
-		    this.collision = new app.physics.Collision();
 		    this.radius = 0;
 		}
 		
@@ -19,7 +18,8 @@
 		}
 
 		Entity.prototype.draw = function(context, map) {
-			if(app.js.isDefined(this.radius) && app.js.isDefined(map) && map.showNoneEntities) {
+			if(app.js.isDefined(this.radius) && app.js.isDefined(map) && map.showNoneEntities
+				&& this.radius > 0) {
 			    var e = new app.shapes.Ellipse();
 			    e.x = this.shape.x + (this.shape.width/2);
 			    e.y = this.shape.y + (this.shape.height/2);

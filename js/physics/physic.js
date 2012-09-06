@@ -30,8 +30,7 @@
             var newX = Number(rawX.toFixed(2));
             var newY = Number(rawY.toFixed(2));
             
-			this.entity.shape.x = newX; 
-			this.entity.shape.y = newY;
+			this.setCoordinate(newX, newY);
             
 			// calculate next frame angle
 			if (y <= 0)  {
@@ -43,6 +42,86 @@
             } else if (x >= (maxWidth - width)) {
                 this.angle = $V([-1, this.angle.elements[1]]);
             }
+		}
+
+
+		Physic.prototype.setCoordinate = function(x, y) {
+			this.entity.shape.x = x; 
+			this.entity.shape.y = y;
+		}
+
+		Physic.prototype.rotateAround = function(from, to) {
+			// Blob
+		    var xa = from.shape.x;
+            var ya = from.shape.y;
+	        // Circle
+	        var xb = to.shape.x + (to.shape.width /2);
+            var yb = to.shape.y + (to.shape.height/2);
+            var circleVector = $V([xb, yb]);
+
+            //some hack in case blob not on circle anymore (cause of poor math skills :p), next translation
+            //wil get it into 
+            relativX = xb - xa;
+            relativY = yb - ya;
+            var vecteurRelatif = $V([relativX, relativY]);
+            var comingAngle = vecteurRelatif.angleFrom(circleVector);
+            var xV = Number(Math.cos(comingAngle + Math.PI / 2).toFixed(2));
+            var yV = Number(Math.sin(comingAngle + Math.PI / 2).toFixed(2));
+            this.angle = $V([xV, yV]);
+    
+            // compute rotation angle and speed
+            var rotationAngle = ((5 * this.speed * Math.PI) / 180);
+            var blobVector = $V([xa, ya]);
+            var newPosition = blobVector.rotate(rotationAngle, circleVector);
+            // place blob sprite on new position
+			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
+            // each time elapsed on rotation speed up the blob
+            this.speed = this.speed + 0.01;
+		}
+
+        //unused
+		Physic.prototype.distanceWith = function(xb, yb) {
+		    var xa = this.entity.shape.x;
+            var ya = this.entity.shape.y;
+		    return Math.sqrt(Math.pow(xa-xb, 2)+Math.pow(ya-yb, 2));
+		}
+
+		Physic.prototype.isInRadius = function(entity) {
+			if(!isDefined(entity.radius) || entity.radius <= 0) {
+				return false;
+			}
+
+			var circleCenterX = entity.shape.x + entity.shape.width / 2;
+			var circleCenterY = entity.shape.y + entity.shape.height / 2;
+
+            var rectangleCenterX = this.entity.shape.x + this.entity.shape.width / 2;
+            var rectangleCenterY = this.entity.shape.y + this.entity.shape.height / 2;
+            var rectangleWidth = this.entity.shape.width;
+            var rectangleHeight = this.entity.shape.height;
+
+            var radius = entity.radius / 2;
+
+            var distance = {
+                x : Math.abs(circleCenterX - rectangleCenterX),
+                y : Math.abs(circleCenterY - rectangleCenterY)
+            };
+
+            if(distance.x > (rectangleWidth/2 + radius)) {
+                return false;
+            }
+            if(distance.y > (rectangleHeight/2 + radius)) {
+                return false;
+            }
+            if(distance.x <= (rectangleWidth/2)) {
+                return true;
+            }
+            if(distance.y <= (rectangleHeight/2)) {
+                return true;
+            }
+
+            cornerDistance = Math.pow(distance.x - rectangleWidth/2, 2) + Math.pow(distance.y - rectangleHeight/2, 2);
+            console.log(cornerDistance);
+            return (cornerDistance <= Math.pow(radius, 2));
 		}
 
 		return Physic;
