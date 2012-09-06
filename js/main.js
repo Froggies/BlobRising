@@ -19,7 +19,7 @@
     game.init();
     
     // TODO remove this for contest
-    new app.editor.Editor(game);
+    // new app.editor.Editor(game);
 	
     window.onresize = function(event) {
         var width = window.innerWidth;
