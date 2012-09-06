@@ -41,6 +41,17 @@
         		}
             }
             
+            if(app.js.isDefined(this.urlPattern)) {
+			    var img = new Image();
+			    img.src = this.urlPattern;
+			    var ptrn = context.createPattern(img,'repeat');
+			    context.fillStyle = this.color;
+			    context.fillRect(this.x,this.y,this.width,this.height);
+			    context.fillStyle = ptrn;
+			    context.fillRect(this.x,this.y,this.width,this.height);
+				context.strokeStyle = "#626163";
+				context.strokeRect(this.x,this.y,this.width,this.height);	
+            }
 
             // Create wall
             /*
@@ -55,6 +66,7 @@
 			context.strokeRect(this.x,this.y,this.width,this.height);
 			*/
 
+			/* No need to use this code if the img src are put in the map definition */
 			// Create magnet
 			/*
 		    var img = new Image();

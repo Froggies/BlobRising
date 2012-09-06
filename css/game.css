@@ -6,7 +6,8 @@
 
 .canvas {
     background-color: black;
-    background: ;
+    background-image: url('../img/background_pattern.gif');
+    background-repeat: repeat;
     display:inline;
     border: 2px solid #18F9FF;
 }
