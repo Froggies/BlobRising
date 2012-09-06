@@ -10,13 +10,13 @@
 
 		inherit(Ellipse, Shape);
 		
-		function Ellipse() {
+		function Ellipse(x, y, width, height, fill, gradient, color, urlImage) {
 			Ellipse.parent.constructor.apply(this, arguments);
 		};
 
 		Ellipse.prototype.draw = function(context) {
 			context.beginPath();
-            context.arc(this.x, this.y, this.width/2, 0, Math.PI*2, false); 
+            context.arc(this.x, this.y, this.width / 2, 0, Math.PI*2, false); 
             context.closePath();
             if(app.js.isDefined(this.urlImage)) {
                 Ellipse.parent.drawImage.call(this, context);
@@ -43,6 +43,10 @@
                 }
             }
 		};
+
+		Ellipse.prototype.getRadius = function() {
+			return this.width / 2;
+		}
 
 		return Ellipse;
 

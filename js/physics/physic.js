@@ -50,19 +50,17 @@
 			this.entity.shape.y = y;
 		}
 
-		Physic.prototype.rotateAround = function(from, to) {
+		Physic.prototype.rotateAround = function(circle) {
 			// Blob
-		    var xa = from.shape.x;
-            var ya = from.shape.y;
-	        // Circle
-	        var xb = to.shape.x + (to.shape.width /2);
-            var yb = to.shape.y + (to.shape.height/2);
-            var circleVector = $V([xb, yb]);
+		    var xa = this.entity.shape.x;
+            var ya = this.entity.shape.y;
+
+            var circleVector = $V([circle.x, circle.y]);
 
             //some hack in case blob not on circle anymore (cause of poor math skills :p), next translation
             //wil get it into 
-            relativX = xb - xa;
-            relativY = yb - ya;
+            relativX = circle.x - xa;
+            relativY = circle.y - ya;
             var vecteurRelatif = $V([relativX, relativY]);
             var comingAngle = vecteurRelatif.angleFrom(circleVector);
             var xV = Number(Math.cos(comingAngle + Math.PI / 2).toFixed(2));
@@ -86,24 +84,21 @@
 		    return Math.sqrt(Math.pow(xa-xb, 2)+Math.pow(ya-yb, 2));
 		}
 
-		Physic.prototype.isInRadius = function(entity) {
-			if(!isDefined(entity.radius) || entity.radius <= 0) {
+		Physic.prototype.isInRadius = function(circle) {
+            var radius = circle.getRadius();
+
+			if(!isDefined(radius) || radius <= 0) {
 				return false;
 			}
-
-			var circleCenterX = entity.shape.x + entity.shape.width / 2;
-			var circleCenterY = entity.shape.y + entity.shape.height / 2;
 
             var rectangleCenterX = this.entity.shape.x + this.entity.shape.width / 2;
             var rectangleCenterY = this.entity.shape.y + this.entity.shape.height / 2;
             var rectangleWidth = this.entity.shape.width;
             var rectangleHeight = this.entity.shape.height;
 
-            var radius = entity.radius / 2;
-
             var distance = {
-                x : Math.abs(circleCenterX - rectangleCenterX),
-                y : Math.abs(circleCenterY - rectangleCenterY)
+                x : Math.abs(circle.x - rectangleCenterX),
+                y : Math.abs(circle.y - rectangleCenterY)
             };
 
             if(distance.x > (rectangleWidth/2 + radius)) {

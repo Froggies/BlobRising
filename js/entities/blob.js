@@ -5,7 +5,8 @@
     var 
 		Molecule = app.entities.Molecule,
 		inherit = app.js.inherit,
-		isDefined = app.js.isDefined;
+		isDefined = app.js.isDefined,
+		getClass = app.js.getObjectClass;
 
 	app.entities.Blob = function() {
 
@@ -28,28 +29,30 @@
 		    for(var entityIndex in map.staticEntities) {
 		        var entity = map.staticEntities[entityIndex];
 
-		        var collisionCircle = {
-		        	shape: {
-		        		x : entity.shape.x,	
-		        		y : entity.shape.y,
-		        		width  : entity.shape.width,
-		        		height : entity.shape.height
-		        	},
-		        	radius : Math.max(entity.shape.width, entity.shape.height)
-		        }
-		        
-		        var isCollision = this.physic.isInRadius(collisionCircle);
-		        if(app.js.getObjectClass(entity) == "Wall" && isCollision) {
-		        	this.dead(map);
-		        	classicMovement = false;
-		        	return;
-		        } 
+		        if(getClass(entity) == "Wall") {
+		        	var collisionCircle = {
+			        	x : entity.shape.x + entity.shape.width / 2,	
+			        	y : entity.shape.y + entity.shape.height / 2,
+			        	getRadius : function() {
+			        		return Math.max(entity.shape.width, entity.shape.height) / 2;
+			        	}
+		        	};
+		        	var isCollision = this.physic.isInRadius(collisionCircle);
+		        	if(isCollision) {
+		        		this.dead(map);
+		        		classicMovement = false;
+		        		return;
+		        	}
 
-		        var isInRadius = this.physic.isInRadius(entity);
-		        if(app.js.getObjectClass(entity) == "Well" && isInRadius) {
-		            newCoordinate = this.physic.rotateAround(this, entity);
-		            classicMovement = false;
-		            return;		            
+		        }
+
+		        if(isDefined(entity.orbit)) {
+			        var isInRadius = this.physic.isInRadius(entity.orbit);
+			        if(getClass(entity) == "Well" && isInRadius) {
+			            newCoordinate = this.physic.rotateAround(entity.orbit);
+			            classicMovement = false;
+			            return;		            
+			        }	
 		        }
 		    }
 		    if(classicMovement) {

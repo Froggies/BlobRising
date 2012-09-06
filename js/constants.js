@@ -10,10 +10,10 @@ var maps = [
         "staticEntities":
         [
             {
-                "className":"Well","shape":{"x":326,"y":313,"urlImage":"img/magnet.gif"}
+                "className":"Well","shape":{"x":326,"y":100,"urlImage":"img/magnet.gif"}
             },
             {
-                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
+                "className":"Wall","shape":{"x":270,"y":300,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
             },
             {
                 "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200,"urlImage":"img/wall_pattern.gif"}
