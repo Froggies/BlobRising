@@ -6,33 +6,27 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 var maps = [
     {
         "initSize":{"width":1301,"height":656},
-        "menuWell":{"className":"Well","nb":10,"nbBlobMax":0},
-        "staticEntities":[
+        "menuWell":{"className":"Well","nb":10,"nbBlobMax":10},
+        "staticEntities":
+        [
             {
-                "className":"Well",
-                "shape":{"x":326,"y":313}
+                "className":"Well","shape":{"x":326,"y":313,"urlImage":"img/magnet.gif"}
             },
             {
-                "className":"Wall","shape":{"x":368,"y":100}
+                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
             },
             {
-                "className":"Wall","shape":{"x":569,"y":145}
+                "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200,"urlImage":"img/wall_pattern.gif"}
             },
             {
-                "className":"Wall","shape":{"x":543,"y":248}},
-            {
-                "className":"Wall","shape":{"x":534,"y":336}
+                "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
             },
-            {
-                "className":"Wall","shape":{"x":530,"y":416}
-            },
-            {
-                "className":"Wall","shape":{"x":533,"y":226}
-            }
         ],
-        "startSource":{"degreeBlob":50,"shape":{"x":171,"y":138}},
-        "endWell":{"shape":{"x":736,"y":128}}
-    },
+        "startSource":
+        {
+            "degreeBlob":90,"shape":{"x":171,"y":138,"urlImage":"img/source.gif"}},
+            "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
+        },
     {
         "initSize":{"width":1301,"height":411},
         "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},

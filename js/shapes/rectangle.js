@@ -16,6 +16,7 @@
 
 		Rectangle.prototype.draw = function(context) {
 			context.save();
+			
 			if(app.js.isDefined(this.urlImage)) {
                 Rectangle.parent.drawImage.call(this, context);
             }
@@ -39,6 +40,35 @@
         		    context.strokeRect(this.x,this.y,this.width,this.height);
         		}
             }
+            
+
+            // Create wall
+            /*
+		    var img = new Image();
+		    img.src = 'img/wall_pattern.gif';
+		    var ptrn = context.createPattern(img,'repeat');
+		    context.fillStyle = this.color;
+		    context.fillRect(this.x,this.y,this.width,this.height);
+		    context.fillStyle = ptrn;
+		    context.fillRect(this.x,this.y,this.width,this.height);
+			context.strokeStyle = "#626163";
+			context.strokeRect(this.x,this.y,this.width,this.height);
+			*/
+
+			// Create magnet
+			/*
+		    var img = new Image();
+		    img.src = 'img/magnet11.gif';
+		    context.drawImage(img,this.x,this.y,this.width,this.height);
+		    */
+
+		    // Create well
+		    /*
+		    var img = new Image();
+		    img.src = 'img/well.gif';
+		    context.drawImage(img,this.x,this.y,this.width,this.height);
+			*/
+
     		context.restore();
 		};
 

@@ -1,10 +1,14 @@
 .body {
-    background-color:black;
+    background-color: #262625;
+    font-family: Tahoma;
+    font-size: 13px;
 }
 
 .canvas {
+    background-color: black;
+    background: ;
     display:inline;
-    border:1px solid white;
+    border: 2px solid #18F9FF;
 }
 
 .score {
@@ -20,6 +24,9 @@
     top:20px;
     color:white;
     position:absolute;
+    background-color: #262625;
+    border: 1px dashed #18F9FF;
+    padding: 10px;
 }
 
 .mainMenu {
@@ -32,8 +39,11 @@
     cursor:default;
     text-align:right;
     position:absolute;
-    right:50px;
+    right:20px;
     top:20px;
     color:white;
     position:absolute;
+    background-color: #262625;
+    border: 1px dashed #18F9FF;
+    padding: 10px;
 }
