@@ -18,17 +18,17 @@
 	        document.body.appendChild(this.divMenu);
 		};
 		
-		Serialization.prototype.show = function(map) {
-		    this.divMenu.innerHTML = JSON.stringify(this.reduce(map));
+		Serialization.prototype.getString = function(map) {
+		    var serializedMap = JSON.stringify(this.reduce(map));
+		    this.divMenu.innerHTML = serializedMap;
+		    return "\"" + serializedMap + "\"";
 		}
 		
 		Serialization.prototype.reduce = function(map) {
 		    var reduce = {};
-		    reduce["menuEntities"] = [];
-		    for(var key in map.menuEntities) {
-		        var menuItem = map.menuEntities[key];
-		        reduce["menuEntities"].push({"className":menuItem["className"],"nb":menuItem["nb"]});
-		    }
+		    var canvas = document.getElementById("canvas");
+		    reduce.initSize = {"width":window.innerWidth,"height":window.innerHeight};
+		    reduce.menuWell = {"className":"Well","nb":this.numberFromRange("nbWell"),"nbBlobMax":this.numberFromRange("nbBlobMax")};
 		    reduce["staticEntities"] = [];
 		    for(var key in map.staticEntities) {
 		        var staticEntity = map.staticEntities[key];
@@ -37,9 +37,13 @@
 		                {"className":staticEntity["className"],"shape":{"x":staticEntity.shape["x"],"y":staticEntity.shape["y"]}});
 	            }
 		    }
-		    reduce["startSource"] = {"degreeBlob":map.startSource.degreeBlob,"shape":{"x":map.startSource.shape.x,"y":map.startSource.shape.y}};
+		    reduce["startSource"] = {"degreeBlob":this.numberFromRange("degreeBlob"),"shape":{"x":map.startSource.shape.x,"y":map.startSource.shape.y}};
 		    reduce["endWell"] = {"shape":{"x":map.endWell.shape.x,"y":map.endWell.shape.y}};
 		    return reduce;
+		}
+		
+		Serialization.prototype.numberFromRange = function(idRange) {
+		    return Number(document.getElementById(idRange).value);
 		}
 		
 		return Serialization;

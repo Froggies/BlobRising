@@ -6,8 +6,8 @@
 
 		function Map() {
 		    this.showNoneEntities = true;
+			this.menuWell = {};
 			this.staticEntities = [];
-			this.menuWell = new app.entities.Well();
 			this.blobEntities = [];
 			this.noneEntities = [];
 			this.startSource = new app.entities.Source();
@@ -15,6 +15,21 @@
 			this.endWell.last = true;
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
+		}
+		
+		Map.prototype.resize = function() {
+		    var canvas = document.getElementById("canvas");
+		    var actualWidth = window.innerWidth;
+		    var actualHeight = window.innerHeight;
+		    var len = this.staticEntities.length;
+		    var entity;
+		    for(var entityIndex=0; entityIndex<len; entityIndex++) {
+		        entity = this.staticEntities[entityIndex];
+		        if(app.js.isDefined(entity) && app.js.isDefined(this.initSize)) {
+		            entity.shape.x = (actualWidth * entity.shape.x) / this.initSize.width;
+		            entity.shape.y = (actualHeight * entity.shape.y) / this.initSize.height;
+	            }
+		    }
 		}
 		
 		Map.prototype.draw = function(context, withUpdate) {

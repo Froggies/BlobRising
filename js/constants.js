@@ -4,7 +4,9 @@ var className = "";
 console.log("Logs start for " + devName + " with " + logLevel + " level");
 
 var maps = [
+    {"initSize":{"width":1301,"height":656},"menuWell":{"className":"Well","nb":10,"nbBlobMax":10},"staticEntities":[{"className":"Well","shape":{"x":326,"y":313}},{"className":"Wall","shape":{"x":550,"y":68}},{"className":"Wall","shape":{"x":569,"y":145}},{"className":"Wall","shape":{"x":543,"y":248}},{"className":"Wall","shape":{"x":534,"y":336}},{"className":"Wall","shape":{"x":530,"y":416}},{"className":"Wall","shape":{"x":533,"y":226}}],"startSource":{"degreeBlob":90,"shape":{"x":171,"y":138}},"endWell":{"shape":{"x":736,"y":128}}},
     {
+        "initSize":{"width":1301,"height":411},
         "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},
         "staticEntities":
         [
@@ -28,6 +30,8 @@ var maps = [
         "endWell":{"shape": {"x":500,"y":250}}
     },
     {
+        "initSize":{"width":1301,"height":411},
+        "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},
         "menuEntities":
         [
             {"className":"Well","nb":5,"nbBlobMax":10}

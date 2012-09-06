@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .body {
     background-color: #262625;
     font-family: Tahoma;
@@ -32,3 +33,44 @@
     border: 1px dashed #18F9FF;
     padding: 10px;
 }
+=======
+.body {
+    background-color:black;
+}
+
+.canvas {
+    display:inline;
+    border:1px solid white;
+}
+
+.score {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+    position:absolute;
+    left:20px;
+    top:20px;
+    color:white;
+    position:absolute;
+}
+
+.mainMenu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+    text-align:right;
+    position:absolute;
+    right:50px;
+    top:20px;
+    color:white;
+    position:absolute;
+}
+>>>>>>> ea62319696c6b1e3e0be0c67914ec84e17fefa34
