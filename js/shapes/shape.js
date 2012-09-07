@@ -6,7 +6,7 @@
 
 	app.shapes.Shape = function() {
 
-		function Shape(x, y, width, height, fill, gradient, color, urlImage) {
+		function Shape(x, y, width, height, fill, gradient, color, urlImage, urlPattern) {
 			this.x = x;
 			this.y = y;
 			this.width = width;
@@ -15,6 +15,7 @@
 			this.gradient = gradient;
 			this.color = color;
 			this.urlImage = urlImage;
+            this.urlPattern = urlPattern;
 		}
         
         Shape.prototype.drawGradient = function(context, linear) {
