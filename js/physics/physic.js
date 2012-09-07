@@ -15,6 +15,7 @@
 	        var xV = Number(Math.cos(rad).toFixed(2));
 	        var yV = Number(Math.sin(rad).toFixed(2));
 			this.angle = $V([xV, yV]);
+            console.log("premier angle : " + this.angle.inspect());
 		}
 
 		Physic.prototype.update = function(translation, maxWidth, maxHeight) {
@@ -49,6 +50,19 @@
 			this.entity.shape.x = x; 
 			this.entity.shape.y = y;
 		}
+
+        Physic.prototype.attractTo = function(circle) {
+            var circleVector = $V([circle.x, circle.y]);
+            relativX = circle.x - this.entity.shape.x;
+            relativY = circle.y - this.entity.shape.y;
+            var vecteurRelatif = $V([relativX, relativY]);
+            var vecteurRelatif = $V([this.entity.shape.x, this.entity.shape.y]);
+            var comingAngle = vecteurRelatif.angleFrom(circleVector);
+            console.log(comingAngle);
+            var xV = Number(Math.cos(comingAngle).toFixed(2));
+            var yV = Number(Math.sin(comingAngle).toFixed(2));
+            this.angle = $V([xV, yV]);
+        }
 
 		Physic.prototype.rotateAround = function(circle) {
 			// Blob

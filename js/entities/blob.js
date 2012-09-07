@@ -46,9 +46,15 @@
 
 		        }
 
+		        // if(isDefined(entity.attraction)) {
+		        // 	if(this.physic.isInRadius(entity.attraction)) {
+		        // 		this.physic.attractTo(entity.attraction);
+		        // 		return;
+		        // 	}
+		        // }
+
 		        if(isDefined(entity.orbit)) {
-			        var isInRadius = this.physic.isInRadius(entity.orbit);
-			        if(getClass(entity) == "Well" && isInRadius) {
+			        if(this.physic.isInRadius(entity.orbit)) {
 			            newCoordinate = this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			            return;		            
