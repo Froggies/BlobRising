@@ -22,7 +22,7 @@ var maps = [
                 "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100}
             }
         ],
-        "startSource":{"degreeBlob":60,"shape":{"x":171,"y":138,"urlImage":"img/source.gif"}},
+        "startSource":{"degreeBlob":60,"shape":{"x":171,"y":138}},
         "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
     },
     {
