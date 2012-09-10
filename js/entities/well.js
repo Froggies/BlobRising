@@ -32,25 +32,27 @@
 		}
 
 		Well.prototype.draw = function(context, map) {
-			this.orbit.x = this.shape.x + (this.shape.width / 2);
-		    this.orbit.y = this.shape.y + (this.shape.height / 2);
-		    this.orbit.width = Math.max(this.shape.width, this.shape.height) + 80;
-		    this.orbit.height = this.orbit.width;
+		    if(map.showNoneEntities) {
+			    this.orbit.x = this.shape.x + (this.shape.width / 2);
+		        this.orbit.y = this.shape.y + (this.shape.height / 2);
+		        this.orbit.width = Math.max(this.shape.width, this.shape.height) + 80;
+		        this.orbit.height = this.orbit.width;
 
-		    this.attraction.x = this.shape.x + (this.shape.width / 2);
-		    this.attraction.y = this.shape.y + (this.shape.height / 2);
-		    this.attraction.width = 4 * this.orbit.getRadius();
-		    this.attraction.height = this.orbit.width;
+		        this.attraction.x = this.shape.x + (this.shape.width / 2);
+		        this.attraction.y = this.shape.y + (this.shape.height / 2);
+		        this.attraction.width = 4 * this.orbit.getRadius();
+		        this.attraction.height = this.orbit.width;
 
-            context.save();                
-		    context.shadowColor = this.shape.color;
-            context.shadowOffsetX = 0;
-            context.shadowOffsetY = 0;
-            context.shadowBlur = 6;
-		    
-		    this.orbit.draw(context);
-		    this.attraction.draw(context);
-		    context.restore();
+                context.save();                
+		        context.shadowColor = this.shape.color;
+                context.shadowOffsetX = 0;
+                context.shadowOffsetY = 0;
+                context.shadowBlur = 6;
+		        
+		        this.orbit.draw(context);
+		        this.attraction.draw(context);
+		        context.restore();
+	        }
 
 		    Well.parent.draw.call(this, context, map);
 		}
