@@ -6,7 +6,7 @@
 
 	app.shapes.Shape = function() {
 
-		function Shape(x, y, width, height, fill, gradient, color, urlImage, urlPattern) {
+		function Shape(x, y, width, height, fill, gradient, color, urlImage, urlPattern, urlSprite) {
 			this.x = x;
 			this.y = y;
 			this.width = width;
@@ -16,6 +16,7 @@
 			this.color = color;
 			this.urlImage = urlImage;
             this.urlPattern = urlPattern;
+            this.urlSprite = urlSprite;
 		}
         
         Shape.prototype.drawGradient = function(context, linear) {
@@ -44,10 +45,54 @@
             return gradient;
         }
         
-        Shape.prototype.drawImage = function(context) {
+        Shape.prototype.drawImage = function(context, physic) {
                 var img = new Image();   
-                img.src = this.urlImage;
-                context.drawImage(img, this.x, this.y, this.width, this.height);
+                if (app.js.isDefined(this.urlSprite)) {
+                    img.src = this.urlSprite;
+                    
+                    var spriteY = 0;
+                    
+                    
+                    if (physic.angle.elements[0] > -0.25 && physic.angle.elements[0] < 0.25
+                     && physic.angle.elements[1] > 0.75) {
+                        spriteY = 88;
+                    }
+                    else if (physic.angle.elements[0] >= 0.25 && physic.angle.elements[0] < 0.75
+                     && physic.angle.elements[1] > 0.25 && physic.angle.elements[1] < 0.75) {
+                        spriteY = 110;
+                    }
+                    else if (physic.angle.elements[0] > 0.75
+                     && physic.angle.elements[1] > 0.75) {
+                        spriteY = 132;
+                    }
+                    else if (physic.angle.elements[0] >= 0.25 && physic.angle.elements[0] < 0.75
+                     && physic.angle.elements[1] > -0.25 && physic.angle.elements[1] < -0.75) {
+                        spriteY = 154;
+                    }
+                    else if (physic.angle.elements[0] > -0.25 && physic.angle.elements[0] < 0.25
+                     && physic.angle.elements[1] > -0.75) {
+                        spriteY = 0;
+                    }
+                    else if (physic.angle.elements[0] > -0.25 && physic.angle.elements[0] < -0.75
+                     && physic.angle.elements[1] > -0.25 && physic.angle.elements[1] < -0.75) {
+                        spriteY = 22;
+                    }
+                    else if (physic.angle.elements[0] > -0.75
+                     && physic.angle.elements[1] > -0.25 && physic.angle.elements[1] < 0.25) {
+                        spriteY = 44;
+                    }
+                    else if (physic.angle.elements[0] > -0.25 && physic.angle.elements[0] < -0.75
+                     && physic.angle.elements[1] > 0.25 && physic.angle.elements[1] < 0.75) {
+                        spriteY = 66;
+                    }
+                    console.log("angle : "+physic.angle.elements[0]+" y "+physic.angle.elements[1]);
+                    
+                    context.drawImage(img,0, spriteY, 20, 20, this.x, this.y, this.width, this.height);
+                }
+                else {
+                    img.src = this.urlImage;
+                    context.drawImage(img, this.x, this.y, this.width, this.height);
+                }
         }
         
  		return Shape;

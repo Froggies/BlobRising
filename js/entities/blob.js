@@ -17,9 +17,13 @@
 			this.nbBlob = 0;
 			this.maxAge = 1000;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
-		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00", "img/goutte.png");
+		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00",null,null,"img/blobSprite.png");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
+		
+		Blob.prototype.draw = function(context, map) {
+			this.shape.draw(context, this.physic);
+		}
 		
 		Blob.prototype.update = function(translation, context, map) {
 
