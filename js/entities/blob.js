@@ -25,42 +25,55 @@
 
 			var newCoordinate = null;
 			var classicMovement = true;
+			var returnToMainLoop = false;
 
-		    for(var entityIndex in map.staticEntities) {
-		        var entity = map.staticEntities[entityIndex];
-
-		        if(getClass(entity) == "Wall") {
-		        	var collisionCircle = {
-			        	x : entity.shape.x + entity.shape.width / 2,	
-			        	y : entity.shape.y + entity.shape.height / 2,
-			        	getRadius : function() {
-			        		return Math.max(entity.shape.width, entity.shape.height) / 2;
-			        	}
-		        	};
-		        	var isCollision = this.physic.isInRadius(collisionCircle);
-		        	if(isCollision) {
-		        		this.dead(map);
-		        		classicMovement = false;
-		        		return;
+			var deadlyEntities = map.getDeadlyEntities();
+			for(var i = 0; i < deadlyEntities.length; i++) {
+				var entity = deadlyEntities[i];
+	        	var collisionCircle = {
+		        	x : entity.shape.x + entity.shape.width / 2,	
+		        	y : entity.shape.y + entity.shape.height / 2,
+		        	getRadius : function() {
+		        		return Math.max(entity.shape.width, entity.shape.height) / 2;
 		        	}
+	        	};
+	        	if(this.physic.isInRadius(collisionCircle)) {
+	        		this.dead(map);
+	        		classicMovement = false;
+	        		returnToMainLoop = true;
+	        		break;
+	        	}
+			}
 
-		        }
+			if(!returnToMainLoop) {
+				var attractiveEntities = map.getAttractiveEntities();
+				console.log(attractiveEntities);
+				for(var i = 0; i < attractiveEntities.length; i++) {
+					var entity = attractiveEntities[i];
+		        	if(this.physic.isInRadius(entity.attraction)) {
+		        		if(!this.physic.attracted) {
+			        		this.physic.attractTo(entity.attraction);
+			        		this.physic.attracted = true;
+			        		break;
+			        	}
+		        	} else {
+		        		this.physic.attracted = false;
+		        		break;
+		        	}
+				}
+			}
 
-		        // if(isDefined(entity.attraction)) {
-		        // 	if(this.physic.isInRadius(entity.attraction)) {
-		        // 		this.physic.attractTo(entity.attraction);
-		        // 		return;
-		        // 	}
-		        // }
-
-		        if(isDefined(entity.orbit)) {
+			if(!returnToMainLoop) {
+				var orbitalEntities = map.getOrbitalEntities();
+				for(var i = 0; i < orbitalEntities.length; i++) {
+					var entity = orbitalEntities[i];
 			        if(this.physic.isInRadius(entity.orbit)) {
 			            newCoordinate = this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
-			            return;		            
-			        }	
-		        }
-		    }
+			            break;	            
+			        }
+			    }
+			}
 		    if(classicMovement) {
 		    	this.physic.update(translation, context.canvas.width, context.canvas.height);
 		    }

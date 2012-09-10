@@ -1,6 +1,8 @@
 (function() {
 
 	"use strict";
+
+	var getClass = app.js.getObjectClass;
 	
 	app.Map = function() {
 
@@ -16,6 +18,10 @@
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
 			this.nbBlobDead = 0;
+
+			this.deadlyEntities = [];
+			this.attractiveEntities = [];
+			this.orbitalEntities = [];
 		}
 		
 		Map.prototype.resize = function() {
@@ -67,6 +73,59 @@
                     }
 		        }
 	        }
+		}
+
+		Map.prototype.addEntity = function(entity) {
+			this.staticEntities.push(entity);
+			this.clearIterators();
+		}
+
+		Map.prototype.clearIterators = function() {
+			this.deadlyEntities = [];
+			this.attractiveEntities = [];
+			this.orbitalEntities = [];
+		}
+
+		Map.prototype.getDeadlyEntities = function() {
+			if(this.deadlyEntities.length > 0) {
+				return this.deadlyEntities;
+			}
+
+			for(var i = 0; i < this.staticEntities.length; i++) {
+				if("Wall" === getClass(this.staticEntities[i])) {
+					this.deadlyEntities.push(this.staticEntities[i]);
+				}
+			}
+
+			return this.deadlyEntities;
+		}
+
+		Map.prototype.getAttractiveEntities = function() {
+			if(this.attractiveEntities.length > 0) {
+				return this.attractiveEntities;
+			}
+
+			for(var i = 0; i < this.staticEntities.length; i++) {
+				if(this.staticEntities[i].hasOwnProperty("attraction")) {
+					this.attractiveEntities.push(this.staticEntities[i]);
+				}
+			}
+
+			return this.attractiveEntities;
+		}
+
+		Map.prototype.getOrbitalEntities = function() {
+			if(this.orbitalEntities.length > 0) {
+				return this.orbitalEntities;
+			}
+
+			for(var i = 0; i < this.staticEntities.length; i++) {
+				if(this.staticEntities[i].hasOwnProperty("orbit")) {
+					this.orbitalEntities.push(this.staticEntities[i]);
+				}
+			}
+
+			return this.orbitalEntities;
 		}
 		
 		Map.prototype.isFinish = function() {
