@@ -85,6 +85,7 @@
 		
 		Blob.prototype.dead = function(map) {
 		    this.imAlive = false;
+		    map.nbBlobDead++;
 		    app.js.arrayRemove(map.blobEntities, this)
 		}
 		

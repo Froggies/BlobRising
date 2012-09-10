@@ -48,7 +48,7 @@
 		    this.isRun = false;
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
-		        this.score += this.currentMap.endWell.nbBlob;
+		        this.calculScore();
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
 		        var showNoneEntities = this.currentMap.showNoneEntities;
@@ -69,6 +69,20 @@
 		        this.init();
 		        this.start();
 		    }
+		}
+		
+		Game.prototype.calculScore = function() {
+		    var nbWellUses = -1;//not 0 because startWell is in staticEntities
+		    var len = this.currentMap.staticEntities.length;
+		    for(var index=0; index<len; index++) {
+		        var entity = this.currentMap.staticEntities[index];
+		        if(app.js.getObjectClass(entity) === "Well") {
+		            nbWellUses++;
+		        }
+		    }
+		
+		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
+		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.menuWell.nb - nbWellUses) * 100) - (this.currentMap * 100);
 		}
 
 		return Game;

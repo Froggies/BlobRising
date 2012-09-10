@@ -15,6 +15,7 @@
 			this.endWell.last = true;
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
+			this.nbBlobDead = 0;
 		}
 		
 		Map.prototype.resize = function() {

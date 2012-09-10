@@ -103,7 +103,7 @@
                     "mousedown", 
                     function(event) {
                         that.hideHelp();
-                        that.game.canvas.removeEventListener("mousedown", this, false);
+                        //that.game.canvas.removeEventListener("mousedown", this, false);
                     },
                     false);
 		    } else {
