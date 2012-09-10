@@ -5,19 +5,22 @@
 	app.Game = function() {
 
 		function Game(listSeralizedMap, canvas) {
-			this.loop = {};
-			this.currentIndexMap = 0;
 			this.listSerializedMap = listSeralizedMap;
 			this.canvas = canvas;
 			this.context = canvas.getContext('2d');
+			this.restart();
+		}
+
+        Game.prototype.restart = function() {
+            this.loop = {};
+			this.currentIndexMap = 0;
 			this.timeLoop = 50;
 			this.score = 0;
-		}
+        }
 
 		Game.prototype.init = function() {
 			this.currentMap = app.js.deserialize(this.listSerializedMap[this.currentIndexMap], new app.Map());
 			this.currentMap.resize();
-			this.currentMap.draw(this.context, false);
 			this.menu.init(this.currentMap);
 		}
 

@@ -27,7 +27,7 @@
                 e = e || window.event;
                 var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
                 if (charCode) {
-                    // console.log("Character typed: " + charCode);
+                    //console.log("Character typed: " + charCode);
                     if(charCode == 32) {
                         if(game.isRun) {
 	                        game.pause();
@@ -36,35 +36,42 @@
 	                        game.start();
 	                        that.hideHelp();
                         }
-                    } else if(charCode == 109) {
-                        that.showHelp("Speed : " + game.timeLoop, 500);
-                        game.timeLoop += 10;
-                        if(game.isRun) {
-                            game.pause();
-                            game.start();
-                        }
-                    }  else if(charCode == 108) {
-                        that.showHelp("Speed : " + game.timeLoop, 500);
-                        if(game.timeLoop > 0) {
-                            game.timeLoop -= 10;
+                    } else if(charCode == 114) {
+                        game.pause();
+                        that.showHelp();
+                        game.restart();
+                        game.init();
+                    } else if(game.isRun) {
+                        if(charCode == 109) {
+                            that.showHelp("Speed : " + game.timeLoop, 500);
+                            game.timeLoop += 10;
                             if(game.isRun) {
                                 game.pause();
                                 game.start();
                             }
+                        }  else if(charCode == 108) {
+                            that.showHelp("Speed : " + game.timeLoop, 500);
+                            if(game.timeLoop > 0) {
+                                game.timeLoop -= 10;
+                                if(game.isRun) {
+                                    game.pause();
+                                    game.start();
+                                }
+                            }
+                        } else if(charCode == 115) {
+                            game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
+	                        if(!game.currentMap.showNoneEntities) {
+	                            game.currentMap.noneEntities = [];
+	                        }
+	                        game.clear();
+	                        game.currentMap.draw(game.context, false);
+                        } else if(charCode == 120) {
+                            if(that.isFirstAddWell === true) {
+                                that.isFirstAddWell = false;
+                                that.showHelp("Move your mouse and then click to add well !", "mousedown");
+                            }
+                            that.addWell(game);
                         }
-                    } else if(charCode == 115) {
-                        game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
-	                    if(!game.currentMap.showNoneEntities) {
-	                        game.currentMap.noneEntities = [];
-	                    }
-	                    game.clear();
-	                    game.currentMap.draw(game.context, false);
-                    } else if(charCode == 120) {
-                        if(that.isFirstAddWell === true) {
-                            that.isFirstAddWell = false;
-                            that.showHelp("Move your mouse and then click to add well !", "mousedown");
-                        }
-                        that.addWell(game);
                     }
                 }
             };
@@ -93,28 +100,32 @@
 		
 		Menu.prototype.showHelp = function(msg, time) {
             this.helpDiv.style.display = 'block';
-		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal logo
+		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal menu
+		        this.helpDiv.className = "mainMenu";
 		        this.scoreDiv.style.display = 'block';
 		        this.helpDiv.innerHTML = this.firstInnerHTML;
-	        } else if(time === "mousedown") {
-	            this.helpDiv.innerHTML = msg;
-	            var that = this;
-	            this.game.canvas.addEventListener(
-                    "mousedown", 
-                    function(event) {
-                        that.hideHelp();
-                        //that.game.canvas.removeEventListener("mousedown", this, false);
-                    },
-                    false);
-		    } else {
-		        clearTimeout(this.timeout);
-		        this.helpDiv.innerHTML = msg;
-		        var that = this;
-                this.timeout = setTimeout(
-                    function(event) {
-                        that.hideHelp();
-                    }, time);
-		    }
+	        } else {
+	            this.helpDiv.className = "helpInGame";
+	            if(time === "mousedown") {
+	                this.helpDiv.innerHTML = msg;
+	                var that = this;
+	                this.game.canvas.addEventListener(
+                        "mousedown", 
+                        function(event) {
+                            that.hideHelp();
+                            //that.game.canvas.removeEventListener("mousedown", this, false);
+                        },
+                        false);
+		        } else {
+		            clearTimeout(this.timeout);
+		            this.helpDiv.innerHTML = msg;
+		            var that = this;
+                    this.timeout = setTimeout(
+                        function(event) {
+                            that.hideHelp();
+                        }, time);
+		        }
+	        }
 		}
 		
 		Menu.prototype.hideHelp = function() {

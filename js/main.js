@@ -26,7 +26,9 @@
 	    var height = window.innerHeight;
 	    canvas.width = parseInt(width - 25);
 	    canvas.height = height - 25;
-	    game.currentMap.draw(canvas.getContext('2d'), false);
+	    if(game.isRun) {
+	        game.currentMap.draw(canvas.getContext('2d'), false);
+	    }
     }
     
 })();
