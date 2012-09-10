@@ -15,7 +15,6 @@
 	        var xV = Number(Math.cos(rad).toFixed(2));
 	        var yV = Number(Math.sin(rad).toFixed(2));
 			this.angle = $V([xV, yV]);
-            console.log("premier angle : " + this.angle.inspect());
 		}
 
 		Physic.prototype.update = function(translation, maxWidth, maxHeight) {
@@ -53,15 +52,21 @@
 
         Physic.prototype.attractTo = function(circle) {
             var circleVector = $V([circle.x, circle.y]);
-            relativX = circle.x - this.entity.shape.x;
-            relativY = circle.y - this.entity.shape.y;
-            var vecteurRelatif = $V([relativX, relativY]);
-            var vecteurRelatif = $V([this.entity.shape.x, this.entity.shape.y]);
+            // relativX = circle.x - this.entity.shape.x;
+            // relativY = circle.y - this.entity.shape.y;
+
+            var distance = {
+                x : Math.abs(circle.x - this.entity.shape.x),
+                y : Math.abs(circle.y - this.entity.shape.y)
+            };
+            var vecteurRelatif = $V([distance.x, distance.y]);
             var comingAngle = vecteurRelatif.angleFrom(circleVector);
-            console.log(comingAngle);
             var xV = Number(Math.cos(comingAngle).toFixed(2));
             var yV = Number(Math.sin(comingAngle).toFixed(2));
-            this.angle = $V([xV, yV]);
+            // var vecteurRelatif = $V([this.entity.shape.x, this.entity.shape.y]);
+            
+            
+            this.angle = $V([xV, yV]);            
         }
 
 		Physic.prototype.rotateAround = function(circle) {
@@ -100,7 +105,6 @@
 
 		Physic.prototype.isInRadius = function(circle) {
             var radius = circle.getRadius();
-
 			if(!isDefined(radius) || radius <= 0) {
 				return false;
 			}

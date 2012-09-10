@@ -30,25 +30,33 @@
 
 		Game.prototype.start = function() {
 			var that = this;
-			this.loop = setInterval(function() {
+			/*this.loop = setInterval(function() {
 			    if(!that.currentMap.isFinish()) {
 				    that.clear();
 				    that.currentMap.draw(that.context, true);
 				} else {
 				    that.end();
 				}
-			}, 1000/this.timeLoop);
-			this.isRun = true;
+			}, 1000/this.timeLoop);*/
+			if(!that.currentMap.isFinish()) {
+			    window.requestAnimFrame(function() {
+			        if(that.isRun){that.start();}
+		        });
+			    this.clear();
+                this.currentMap.draw(this.context, true);
+			    this.isRun = true;
+		    } else {
+			    that.end();
+			}
 		}
 		
 		Game.prototype.pause = function() {
 		    this.isRun = false;
-		    clearInterval(this.loop);
+		    //clearInterval(this.loop);
 		}
 		
 		Game.prototype.end = function() {
-		    clearInterval(this.loop);
-		    this.isRun = false;
+		    this.pause();
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 		        this.calculScore();

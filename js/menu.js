@@ -86,12 +86,12 @@
 		    if(this.nbWell > 0) {
 		        this.nbWell--;
                 var canvas = game.canvas;
-                var x = -100;
-                var y = -100;
+                var x = -1000;
+                var y = -1000;
 		        var entity = app.js.clone(game.currentMap.menuWell);
 		        entity.shape.x = x;
 		        entity.shape.y = y;
-		        entity.draw(game.context);
+		        entity.draw(game.context, game.currentMap);
 		        entity.isFromMenu = true;
 		        this.entitySelected = entity;
 		        game.currentMap.staticEntities.push(entity);

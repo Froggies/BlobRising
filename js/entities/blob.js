@@ -14,8 +14,8 @@
 		
 		function Blob(width, height, startDegree) {
 			Blob.parent.constructor.apply(this, arguments);
-			this.nbBlob = 0;
-			this.maxAge = 1000;
+			this.nbBlob = 50;
+			this.maxAge = 500;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
 		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00",null,null,"img/blobSprite.png");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
@@ -29,42 +29,53 @@
 
 			var newCoordinate = null;
 			var classicMovement = true;
+			var returnToMainLoop = false;
 
-		    for(var entityIndex in map.staticEntities) {
-		        var entity = map.staticEntities[entityIndex];
-
-		        if(getClass(entity) == "Wall") {
-		        	var collisionCircle = {
-			        	x : entity.shape.x + entity.shape.width / 2,	
-			        	y : entity.shape.y + entity.shape.height / 2,
-			        	getRadius : function() {
-			        		return Math.max(entity.shape.width, entity.shape.height) / 2;
-			        	}
-		        	};
-		        	var isCollision = this.physic.isInRadius(collisionCircle);
-		        	if(isCollision) {
-		        		this.dead(map);
-		        		classicMovement = false;
-		        		return;
+			var deadlyEntities = map.getDeadlyEntities();
+			for(var i = 0; i < deadlyEntities.length; i++) {
+				var entity = deadlyEntities[i];
+	        	var collisionCircle = {
+		        	x : entity.shape.x + entity.shape.width / 2,	
+		        	y : entity.shape.y + entity.shape.height / 2,
+		        	getRadius : function() {
+		        		return Math.max(entity.shape.width, entity.shape.height) / 2;
 		        	}
+	        	};
+	        	if(this.physic.isInRadius(collisionCircle)) {
+	        		this.dead(map);
+	        		classicMovement = false;
+	        		returnToMainLoop = true;
+	        		break;
+	        	}
+			}
 
-		        }
+			if(!returnToMainLoop) {
+				var attractiveEntities = map.getAttractiveEntities();
+				for(var i = 0; i < attractiveEntities.length; i++) {
+					var entity = attractiveEntities[i];
+		        	if(this.physic.isInRadius(entity.attraction)) {
+		        		if(entity.attracted === false) {
+			        		this.physic.attractTo(entity.attraction);
+			        		entity.attracted = true;
+			        		returnToMainLoop = true;
+			        	}
+		        	} else {
+		        		entity.attracted = false;
+		        	}
+				}
+			}
 
-		        // if(isDefined(entity.attraction)) {
-		        // 	if(this.physic.isInRadius(entity.attraction)) {
-		        // 		this.physic.attractTo(entity.attraction);
-		        // 		return;
-		        // 	}
-		        // }
-
-		        if(isDefined(entity.orbit)) {
+			if(!returnToMainLoop) {
+				var orbitalEntities = map.getOrbitalEntities();
+				for(var i = 0; i < orbitalEntities.length; i++) {
+					var entity = orbitalEntities[i];
 			        if(this.physic.isInRadius(entity.orbit)) {
 			            newCoordinate = this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
-			            return;		            
-			        }	
-		        }
-		    }
+			            break;	            
+			        }
+			    }
+			}
 		    if(classicMovement) {
 		    	this.physic.update(translation, context.canvas.width, context.canvas.height);
 		    }
@@ -80,7 +91,7 @@
 		            map.noneEntities.push(subblob);
 	            }
 			}
-			Blob.parent.incrementMyAge.call(this, translation, map);
+			Blob.parent.incrementMyAge.call(this, map);
 		}
 		
 		Blob.prototype.isBirthday = function() {

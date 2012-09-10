@@ -13,18 +13,20 @@ var maps = [
                 "className":"Well","shape":{"x":326,"y":313,"urlImage":"img/magnet.gif"}
             },
             {
-                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100}
+                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
             },
             {
-                "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200}
+                "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200,"urlImage":"img/wall_pattern.gif"}
             },
             {
-                "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100}
+                "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
             }
         ],
-        "startSource":{"degreeBlob":60,"shape":{"x":171,"y":138}},
-        "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
-    },
+        "startSource":
+        {
+            "degreeBlob":60,"shape":{"x":171,"y":138,"urlImage":"img/source.gif"}},
+            "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
+        },
     {
         "initSize":{"width":1301,"height":411},
         "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},
