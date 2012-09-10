@@ -10,6 +10,8 @@
     background-repeat: repeat;
     display:inline;
     border: 2px solid #18F9FF;
+    min-height: 400px;
+    min-width: 600px;
 }
 
 .score {
@@ -44,6 +46,8 @@
     top:20px;
     right: 150px;
     bottom: 20px;
+    min-height: 400px;
+    min-width: 600px;
     color:white;
     position:absolute;
     background-color: #262625;
