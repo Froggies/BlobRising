@@ -9,7 +9,6 @@
 		function Physic(entity, speed, degree) {
 			this.entity = entity;
 			this.speed = speed;
-            this.attracted = false;
 			var x = this.entity.shape.x;
 			var y = this.entity.shape.y;
 			var rad = Math.PI * (degree) / 180;

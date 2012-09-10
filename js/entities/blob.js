@@ -50,14 +50,13 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
-		        		if(!this.physic.attracted) {
+		        		if(entity.attracted === false) {
 			        		this.physic.attractTo(entity.attraction);
-			        		this.physic.attracted = true;
-			        		break;
+			        		entity.attracted = true;
+			        		returnToMainLoop = true;
 			        	}
 		        	} else {
-		        		this.physic.attracted = false;
-		        		break;
+		        		entity.attracted = false;
 		        	}
 				}
 			}

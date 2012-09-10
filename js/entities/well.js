@@ -21,6 +21,7 @@
 		    this.orbit.color = "rgba(0,0,0,1)";
 		    this.attraction = new app.shapes.Ellipse();
 		    this.attraction.color = "rgba(1,2,3,1)";
+		    this.attracted = false;
 		};
 		
 		Well.prototype.update = function(translation, map) {
