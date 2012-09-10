@@ -13,13 +13,13 @@ var maps = [
                 "className":"Well","shape":{"x":326,"y":313,"urlImage":"img/magnet.gif"}
             },
             {
-                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
+                "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100}
             },
             {
-                "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200,"urlImage":"img/wall_pattern.gif"}
+                "className":"Wall","shape":{"x":569,"y":0,"width":35,"height":200}
             },
             {
-                "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
+                "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100}
             }
         ],
         "startSource":{"degreeBlob":60,"shape":{"x":171,"y":138,"urlImage":"img/source.gif"}},
