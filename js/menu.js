@@ -143,8 +143,7 @@
             var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
             var y = event.clientY-document.documentElement.scrollTop-canvas.offsetTop;
             if(app.js.isDefined(this.entitySelected) && this.entitySelected.imAlive) {
-	            this.entitySelected.shape.x = x - this.entitySelected.shape.width / 2;
-	            this.entitySelected.shape.y = y - this.entitySelected.shape.height / 2;
+	            this.setEntityPosition(x,y);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected.shape.draw(this.game.context);
@@ -167,13 +166,17 @@
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
-	            this.entitySelected.shape.x = x;
-	            this.entitySelected.shape.y = y;
+	            this.setEntityPosition(x,y);
 	            this.game.currentMap.staticEntities.push(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected = null;
 	        }
+		}
+		
+		Menu.prototype.setEntityPosition = function(x, y) {
+		    this.entitySelected.shape.x = x - this.entitySelected.shape.width / 2;
+	        this.entitySelected.shape.y = y - this.entitySelected.shape.width / 2;
 		}
 		
 		Menu.prototype.isClick = function(entity, x, y) {
