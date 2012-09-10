@@ -57,7 +57,7 @@
 			        if(this.physic.isInRadius(entity.orbit)) {
 			            newCoordinate = this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
-			            return;		            
+			            //return;		            
 			        }	
 		        }
 		    }
@@ -76,7 +76,7 @@
 		            map.noneEntities.push(subblob);
 	            }
 			}
-			Blob.parent.incrementMyAge.call(this, translation, map);
+			Blob.parent.incrementMyAge.call(this, map);
 		}
 		
 		Blob.prototype.isBirthday = function() {
