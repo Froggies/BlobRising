@@ -2,6 +2,13 @@
 
 	"use strict";
 	
+	window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function( /* function */ callback, /* DOMElement */ element) {
+            window.setTimeout(callback, 1000 / 20);
+        };
+    })();
+	
 	var canvas = document.getElementById("canvas");
 
 	var game = new app.Game(maps, canvas);
@@ -26,7 +33,9 @@
 	    var height = window.innerHeight;
 	    canvas.width = parseInt(width - 25);
 	    canvas.height = height - 25;
-	    game.currentMap.draw(canvas.getContext('2d'), false);
+	    if(game.isRun) {
+	        game.currentMap.draw(canvas.getContext('2d'), false);
+	    }
     }
     
 })();

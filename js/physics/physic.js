@@ -68,7 +68,6 @@
             
             
             this.angle = $V([xV, yV]);            
-            console.log("angle " + this.angle.inspect());
         }
 
 		Physic.prototype.rotateAround = function(circle) {
@@ -122,9 +121,6 @@
             };
 
             if(distance.x > (rectangleWidth/2 + radius)) {
-                console.log("dx" +distance.x);
-                console.log("width / 2" +(rectangleWidth /2));
-                console.log("radius" +radius);
                 return false;
             }
             if(distance.y > (rectangleHeight/2 + radius)) {
