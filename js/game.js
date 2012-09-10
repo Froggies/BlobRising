@@ -38,12 +38,16 @@
 				    that.end();
 				}
 			}, 1000/this.timeLoop);*/
-			window.requestAnimFrame(function() {
-			    if(that.isRun){that.start();}
-		    });
-			this.clear();
-            this.currentMap.draw(this.context, true);
-			this.isRun = true;
+			if(!that.currentMap.isFinish()) {
+			    window.requestAnimFrame(function() {
+			        if(that.isRun){that.start();}
+		        });
+			    this.clear();
+                this.currentMap.draw(this.context, true);
+			    this.isRun = true;
+		    } else {
+			    that.end();
+			}
 		}
 		
 		Game.prototype.pause = function() {
