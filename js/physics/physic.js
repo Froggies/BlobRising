@@ -17,7 +17,7 @@
 			this.angle = $V([xV, yV]);
 		}
 
-		Physic.prototype.update = function(translation, maxWidth, maxHeight) {
+		Physic.prototype.update = function(map, maxWidth, maxHeight) {
 			var x = this.entity.shape.x;
 			var y = this.entity.shape.y;
 
@@ -34,13 +34,13 @@
             
 			// calculate next frame angle
 			if (y <= 0)  {
-                this.angle = $V([this.angle.elements[0], 1]);
+                this.entity.dead(map);
             } else if (x <= 0)  {
-                this.angle = $V([1, this.angle.elements[1]]);
+                this.entity.dead(map);
             } else if (y <= 0 || y >= (maxHeight - height)) {
-                this.angle = $V([this.angle.elements[0], -1]);
+                this.entity.dead(map);
             } else if (x >= (maxWidth - width)) {
-                this.angle = $V([-1, this.angle.elements[1]]);
+                this.entity.dead(map);
             }
 		}
 

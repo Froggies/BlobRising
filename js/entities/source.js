@@ -33,9 +33,12 @@
 			else if(this.age < this.firstAgeForLostBlob && this.age % 100 == 0) {
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'block';
-			    divTime.style.y = this.shape.y;
-			    divTime.style.x = this.shape.x;
+			    divTime.style.top = this.shape.y + 'px';
+			    divTime.style.left = this.shape.x + 'px';
 			    divTime.innerHTML = this.firstAgeForLostBlob/100 - this.age/100;
+			} else if(this.age >= this.firstAgeForLostBlob) {
+			    var divTime = document.getElementById('startBlob');
+			    divTime.style.display = 'none';
 			}
 			Source.parent.update.call(this, translation, map);
 		}

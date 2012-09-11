@@ -53,7 +53,6 @@
 		        		    if(!this.firstAttract) {
 		        		        //old rotateAround
 		        		        this.physic.angle = $V([this.oldAngle.x, this.oldAngle.y]);
-		        		        this.physic.speed = 2;
 		        		    }
 			        		this.physic.attractTo(entity.attraction);
 			        		this.firstAttract = false;
@@ -75,14 +74,14 @@
 				var orbitalEntities = map.getOrbitalEntities();
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
-			        if(this.physic.isInRadius(entity.orbit) && entity == this.attractedBy) {
+			        if(this.physic.isInRadius(entity.orbit)) {
 			            this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			        }
 			    }
 			}
 		    if(classicMovement) {
-		    	this.physic.update(translation, context.canvas.width, context.canvas.height);
+		    	this.physic.update(map, context.canvas.width, context.canvas.height);
 		    }
 
 		    if(this.isBirthday() && this.nbBlob > 0) {
