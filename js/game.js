@@ -68,6 +68,7 @@
 		        this.clear();
 		        this.currentMap.draw(this.context, false);
 		        this.pause();
+		        this.menu.showHelp();
 		    } else if(this.currentMap.isWin()) {
 		        //game win
 		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
@@ -92,7 +93,11 @@
 		    }
 		
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
-		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.menuWell.nb - nbWellUses) * 100) - (this.currentMap * 100);
+		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.currentMap.menuWell.nb - nbWellUses) * 100) - (this.currentMap.nbBlobDead * 100);
+		    console.log("endWellBlob="+this.currentMap.endWell.nbBlob);
+		    console.log("menuWell="+this.currentMap.menuWell.nb);
+		    console.log("nbWellUse="+nbWellUses);
+		    console.log("nbBlobDead="+this.currentMap.nbBlobDead);
 		}
 
 		return Game;

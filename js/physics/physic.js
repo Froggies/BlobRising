@@ -11,9 +11,9 @@
 			this.speed = speed;
 			var x = this.entity.shape.x;
 			var y = this.entity.shape.y;
-			var rad = Math.PI * (degree) / 180;
-	        var xV = Number(Math.cos(rad).toFixed(2));
-	        var yV = Number(Math.sin(rad).toFixed(2));
+			this.radian = Math.PI * (degree) / 180;
+	        var xV = Number(Math.cos(this.radian).toFixed(2));
+	        var yV = Number(Math.sin(this.radian).toFixed(2));
 			this.angle = $V([xV, yV]);
 		}
 
@@ -65,10 +65,10 @@
             
             var angle = Math.atan2(relativY,relativX)/(Math.PI/180);
             // from degree to radian
-            angle = Math.PI * angle / 180;
+            this.radian = Math.PI * angle / 180;
             
-            var newX = Math.cos(angle); 	  	
-            var newY = Math.sin(angle);
+            var newX = Math.cos(this.radian); 	  	
+            var newY = Math.sin(this.radian);
             
             var newAngle = $V([newX, newY]);
             
@@ -87,9 +87,9 @@
             relativX = circle.x - xa;
             relativY = circle.y - ya;
             var vecteurRelatif = $V([relativX, relativY]);
-            var comingAngle = vecteurRelatif.angleFrom(circleVector);
-            var xV = Number(Math.cos(comingAngle + Math.PI / 2).toFixed(2));
-            var yV = Number(Math.sin(comingAngle + Math.PI / 2).toFixed(2));
+            this.radian = vecteurRelatif.angleFrom(circleVector);
+            var xV = Number(Math.cos(this.radian + Math.PI / 2).toFixed(2));
+            var yV = Number(Math.sin(this.radian + Math.PI / 2).toFixed(2));
             this.angle = $V([xV, yV]);
     
             // compute rotation angle and speed
@@ -107,6 +107,22 @@
 		    var xa = this.entity.shape.x;
             var ya = this.entity.shape.y;
 		    return Math.sqrt(Math.pow(xa-xb, 2)+Math.pow(ya-yb, 2));
+		}
+		
+		Physic.prototype.isInRectangle = function(blob, entity) {
+            var x = blob.shape.x;
+            var y = blob.shape.y;
+            var h = blob.shape.height;
+            var l = blob.shape.width;
+            var x2 = entity.shape.x;
+            var y2 = entity.shape.y;
+            var h2 = entity.shape.height;
+            var l2 = entity.shape.width;
+            if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
+                return false;
+            } else {        
+                return true;
+            }
 		}
 
 		Physic.prototype.isInRadius = function(circle) {

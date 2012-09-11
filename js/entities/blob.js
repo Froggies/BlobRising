@@ -41,7 +41,7 @@
 		        		return Math.max(entity.shape.width, entity.shape.height) / 2;
 		        	}
 	        	};
-	        	if(this.physic.isInRadius(collisionCircle)) {
+	        	if(this.physic.isInRectangle(this, entity)) {
 	        		this.dead(map);
 	        		classicMovement = false;
 	        		returnToMainLoop = true;
@@ -54,6 +54,12 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
+		        	    //collision with final well
+		        	    if(app.js.getObjectClass(entity) == "Well" && entity.last === true) {
+		        	        this.dead(map);
+		        	        entity.nbBlob++;
+		        	        return;
+		        	    }
 		        		if(entity.attracted < 8) {
 		        		    if(!this.firstAttract) {
 		        		        //old rotateAround
