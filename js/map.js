@@ -16,7 +16,8 @@
 			this.startSource = new app.entities.Source();
 			this.endWell = new app.entities.Well();
 			this.endWell.last = true;
-			this.endWell.shape.color = "#FF00AA";
+			this.endWell.shape.color = "#80FF02";
+			this.endWell.shape.urlImage = "img/wellFinal.gif";
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
 			this.nbBlobDead = 0;
