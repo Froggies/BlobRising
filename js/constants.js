@@ -44,6 +44,6 @@ var maps = [
             }
         ],
         "startSource":{"degreeBlob":60,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":100}}
+        "endWell":{"shape": {"x":500,"y":100,"color":"#FF00AA"}}
     }
 ];
