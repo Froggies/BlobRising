@@ -29,14 +29,6 @@
 
 		Game.prototype.start = function() {
 			var that = this;
-			/*this.loop = setInterval(function() {
-			    if(!that.currentMap.isFinish()) {
-				    that.clear();
-				    that.currentMap.draw(that.context, true);
-				} else {
-				    that.end();
-				}
-			}, 1000/this.timeLoop);*/
 			if(!that.currentMap.isFinish()) {
 			    window.requestAnimFrame(function() {
 			        if(that.isRun){that.start();}
@@ -51,7 +43,6 @@
 		
 		Game.prototype.pause = function() {
 		    this.isRun = false;
-		    //clearInterval(this.loop);
 		}
 		
 		Game.prototype.end = function() {
