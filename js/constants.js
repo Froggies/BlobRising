@@ -10,7 +10,7 @@ var maps = [
         "staticEntities":
         [
             {
-                "className":"Well","shape":{"x":450,"y":313,"urlImage":"img/magnet.gif"}
+                "className":"Magnet","shape":{"x":450,"y":313,"urlImage":"img/magnet.gif"}
             },
             {
                 "className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}

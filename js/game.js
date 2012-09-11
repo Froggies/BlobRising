@@ -92,7 +92,7 @@
 		    }
 		
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
-		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.menuWell.nb - nbWellUses) * 100) - (this.currentMap * 100);
+		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.currentMap.menuWell.nb - nbWellUses) * 100) - (this.currentMap * 100);
 		}
 
 		return Game;

@@ -50,6 +50,12 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
+		        	    //collision with final well
+		        	    if(app.js.getObjectClass(entity) == "Well" && entity.last === true) {
+		        	        this.dead(map);
+		        	        entity.nbBlob++;
+		        	        return;
+		        	    }
 		        		if(entity.attracted < 8) {
 		        		    if(!this.firstAttract) {
 		        		        //old rotateAround
