@@ -17,7 +17,7 @@
 			this.nbBlob = 50;
 			this.maxAge = 1000;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
-		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00",null,null,"img/blobSprite.gif");
+		    this.shape = new app.shapes.Rectangle(0,0,width,height,"#00FF00",null,null,"img/blobSprite.gif");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		    this.firstAttract = true;
 		};

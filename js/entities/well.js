@@ -16,7 +16,7 @@
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;
 			this.last = false;
-			this.shape = new app.shapes.Rectangle(0,0,50,52,true,true,"#FFCC00","img/well.gif");
+			this.shape = new app.shapes.Rectangle(0,0,50,52,"#FFCC00","img/well.gif");
 		    this.attraction = new app.shapes.Ellipse();
 		    this.attraction.color = "rgba(1,2,3,1)";
 		    this.attracted = 0;

@@ -10,7 +10,7 @@
 
 		inherit(Ellipse, Shape);
 		
-		function Ellipse(x, y, width, height, fill, gradient, color, urlImage) {
+		function Ellipse(x, y, width, height, color, urlImage) {
 			Ellipse.parent.constructor.apply(this, arguments);
 		};
 
@@ -21,27 +21,8 @@
             if(app.js.isDefined(this.urlImage)) {
                 Ellipse.parent.drawImage.call(this, context);
             }
-            else {
-                if (this.fill === true) {
-                    if (this.gradient === true) {
-			            context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
-			        }
-			        else {
-                        context.fillStyle = this.color;
-                    }
-                    context.fill();
-                }
-                else {
-                    if (this.gradient === true) {
-			            context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
-			            context.fill();
-			        }
-			        else {
-                        context.strokeStyle = this.color;
-                        context.stroke();
-                    }
-                }
-            }
+            context.strokeStyle = this.color;
+            context.stroke();
 		};
 
 		Ellipse.prototype.getRadius = function() {
