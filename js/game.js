@@ -14,7 +14,6 @@
         Game.prototype.restart = function() {
             this.loop = {};
 			this.currentIndexMap = 0;
-			this.timeLoop = 50;
 			this.score = 0;
         }
 

@@ -15,10 +15,11 @@
 		function Blob(width, height, startDegree) {
 			Blob.parent.constructor.apply(this, arguments);
 			this.nbBlob = 50;
-			this.maxAge = 500;
+			this.maxAge = 1000;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
 		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00",null,null,"img/blobSprite.png");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
+		    this.firstAttract = true;
 		};
 		
 		Blob.prototype.draw = function(context, map) {
@@ -27,7 +28,6 @@
 		
 		Blob.prototype.update = function(translation, context, map) {
 
-			var newCoordinate = null;
 			var classicMovement = true;
 			var returnToMainLoop = false;
 
@@ -54,14 +54,25 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
-		        		if(entity.attracted === false) {
+		        		if(entity.attracted < 1) {
+		        		    if(!this.firstAttract) {
+		        		        //old rotateAround
+		        		        this.physic.angle = $V([this.shape.x, this.shape.y]);
+		        		        this.physic.speed = 2;
+		        		        app.js.log(1, "m@n", "OLD ROTATE="+this.shape.x+" - "+this.shape.y, this);
+		        		    }
 			        		this.physic.attractTo(entity.attraction);
-			        		entity.attracted = true;
+			        		this.firstAttract = false;
+			        		entity.attracted++;
 			        		returnToMainLoop = true;
+			        		this.attractedBy = entity;
+			        		app.js.log(1, "m@n", "ATTRACTED BY", this);
+			                app.js.log(1, "m@n", entity, this);
 			        	}
 		        	} else {
-		        		entity.attracted = false;
+		        		entity.attracted = 0;
 		        	}
+		        	app.js.log(2, "m@n", "entity.attracted="+entity.attracted, this);
 				}
 			}
 
@@ -69,10 +80,11 @@
 				var orbitalEntities = map.getOrbitalEntities();
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
-			        if(this.physic.isInRadius(entity.orbit)) {
-			            newCoordinate = this.physic.rotateAround(entity.orbit);
+			        if(this.physic.isInRadius(entity.orbit) && entity == this.attractedBy) {
+			            app.js.log(1, "m@n", "ROTATE AROUND", this);
+			            app.js.log(1, "m@n", entity, this);
+			            this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
-			            break;	            
 			        }
 			    }
 			}

@@ -42,23 +42,7 @@
                         game.restart();
                         game.init();
                     } else if(game.isRun) {
-                        if(charCode == 109) {
-                            that.showHelp("Speed : " + game.timeLoop, 500);
-                            game.timeLoop += 10;
-                            if(game.isRun) {
-                                game.pause();
-                                game.start();
-                            }
-                        }  else if(charCode == 108) {
-                            that.showHelp("Speed : " + game.timeLoop, 500);
-                            if(game.timeLoop > 0) {
-                                game.timeLoop -= 10;
-                                if(game.isRun) {
-                                    game.pause();
-                                    game.start();
-                                }
-                            }
-                        } else if(charCode == 115) {
+                        if(charCode == 115) {
                             game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;
 	                        if(!game.currentMap.showNoneEntities) {
 	                            game.currentMap.noneEntities = [];
@@ -167,7 +151,7 @@
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
 	            this.setEntityPosition(x,y);
-	            this.game.currentMap.staticEntities.push(this.entitySelected);
+	            this.game.currentMap.addEntity(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected = null;

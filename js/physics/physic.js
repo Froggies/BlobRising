@@ -48,25 +48,38 @@
 		Physic.prototype.setCoordinate = function(x, y) {
 			this.entity.shape.x = x; 
 			this.entity.shape.y = y;
+			app.js.log(1, "m@n", "coordinate="+x+" : "+y, this);
 		}
 
         Physic.prototype.attractTo = function(circle) {
-            var circleVector = $V([circle.x, circle.y]);
-            // relativX = circle.x - this.entity.shape.x;
-            // relativY = circle.y - this.entity.shape.y;
+            var newAngle = this.calculAngle(this.entity.shape, circle);
+            if(this.angle.angleFrom(newAngle) < 1) {
+                this.angle = newAngle;
+            }
+        }
 
-            var distance = {
-                x : Math.abs(circle.x - this.entity.shape.x),
-                y : Math.abs(circle.y - this.entity.shape.y)
-            };
-            var vecteurRelatif = $V([distance.x, distance.y]);
-            var comingAngle = vecteurRelatif.angleFrom(circleVector);
-            var xV = Number(Math.cos(comingAngle).toFixed(2));
-            var yV = Number(Math.sin(comingAngle).toFixed(2));
-            // var vecteurRelatif = $V([this.entity.shape.x, this.entity.shape.y]);
+        Physic.prototype.calculAngle = function(blob, entity) {
+            var Xa = blob.x;
+            var Ya = blob.y;
+            var Xb = entity.x;
+            var Yb = entity.y;
+            app.js.log(1, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
             
+            var relativX = Xb - Xa;
+            var relativY = Yb - Ya;
             
-            this.angle = $V([xV, yV]);            
+            var angle = Math.atan2(relativY,relativX)/(Math.PI/180);
+            // from degree to radian
+            angle = Math.PI * angle / 180;
+            
+            var newX = Math.cos(angle); 	  	
+            var newY = Math.sin(angle);
+            
+            app.js.log(1, "m@n", "angle="+angle, this);
+            
+            var newAngle = $V([newX, newY]);
+            
+            return newAngle;
         }
 
 		Physic.prototype.rotateAround = function(circle) {
@@ -87,13 +100,13 @@
             this.angle = $V([xV, yV]);
     
             // compute rotation angle and speed
-            var rotationAngle = ((5 * this.speed * Math.PI) / 180);
+            var rotationAngle = ((this.speed * Math.PI) / 180);
             var blobVector = $V([xa, ya]);
             var newPosition = blobVector.rotate(rotationAngle, circleVector);
             // place blob sprite on new position
 			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
             // each time elapsed on rotation speed up the blob
-            this.speed = this.speed + 0.01;
+            this.speed = this.speed + 0.1;
 		}
 
         //unused
