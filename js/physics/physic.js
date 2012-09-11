@@ -99,7 +99,7 @@
             // place blob sprite on new position
 			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
             // each time elapsed on rotation speed up the blob
-            this.speed = this.speed + 0.1;
+            this.speed = this.speed + 0.01;
 		}
 
         //unused
