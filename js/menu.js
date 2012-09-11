@@ -29,7 +29,7 @@
                 e = e || window.event;
                 var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
                 if (charCode) {
-                     console.log("Character typed: " + charCode);
+                    //console.log("Character typed: " + charCode);
                     if(charCode == 32) {
                         if(game.isRun) {
 	                        game.pause();
@@ -42,6 +42,9 @@
                         game.pause();
                         that.showHelp();
                         game.restart();
+                        game.init();
+                    } else if(charCode == 98) {
+                        game.currentIndexMap++;
                         game.init();
                     } else if(game.isRun) {
                         if(charCode == 115) {
