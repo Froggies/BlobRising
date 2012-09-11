@@ -48,6 +48,7 @@
 		Physic.prototype.setCoordinate = function(x, y) {
 			this.entity.shape.x = x; 
 			this.entity.shape.y = y;
+			app.js.log(1, "m@n", "coordinate="+x+" : "+y, this);
 		}
 
         Physic.prototype.attractTo = function(circle) {
@@ -68,8 +69,9 @@
             var relativY = Yb - Ya;
             
             var angle = Math.atan2(relativY,relativX)/(Math.PI/180);
-            
+            // from degree to radian
             angle = Math.PI * angle / 180;
+            
             var newX = Math.cos(angle); 	  	
             var newY = Math.sin(angle);
             
@@ -98,13 +100,13 @@
             this.angle = $V([xV, yV]);
     
             // compute rotation angle and speed
-            var rotationAngle = ((5 * this.speed * Math.PI) / 180);
+            var rotationAngle = ((this.speed * Math.PI) / 180);
             var blobVector = $V([xa, ya]);
             var newPosition = blobVector.rotate(rotationAngle, circleVector);
             // place blob sprite on new position
 			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
             // each time elapsed on rotation speed up the blob
-            this.speed = this.speed + 0.01;
+            this.speed = this.speed + 0.1;
 		}
 
         //unused
