@@ -5,8 +5,22 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 
 var maps = [
     {
-        "menuRotate":{"className":"Rotate","nb":5},
-        "menuMagnet":{"className":"Magnet","nb":5},
+        "menuRotate":{"className":"Rotate","nb":0},
+        "menuMagnet":{"className":"Magnet","nb":1},
+        "staticEntities":
+        [
+            {"className":"Wall","shape": {"x":400,"y":300,"width":180}},
+            {"className":"Magnet","shape": {"x":350,"y":470}},
+            {"className":"Magnet","shape": {"x":680,"y":450}},
+            {"className":"Magnet","shape": {"x":820,"y":300}},
+            {"className":"Magnet","shape": {"x":735,"y":100}}
+        ],
+        "startSource":{"degreeBlob":50,"shape": {"x":150,"y":350}},
+        "endWell":{"shape": {"x":200,"y":100}}
+    },
+    {
+        "menuRotate":{"className":"Rotate","nb":3},
+        "menuMagnet":{"className":"Magnet","nb":1},
         "staticEntities":
         [
             {"className":"Well","shape": {"x":300,"y":200}},
