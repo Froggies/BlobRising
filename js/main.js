@@ -16,8 +16,8 @@
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 	
-	canvas.width = parseInt(width - 25);
-	canvas.height = height - 25;
+	canvas.width = 1024;
+	canvas.height = 600;
 	document.body.appendChild(canvas);
 	
 	var menu = new app.Menu(game);
@@ -27,15 +27,5 @@
     
     // TODO remove this for contest
     // new app.editor.Editor(game);
-	
-    window.onresize = function(event) {
-        var width = window.innerWidth;
-	    var height = window.innerHeight;
-	    canvas.width = parseInt(width - 25);
-	    canvas.height = height - 25;
-	    if(game.isRun) {
-	        game.currentMap.draw(canvas.getContext('2d'), false);
-	    }
-    }
     
 })();

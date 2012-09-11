@@ -49,5 +49,32 @@ var maps = [
         ],
         "startSource":{"degreeBlob":60,"shape": {"x":50,"y":100}},
         "endWell":{"shape": {"x":500,"y":100}}
+    },
+    {
+        "initSize":{"width":1301,"height":411},
+        "menuRotate":{"className":"Rotate","nb":5},
+        "menuMagnet":{"className":"Magnet","nb":5},
+        "menuEntities":
+        [
+            {"className":"Well","nb":5,"nbBlobMax":10}
+        ],
+        "staticEntities":
+        [
+            {"className":"Wall","shape":{"x":200,"y":10,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":200,"y":10,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":350,"y":260,"width":200,"height":35}},
+            {"className":"Wall","shape":{"x":650,"y":260,"width":200,"height":35}},
+            {"className":"Wall","shape":{"x":650,"y":260,"width":200,"height":35}},
+            {"className":"Wall","shape":{"x":570,"y":10,"width":35,"height":300}},
+            {
+                "className":"Well",
+                "shape": {
+                    "x":300,
+                    "y":120
+                }
+            }
+        ],
+        "startSource":{"degreeBlob":30,"shape": {"x":50,"y":50}},
+        "endWell":{"shape": {"x":800,"y":100}}
     }
 ];
