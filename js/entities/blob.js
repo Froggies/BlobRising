@@ -53,7 +53,6 @@
 		        		    if(!this.firstAttract) {
 		        		        //old rotateAround
 		        		        this.physic.angle = $V([this.oldAngle.x, this.oldAngle.y]);
-		        		        this.physic.speed = 2;
 		        		    }
 			        		this.physic.attractTo(entity.attraction);
 			        		this.firstAttract = false;
