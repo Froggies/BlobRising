@@ -1,8 +1,3 @@
-var logLevel = 1;
-var devName = "m@n";
-var className = "";
-console.log("Logs start for " + devName + " with " + logLevel + " level");
-
 var maps = [
     {
         "menuRotate":{"className":"Rotate","nb":0},
