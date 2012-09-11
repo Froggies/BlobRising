@@ -19,7 +19,8 @@ var maps = [
     },
     {
         "initSize":{"width":1301,"height":656},
-        "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},
+        "menuRotate":{"className":"Rotate","nb":5},
+        "menuMagnet":{"className":"Magnet","nb":5},
         "staticEntities":
         [
             {"className":"Well","shape": {"x":300,"y":200}},
@@ -30,7 +31,8 @@ var maps = [
     },
     {
         "initSize":{"width":1301,"height":411},
-        "menuWell":{"className":"Well","nb":5,"nbBlobMax":10},
+        "menuRotate":{"className":"Rotate","nb":5},
+        "menuMagnet":{"className":"Magnet","nb":5},
         "menuEntities":
         [
             {"className":"Well","nb":5,"nbBlobMax":10}

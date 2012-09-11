@@ -17,6 +17,7 @@
 		    this.lostTime = 100;
 		    this.maxAge = 100;
 		    this.degreeBlob = 120;
+		    this.firstAgeForLostBlob = 300;
 		    this.shape = new app.shapes.Rectangle(0,0,50,35,true,true,"#00FFFF","img/source.gif");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
@@ -29,11 +30,18 @@
 		        subblob.shape.y = this.shape.y + this.shape.height/2;
 		        map.blobEntities.push(subblob);
 			}
+			else if(this.age < this.firstAgeForLostBlob && this.age % 100 == 0) {
+			    var divTime = document.getElementById('startBlob');
+			    divTime.style.display = 'block';
+			    divTime.style.y = this.shape.y;
+			    divTime.style.x = this.shape.x;
+			    divTime.innerHTML = this.firstAgeForLostBlob/100 - this.age/100;
+			}
 			Source.parent.update.call(this, translation, map);
 		}
 		
 		Source.prototype.isBirthday = function() {
-		    return this.age % this.lostTime == 0;
+		    return this.age >= this.firstAgeForLostBlob && this.age % this.lostTime == 0;
 		}
 		
 		return Source;

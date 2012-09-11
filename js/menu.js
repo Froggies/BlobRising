@@ -141,7 +141,12 @@
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected.shape.draw(this.game.context);
-	            this.showHelp("Well : " + this.nbWell + "/" + this.nbWellInit, 1000);
+	            var name = app.js.getObjectClass(this.entitySelected);
+	            if(name == "Rotate") {
+	                this.showHelp(name+" : " + this.nbRotate + "/" + this.nbRotateInit, 1000);
+                } else {
+                    this.showHelp(name+" : " + this.nbMagnet + "/" + this.nbMagnetInit, 1000);
+                }
             }
         }
         

@@ -29,14 +29,6 @@
 
 		Game.prototype.start = function() {
 			var that = this;
-			/*this.loop = setInterval(function() {
-			    if(!that.currentMap.isFinish()) {
-				    that.clear();
-				    that.currentMap.draw(that.context, true);
-				} else {
-				    that.end();
-				}
-			}, 1000/this.timeLoop);*/
 			if(!that.currentMap.isFinish()) {
 			    window.requestAnimFrame(function() {
 			        if(that.isRun){that.start();}
@@ -51,7 +43,6 @@
 		
 		Game.prototype.pause = function() {
 		    this.isRun = false;
-		    //clearInterval(this.loop);
 		}
 		
 		Game.prototype.end = function() {
@@ -83,21 +74,17 @@
 		}
 		
 		Game.prototype.calculScore = function() {
-		    var nbWellUses = -1;//not 0 because startWell is in staticEntities
+		    var nbEntitiesUses = 0;//not 0 because startWell is in staticEntities
 		    var len = this.currentMap.staticEntities.length;
 		    for(var index=0; index<len; index++) {
 		        var entity = this.currentMap.staticEntities[index];
-		        if(app.js.getObjectClass(entity) === "Well") {
-		            nbWellUses++;
+		        if(entity.isFromMenu) {
+		            nbEntitiesUses++;
 		        }
 		    }
-		
+		    var nbEntitiesInit = this.currentMap.menuRotate.nb + this.currentMap.menuMagnet.nb;
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
-		    this.score += (this.currentMap.endWell.nbBlob * 100 + (this.currentMap.menuWell.nb - nbWellUses) * 100) - (this.currentMap.nbBlobDead * 100);
-		    console.log("endWellBlob="+this.currentMap.endWell.nbBlob);
-		    console.log("menuWell="+this.currentMap.menuWell.nb);
-		    console.log("nbWellUse="+nbWellUses);
-		    console.log("nbBlobDead="+this.currentMap.nbBlobDead);
+		    this.score += (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (this.currentMap.nbBlobDead * 100);
 		}
 
 		return Game;
