@@ -16,9 +16,9 @@ var maps = [
         [
             {"className":"Wall","shape":{"x":200,"y":10,"width":35,"height":300}},
             {"className":"Wall","shape":{"x":200,"y":10,"width":35,"height":300}},
-            {"className":"Wall","shape":{"x":350,"y":190,"width":200,"height":35}},
-            {"className":"Wall","shape":{"x":650,"y":190,"width":200,"height":35}},
-            {"className":"Wall","shape":{"x":570,"y":10,"width":35,"height":250}},
+            {"className":"Wall","shape":{"x":310,"y":280,"width":200,"height":35}},
+            {"className":"Wall","shape":{"x":650,"y":280,"width":260,"height":35}},
+            {"className":"Wall","shape":{"x":570,"y":10,"width":35,"height":230}},
             {
                 "className":"Well",
                 "shape": {
@@ -29,8 +29,8 @@ var maps = [
             {
                 "className":"Well",
                 "shape": {
-                    "x":700,
-                    "y":280
+                    "x":800,
+                    "y":450
                 }
             }
         ],
