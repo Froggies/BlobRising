@@ -111,3 +111,10 @@
     border-radius:30px;
 }
 
+.blob {
+    background : url('../img/blobSprite.gif') no-repeat;
+    background-position: 0 0; 
+    width: 20px; 
+    height: 20px;
+    border: none;
+}

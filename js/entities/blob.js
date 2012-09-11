@@ -17,11 +17,12 @@
 			this.nbBlob = 50;
 			this.maxAge = 1000;
 			this.physic = new app.physics.Physic(this, 2, startDegree);
-		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00", "img/goutte.png");
+		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00",null,null,"img/blobSprite.gif");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		    this.firstAttract = true;
 		};
 		
+	
 		Blob.prototype.update = function(translation, context, map) {
 
 			var classicMovement = true;
@@ -90,6 +91,7 @@
 			        var subblob = new app.entities.Molecule(this.shape.width, this.shape.height);
 		            subblob.shape.x = this.shape.x;
 		            subblob.shape.y = this.shape.y;
+		            subblob.physic = {"radian":this.physic.radian};
 		            // in none because haven't physics
 		            // can be go in blobEntities if it's necessary
 		            map.noneEntities.push(subblob);

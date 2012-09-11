@@ -14,10 +14,14 @@
 		function Molecule(width, height) {
 			Molecule.parent.constructor.apply(this);
 			this.maxAge = 100;
-			this.shape = new app.shapes.Ellipse(0,0,width,height,false,true,"#FF0000", "img/goutte.png");
+			this.shape = new app.shapes.Rectangle(0,0,width,height,false,true,"#FF0000", null,null,"img/blobSprite.gif");
 		    this.initialWidth = width;
 		    this.initialHeight = height;
 		};
+
+        Molecule.prototype.draw = function(context, map) {
+			this.shape.draw(context, this.physic);
+		}
 		
 		Molecule.prototype.incrementMyAge = function(map) {
 		    Molecule.parent.incrementMyAge.call(this, map);
