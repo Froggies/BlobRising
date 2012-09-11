@@ -6,6 +6,50 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 var maps = [
     {
         "initSize":{"width":1301,"height":411},
+        "menuRotate":{"className":"Rotate","nb":10},
+        "menuMagnet":{"className":"Magnet","nb":2},
+        "staticEntities":
+        [
+            {"className":"Wall","shape":{"x":100,"y":100,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":100,"y":100,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":100,"y":250,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":100,"y":400,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":250,"y":100,"width":35,"height":335}},
+            
+            {"className":"Wall","shape":{"x":350,"y":100,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":350,"y":400,"width":150,"height":35}},
+            
+            {"className":"Wall","shape":{"x":550,"y":100,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":550,"y":100,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":550,"y":400,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":700,"y":100,"width":35,"height":335}},
+            
+            {"className":"Wall","shape":{"x":800,"y":100,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":800,"y":100,"width":35,"height":300}},
+            {"className":"Wall","shape":{"x":800,"y":250,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":800,"y":400,"width":150,"height":35}},
+            {"className":"Wall","shape":{"x":950,"y":100,"width":35,"height":335}},
+            
+            {
+                "className":"Well",
+                "shape": {
+                    "x":100,
+                    "y":300
+                }
+            },
+            {
+                "className":"Well",
+                "shape": {
+                    "x":1000,
+                    "y":450
+                }
+            }
+        ],
+        "startSource":{"degreeBlob":0,"shape": {"x":10,"y":10}},
+        "endWell":{"shape": {"x":850,"y":500}}
+    },
+    {
+        "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":4},
         "menuMagnet":{"className":"Magnet","nb":4},
         "menuEntities":
