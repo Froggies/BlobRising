@@ -46,11 +46,15 @@
 		
 		Game.prototype.end = function() {
 		    this.pause();
-		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
+	//	    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 		        this.calculScore();
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
-		        window.alert("WITH "+this.currentMap.endWell.nbBlob+" BLOB, YOU WIN LEVEL !!");
+		        var endOfGameDiv = document.getElementById('endOfGame');
+		        endOfGameDiv.innerHTML = "Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !";
+		        endOfGameDiv.style.display = "block";
+		        
+//		        window.alert("Congrats ! You won this level !! \n \nYou won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. \nIn this level your score is : "+this.scoreLastMap+" points. \n \nLet's see how you will deal with the next level !");    
 		        var showNoneEntities = this.currentMap.showNoneEntities;
 		        this.currentIndexMap = this.currentIndexMap + 1;
 		        this.init();
@@ -59,17 +63,17 @@
 		        this.currentMap.draw(this.context, false);
 		        this.pause();
 		        this.menu.showHelp();
-		    } else if(this.currentMap.isWin()) {
-		        //game win
-		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
-		    } else {
-		        //map loose
-		        window.alert("YOU LOOSE !!");
-		        this.score--;
-		        this.clear();
-		        this.init();
-		        this.start();
-		    }
+//		    } else if(this.currentMap.isWin()) {
+//		        //game win
+//		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
+//		    } else {
+//		        //map loose
+//		        window.alert("Unfortunatly you lost this level... Try again to save Blobs !");
+//		        this.score--;
+//		        this.clear();
+//		        this.init();
+//		        this.start();
+//		    }
 		}
 		
 		Game.prototype.calculScore = function() {
@@ -83,7 +87,8 @@
 		    }
 		    var nbEntitiesInit = this.currentMap.menuRotate.nb + this.currentMap.menuMagnet.nb;
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
-		    this.score += (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (this.currentMap.nbBlobDead * 100);
+		    this.scoreLastMap = (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (this.currentMap.nbBlobDead * 100);
+		    this.score += this.scoreLastMap;
 		}
 
 		return Game;
