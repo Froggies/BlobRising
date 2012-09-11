@@ -51,22 +51,42 @@
 		}
 
         Physic.prototype.attractTo = function(circle) {
-            var circleVector = $V([circle.x, circle.y]);
-            // relativX = circle.x - this.entity.shape.x;
-            // relativY = circle.y - this.entity.shape.y;
+            var newAngle = this.calculAngle(this.entity.shape, circle);
+            if(this.angle.angleFrom(newAngle) < 1) {
+                this.angle = newAngle;
+            }
+        }
 
-            var distance = {
-                x : Math.abs(circle.x - this.entity.shape.x),
-                y : Math.abs(circle.y - this.entity.shape.y)
-            };
-            var vecteurRelatif = $V([distance.x, distance.y]);
-            var comingAngle = vecteurRelatif.angleFrom(circleVector);
-            var xV = Number(Math.cos(comingAngle).toFixed(2));
-            var yV = Number(Math.sin(comingAngle).toFixed(2));
-            // var vecteurRelatif = $V([this.entity.shape.x, this.entity.shape.y]);
+        Physic.prototype.calculAngle = function(blob, entity) {
+            var Xa = blob.x;
+            var Ya = blob.y;
+            var Xb = entity.x;
+            var Yb = entity.y;
+            app.js.log(2, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
             
+            var relativX = Xb - Xa;
+            var relativY = Yb - Ya;
             
-            this.angle = $V([xV, yV]);            
+            var angle = Math.atan2(relativY,relativX)/(Math.PI/180);
+            var newX = Math.cos(angle); 	  	
+            var newY = Math.sin(angle);
+            
+            var newAngle;
+            if(Xa < Xb && Ya < Yb) {
+                app.js.log(2, "m@n", "gauche dessus", this);
+                newAngle = $V([-newX, -newY]);
+            } else if(Xa < Xb && Ya > Yb) {
+                app.js.log(2, "m@n", "gauche dessous", this);
+                newAngle = $V([-newX, -newY]);
+            } else if(Xa > Xb && Ya < Yb) {
+                app.js.log(2, "m@n", "droite dessus", this);
+                newAngle = $V([-newX, -newY]);
+            } else {
+                app.js.log(2, "m@n", "droite dessous", this);
+                newAngle = $V([newX, newY]);
+            }
+            
+            return newAngle;
         }
 
 		Physic.prototype.rotateAround = function(circle) {

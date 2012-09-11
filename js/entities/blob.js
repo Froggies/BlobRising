@@ -50,13 +50,13 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
-		        		if(entity.attracted === false) {
+		        		if(entity.attracted <= 7) {
 			        		this.physic.attractTo(entity.attraction);
-			        		entity.attracted = true;
+			        		entity.attracted++;
 			        		returnToMainLoop = true;
 			        	}
 		        	} else {
-		        		entity.attracted = false;
+		        		entity.attracted = 0;
 		        	}
 				}
 			}
