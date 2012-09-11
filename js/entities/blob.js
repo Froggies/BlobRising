@@ -74,7 +74,7 @@
 				var orbitalEntities = map.getOrbitalEntities();
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
-			        if(this.physic.isInRadius(entity.orbit) && entity == this.attractedBy) {
+			        if(this.physic.isInRadius(entity.orbit)) {
 			            this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			        }
