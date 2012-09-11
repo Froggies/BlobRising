@@ -99,8 +99,15 @@
     -ms-user-select: none;
     user-select: none;
     font-weight: bold;
-    font-size: 15px;
-    color:white;
+    font-size: 30px;
+    color:red;
     display: none;
+    border:3px solid white;
+    width:60px;
+    height:60px;
+    text-align:center;
+    background-color:white;
+    opacity:0.8;
+    border-radius:30px;
 }
 
