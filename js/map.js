@@ -8,13 +8,15 @@
 
 		function Map() {
 		    this.showNoneEntities = true;
-			this.menuWell = {};
+			this.menuRotate = {};
+			this.menuMagnet = {};
 			this.staticEntities = [];
 			this.blobEntities = [];
 			this.noneEntities = [];
 			this.startSource = new app.entities.Source();
 			this.endWell = new app.entities.Well();
 			this.endWell.last = true;
+			this.endWell.shape.color = "#FF00AA";
 			this.staticEntities.push(this.startSource);
 			this.staticEntities.push(this.endWell);
 			this.nbBlobDead = 0;

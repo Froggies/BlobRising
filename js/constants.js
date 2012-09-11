@@ -6,14 +6,16 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 var maps = [
     {
         "initSize":{"width":1301,"height":656},
-        "menuWell":{"className":"Well","nb":10,"nbBlobMax":10},
+        "menuRotate":{"className":"Rotate","nb":10},
+        "menuMagnet":{"className":"Magnet","nb":10},
         "staticEntities":
         [
             {"className":"Magnet","shape":{"x":450,"y":313}},
+            {"className":"Well","shape":{"x":560,"y":450}},
             {"className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100}}
         ],
         "startSource":{"degreeBlob":345,"shape":{"x":300,"y":150}},
-        "endWell":{"shape":{"x":736,"y":128,"color":"#FF00AA"}}
+        "endWell":{"shape":{"x":736,"y":128}}
     },
     {
         "initSize":{"width":1301,"height":656},
@@ -24,7 +26,7 @@ var maps = [
             {"className":"Wall","shape": {"x":550,"y":200,"height":180}}
         ],
         "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":250,"color":"#FF00AA"}}
+        "endWell":{"shape": {"x":500,"y":250}}
     },
     {
         "initSize":{"width":1301,"height":411},
@@ -44,6 +46,6 @@ var maps = [
             }
         ],
         "startSource":{"degreeBlob":60,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":100,"color":"#FF00AA"}}
+        "endWell":{"shape": {"x":500,"y":100}}
     }
 ];

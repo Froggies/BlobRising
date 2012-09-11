@@ -49,12 +49,22 @@
 	                        }
 	                        game.clear();
 	                        game.currentMap.draw(game.context, false);
-                        } else if(charCode == 120) {
+                        } else if(charCode == 120 || charCode == 99) {
                             if(that.isFirstAddWell === true) {
                                 that.isFirstAddWell = false;
                                 that.showHelp("Move your mouse and then click to add well !", "mousedown");
                             }
-                            that.addWell(game);
+                            if(charCode == 120) {
+                                if(that.nbRotate > 0) {
+                                    that.nbRotate--;
+                                    that.addEntity(game, app.js.clone(game.currentMap.menuRotate));
+                                }
+                            } else {
+                                if(that.nbMagnet > 0) {
+                                    that.nbMagnet--;
+                                    that.addEntity(game, app.js.clone(game.currentMap.menuMagnet));
+                                }
+                            }
                         }
                     }
                 }
@@ -62,26 +72,24 @@
 		}
 		
 		Menu.prototype.init = function(map) {
-		    this.nbWell = map.menuWell.nb;
-		    this.nbWellInit = this.nbWell;
+		    this.nbRotate = map.menuRotate.nb;
+		    this.nbRotateInit = this.nbRotate;
+		    this.nbMagnet = map.menuMagnet.nb;
+		    this.nbMagnetInit = this.nbMagnet;
 		}
 		
-		Menu.prototype.addWell = function(game) {
-		    if(this.nbWell > 0) {
-		        this.nbWell--;
-                var canvas = game.canvas;
-                var x = -1000;
-                var y = -1000;
-		        var entity = app.js.clone(game.currentMap.menuWell);
-		        entity.shape.x = x;
-		        entity.shape.y = y;
-		        entity.draw(game.context, game.currentMap);
-		        entity.isFromMenu = true;
-		        this.entitySelected = entity;
-		        //just for see it ! 
-		        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
-		        game.currentMap.staticEntities.push(entity);
-            }
+		Menu.prototype.addEntity = function(game, entity) {
+            var canvas = game.canvas;
+            var x = -1000;
+            var y = -1000;
+	        entity.shape.x = x;
+	        entity.shape.y = y;
+	        entity.draw(game.context, game.currentMap);
+	        entity.isFromMenu = true;
+	        this.entitySelected = entity;
+	        //just for see it ! 
+	        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
+	        game.currentMap.staticEntities.push(entity);
 		}
 		
 		Menu.prototype.showHelp = function(msg, time) {
