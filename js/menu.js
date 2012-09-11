@@ -76,6 +76,7 @@
 		    this.nbRotateInit = this.nbRotate;
 		    this.nbMagnet = map.menuMagnet.nb;
 		    this.nbMagnetInit = this.nbMagnet;
+		    this.updateMenuEntities();
 		}
 		
 		Menu.prototype.addEntity = function(game, entity) {
@@ -133,6 +134,11 @@
             }
 		}
 		
+		Menu.prototype.updateMenuEntities = function() {
+            document.getElementById("nbMenuRotate").innerHTML = this.nbRotate + "/" + this.nbRotateInit;
+            document.getElementById("nbMenuMagnet").innerHTML = this.nbMagnet + "/" + this.nbMagnetInit;
+        }
+		
 		Menu.prototype.onCanvasMove = function(event) {
 		    var canvas = this.game.canvas;
             var x = event.clientX-document.documentElement.scrollLeft-canvas.offsetLeft;
@@ -142,12 +148,6 @@
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
 	            this.entitySelected.shape.draw(this.game.context);
-	            var name = app.js.getObjectClass(this.entitySelected);
-	            if(name == "Rotate") {
-	                this.showHelp(name+" : " + this.nbRotate + "/" + this.nbRotateInit, 1000);
-                } else {
-                    this.showHelp(name+" : " + this.nbMagnet + "/" + this.nbMagnetInit, 1000);
-                }
             }
         }
         
@@ -166,6 +166,7 @@
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
+	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
 	            this.game.currentMap.addEntity(this.entitySelected);
 	            this.game.clear();
