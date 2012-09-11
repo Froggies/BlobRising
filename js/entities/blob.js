@@ -50,18 +50,23 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
-		        		if(entity.attracted < 1) {
+		        		if(entity.attracted < 8) {
 		        		    if(!this.firstAttract) {
 		        		        //old rotateAround
-		        		        this.physic.angle = $V([this.shape.x, this.shape.y]);
+		        		        this.physic.angle = $V([this.oldAngle.x, this.oldAngle.y]);
 		        		        this.physic.speed = 2;
 		        		        app.js.log(1, "m@n", "OLD ROTATE="+this.shape.x+" - "+this.shape.y, this);
 		        		    }
 			        		this.physic.attractTo(entity.attraction);
+			        		app.js.log(1, "m@n", "ATTRACT TO="+this.shape.x+" - "+this.shape.y, this);
 			        		this.firstAttract = false;
 			        		entity.attracted++;
 			        		returnToMainLoop = true;
 			        		this.attractedBy = entity;
+			        		this.oldAngle = {
+			        		    "x":this.physic.angle.elements[0],
+		        		        "y":this.physic.angle.elements[1]
+		        		    };
 			        		app.js.log(1, "m@n", "ATTRACTED BY", this);
 			                app.js.log(1, "m@n", entity, this);
 			        	}

@@ -18,7 +18,7 @@ var maps = [
         ],
         "startSource":
         {
-            "degreeBlob":145,"shape":{"x":300,"y":150,"urlImage":"img/source.gif"}},
+            "degreeBlob":345,"shape":{"x":300,"y":150,"urlImage":"img/source.gif"}},
             "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
         },
     {

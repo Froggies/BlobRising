@@ -24,6 +24,10 @@
 			var height = this.entity.shape.height;
 			var width = this.entity.shape.width;
 
+            app.js.log(1, "m@n", "UPDATE="+x+" - "+y, this);
+            app.js.log(1, "m@n", "UPDATE - SPEED="+this.speed, this);
+            app.js.log(1, "m@n", "UPDATE - ANGLE="+this.angle.elements[0]+"|"+this.angle.elements[1], this);
+    
             var rawX = x + (this.speed * this.angle.elements[0]);
             var rawY = y + (this.speed * this.angle.elements[1]);
             // optimization, we dont need much precision
@@ -52,10 +56,7 @@
 		}
 
         Physic.prototype.attractTo = function(circle) {
-            var newAngle = this.calculAngle(this.entity.shape, circle);
-            if(this.angle.angleFrom(newAngle) < 1) {
-                this.angle = newAngle;
-            }
+            this.angle = this.calculAngle(this.entity.shape, circle);
         }
 
         Physic.prototype.calculAngle = function(blob, entity) {
@@ -105,6 +106,7 @@
             var newPosition = blobVector.rotate(rotationAngle, circleVector);
             // place blob sprite on new position
 			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
+			app.js.log(1, "m@n", "ROTATE AROUND="+newPosition.elements[0]+" - "+newPosition.elements[1], this);
             // each time elapsed on rotation speed up the blob
             this.speed = this.speed + 0.1;
 		}
