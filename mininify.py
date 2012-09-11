@@ -31,6 +31,7 @@ files = [
     "img/source.gif", 
     "img/wall_pattern.gif", 
     "img/well.gif",  
+    "img/wellFinal.gif",
     "img/background_pattern.gif",
     "img/imgTrans.gif",
     "img/rotate.gif",
