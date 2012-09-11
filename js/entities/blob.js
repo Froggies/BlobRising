@@ -30,13 +30,6 @@
 			var deadlyEntities = map.getDeadlyEntities();
 			for(var i = 0; i < deadlyEntities.length; i++) {
 				var entity = deadlyEntities[i];
-	        	var collisionCircle = {
-		        	x : entity.shape.x + entity.shape.width / 2,	
-		        	y : entity.shape.y + entity.shape.height / 2,
-		        	getRadius : function() {
-		        		return Math.max(entity.shape.width, entity.shape.height) / 2;
-		        	}
-	        	};
 	        	if(this.physic.isInRectangle(this, entity)) {
 	        		this.dead(map);
 	        		classicMovement = false;
@@ -51,7 +44,7 @@
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
 		        	    //collision with final well
-		        	    if(app.js.getObjectClass(entity) == "Well" && entity.last === true) {
+		        	    if(app.js.getObjectClass(entity) == "Well") {
 		        	        this.dead(map);
 		        	        entity.nbBlob++;
 		        	        return;
