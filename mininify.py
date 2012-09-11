@@ -24,7 +24,18 @@ optimise = 'SIMPLE'
 # destination for our concatented and compressed js file
 compressed = 'game.min.js'
 # files to be included in the zip
-files = ['index.html', "css/game.css", "img/magnet.gif", "img/source.gif", "img/wall_pattern.gif", "img/well.gif", "img/goutte.png", compressed]
+files = [
+    'index.html', 
+    "css/game.css", 
+    "img/magnet.gif", 
+    "img/source.gif", 
+    "img/wall_pattern.gif", 
+    "img/well.gif", 
+    "img/goutte.png", 
+    "img/background_pattern.gif",
+    "img/magnet.gif",
+    compressed
+]
 # target folder for all our zip files
 folder = 'blobrising'
 
