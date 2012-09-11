@@ -45,24 +45,31 @@
 		}
 		
 		Game.prototype.end = function() {
+		    var that = this;
 		    this.pause();
 	//	    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 		        this.calculScore();
 		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
-		        var endOfGameDiv = document.getElementById('endOfGame');
-		        endOfGameDiv.innerHTML = "Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !";
-		        endOfGameDiv.style.display = "block";
+		        this.endOfGameDiv = document.getElementById('endOfGame');
+		        this.endOfGameDiv.innerHTML = "Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div></div>";
+		        this.endOfGameDiv.style.display = "block";
+
+    			this.endOfGameNextLevel = document.getElementById('nextLevel');
+			    this.endOfGameNextLevel.addEventListener(
+                    "mousedown", 
+                    function(event) {app.Game.prototype.onNextLevelClick.call(that, event);},
+                    false);
 		        
-//		        window.alert("Congrats ! You won this level !! \n \nYou won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. \nIn this level your score is : "+this.scoreLastMap+" points. \n \nLet's see how you will deal with the next level !");    
-		        var showNoneEntities = this.currentMap.showNoneEntities;
-		        this.currentIndexMap = this.currentIndexMap + 1;
-		        this.init();
-		        this.currentMap.showNoneEntities = showNoneEntities;
-		        this.clear();
-		        this.currentMap.draw(this.context, false);
-		        this.pause();
-		        this.menu.showHelp();
+		        this.endOfGameReplayLevel = document.getElementById('replayLevel');
+		        this.endOfGameReplayLevel.addEventListener(
+                    "mousedown", 
+                    function(event) {app.Game.prototype.onReplayLevelClick.call(that, event);},
+                    false);
+                    
+		        
+		      
+//		        this.menu.showHelp();
 //		    } else if(this.currentMap.isWin()) {
 //		        //game win
 //		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
@@ -76,6 +83,29 @@
 //		    }
 		}
 		
+        Game.prototype.onNextLevelClick = function(event) {	
+		      this.endOfGameDiv.style.display = "none";
+              var showNoneEntities = this.currentMap.showNoneEntities;
+		      this.currentIndexMap = this.currentIndexMap + 1;
+		      this.init();
+		      this.currentMap.showNoneEntities = showNoneEntities;
+		      this.clear();
+		      this.currentMap.draw(this.context, false);
+		      this.pause();
+              this.start();
+        }	
+        
+        Game.prototype.onReplayLevelClick = function(event) {	
+              this.endOfGameDiv.style.display = "none";
+              this.pause();
+              this.menu.showHelp(); 
+              this.init();
+		      this.currentMap.showNoneEntities = showNoneEntities;
+		      this.clear();
+		      this.currentMap.draw(this.context, false);
+              this.start();
+        }
+        
 		Game.prototype.calculScore = function() {
 		    var nbEntitiesUses = 0;//not 0 because startWell is in staticEntities
 		    var len = this.currentMap.staticEntities.length;
