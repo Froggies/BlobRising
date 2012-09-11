@@ -55,10 +55,8 @@
 		        		        //old rotateAround
 		        		        this.physic.angle = $V([this.oldAngle.x, this.oldAngle.y]);
 		        		        this.physic.speed = 2;
-		        		        app.js.log(1, "m@n", "OLD ROTATE="+this.shape.x+" - "+this.shape.y, this);
 		        		    }
 			        		this.physic.attractTo(entity.attraction);
-			        		app.js.log(1, "m@n", "ATTRACT TO="+this.shape.x+" - "+this.shape.y, this);
 			        		this.firstAttract = false;
 			        		entity.attracted++;
 			        		returnToMainLoop = true;
@@ -67,13 +65,10 @@
 			        		    "x":this.physic.angle.elements[0],
 		        		        "y":this.physic.angle.elements[1]
 		        		    };
-			        		app.js.log(1, "m@n", "ATTRACTED BY", this);
-			                app.js.log(1, "m@n", entity, this);
 			        	}
 		        	} else {
 		        		entity.attracted = 0;
 		        	}
-		        	app.js.log(2, "m@n", "entity.attracted="+entity.attracted, this);
 				}
 			}
 
@@ -82,8 +77,6 @@
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
 			        if(this.physic.isInRadius(entity.orbit) && entity == this.attractedBy) {
-			            app.js.log(1, "m@n", "ROTATE AROUND", this);
-			            app.js.log(1, "m@n", entity, this);
 			            this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			        }

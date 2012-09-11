@@ -23,10 +23,6 @@
 
 			var height = this.entity.shape.height;
 			var width = this.entity.shape.width;
-
-            app.js.log(1, "m@n", "UPDATE="+x+" - "+y, this);
-            app.js.log(1, "m@n", "UPDATE - SPEED="+this.speed, this);
-            app.js.log(1, "m@n", "UPDATE - ANGLE="+this.angle.elements[0]+"|"+this.angle.elements[1], this);
     
             var rawX = x + (this.speed * this.angle.elements[0]);
             var rawY = y + (this.speed * this.angle.elements[1]);
@@ -52,7 +48,6 @@
 		Physic.prototype.setCoordinate = function(x, y) {
 			this.entity.shape.x = x; 
 			this.entity.shape.y = y;
-			app.js.log(1, "m@n", "coordinate="+x+" : "+y, this);
 		}
 
         Physic.prototype.attractTo = function(circle) {
@@ -64,7 +59,6 @@
             var Ya = blob.y;
             var Xb = entity.x;
             var Yb = entity.y;
-            app.js.log(1, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
             
             var relativX = Xb - Xa;
             var relativY = Yb - Ya;
@@ -75,8 +69,6 @@
             
             var newX = Math.cos(angle); 	  	
             var newY = Math.sin(angle);
-            
-            app.js.log(1, "m@n", "angle="+angle, this);
             
             var newAngle = $V([newX, newY]);
             
@@ -106,7 +98,6 @@
             var newPosition = blobVector.rotate(rotationAngle, circleVector);
             // place blob sprite on new position
 			this.setCoordinate(newPosition.elements[0], newPosition.elements[1]);
-			app.js.log(1, "m@n", "ROTATE AROUND="+newPosition.elements[0]+" - "+newPosition.elements[1], this);
             // each time elapsed on rotation speed up the blob
             this.speed = this.speed + 0.1;
 		}
