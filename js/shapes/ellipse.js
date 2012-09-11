@@ -10,7 +10,7 @@
 
 		inherit(Ellipse, Shape);
 		
-		function Ellipse(x, y, width, height, fill, gradient, color, urlImage) {
+		function Ellipse(x, y, width, height, fill, color, urlImage) {
 			Ellipse.parent.constructor.apply(this, arguments);
 		};
 
@@ -23,23 +23,12 @@
             }
             else {
                 if (this.fill === true) {
-                    if (this.gradient === true) {
-			            context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
-			        }
-			        else {
-                        context.fillStyle = this.color;
-                    }
+                    context.fillStyle = this.color;
                     context.fill();
                 }
                 else {
-                    if (this.gradient === true) {
-			            context.fillStyle = Ellipse.parent.drawGradient.call(this, context, false);
-			            context.fill();
-			        }
-			        else {
-                        context.strokeStyle = this.color;
-                        context.stroke();
-                    }
+                    context.strokeStyle = this.color;
+                    context.stroke();
                 }
             }
 		};
