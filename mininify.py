@@ -30,10 +30,11 @@ files = [
     "img/magnet.gif", 
     "img/source.gif", 
     "img/wall_pattern.gif", 
-    "img/well.gif", 
-    "img/goutte.png", 
+    "img/well.gif",  
     "img/background_pattern.gif",
-    "img/magnet.gif",
+    "img/imgTrans.gif",
+    "img/rotate.gif",
+    "img/blobSprite.gif",
     compressed
 ]
 # target folder for all our zip files
