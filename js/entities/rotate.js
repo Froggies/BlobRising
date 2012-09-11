@@ -15,7 +15,7 @@
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;
 			this.last = false;
-			this.shape = new app.shapes.Rectangle(0,0,50,52,true,"#FFCC00","img/rotate.gif");
+			this.shape = new app.shapes.Rectangle(0,0,50,52,"#FFCC00","img/rotate.gif");
 			this.orbit = new app.shapes.Ellipse();
 		    this.orbit.color = "rgba(0,0,0,1)";
 		    this.attracted = 0;

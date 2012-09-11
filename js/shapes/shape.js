@@ -6,12 +6,11 @@
 
 	app.shapes.Shape = function() {
 
-		function Shape(x, y, width, height, fill, color, urlImage, urlPattern, urlSprite) {
+		function Shape(x, y, width, height, color, urlImage, urlPattern, urlSprite) {
 			this.x = x;
 			this.y = y;
 			this.width = width;
 			this.height = height;
-			this.fill = fill;
 			this.color = color;
 			this.urlImage = urlImage;
             this.urlPattern = urlPattern;

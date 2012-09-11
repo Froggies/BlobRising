@@ -14,7 +14,7 @@
 		function Molecule(width, height) {
 			Molecule.parent.constructor.apply(this);
 			this.maxAge = 100;
-			this.shape = new app.shapes.Rectangle(0,0,width,height,false,"#FF0000", null,null,"img/blobSprite.gif");
+			this.shape = new app.shapes.Rectangle(0,0,width,height,"#FF0000", null,null,"img/blobSprite.gif");
 		    this.initialWidth = width;
 		    this.initialHeight = height;
 		};

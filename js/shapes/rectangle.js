@@ -31,16 +31,6 @@
 				context.strokeStyle = "#626163";
 				context.strokeRect(this.x,this.y,this.width,this.height);	
             }
-            else {
-			    if (this.fill === true) {
-                    context.fillStyle = this.color;
-        		    context.fillRect(this.x,this.y,this.width,this.height);
-        		}
-        		else {
-    	            context.strokeStyle = this.color;
-        		    context.strokeRect(this.x,this.y,this.width,this.height);
-        		}
-            }
     		context.restore();
 		};
 
