@@ -81,7 +81,7 @@
 			    }
 			}
 		    if(classicMovement) {
-		    	this.physic.update(translation, context.canvas.width, context.canvas.height);
+		    	this.physic.update(map, context.canvas.width, context.canvas.height);
 		    }
 
 		    if(this.isBirthday() && this.nbBlob > 0) {
