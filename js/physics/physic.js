@@ -62,29 +62,20 @@
             var Ya = blob.y;
             var Xb = entity.x;
             var Yb = entity.y;
-            app.js.log(2, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
+            app.js.log(1, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
             
             var relativX = Xb - Xa;
             var relativY = Yb - Ya;
             
             var angle = Math.atan2(relativY,relativX)/(Math.PI/180);
+            
+            angle = Math.PI * angle / 180;
             var newX = Math.cos(angle); 	  	
             var newY = Math.sin(angle);
             
-            var newAngle;
-            if(Xa < Xb && Ya < Yb) {
-                app.js.log(2, "m@n", "gauche dessus", this);
-                newAngle = $V([-newX, -newY]);
-            } else if(Xa < Xb && Ya > Yb) {
-                app.js.log(2, "m@n", "gauche dessous", this);
-                newAngle = $V([-newX, -newY]);
-            } else if(Xa > Xb && Ya < Yb) {
-                app.js.log(2, "m@n", "droite dessus", this);
-                newAngle = $V([-newX, -newY]);
-            } else {
-                app.js.log(2, "m@n", "droite dessous", this);
-                newAngle = $V([newX, newY]);
-            }
+            app.js.log(1, "m@n", "angle="+angle, this);
+            
+            var newAngle = $V([newX, newY]);
             
             return newAngle;
         }

@@ -1,4 +1,4 @@
-var logLevel = 2;
+var logLevel = 1;
 var devName = "m@n";
 var className = "";
 console.log("Logs start for " + devName + " with " + logLevel + " level");
@@ -10,7 +10,7 @@ var maps = [
         "staticEntities":
         [
             {
-                "className":"Well","shape":{"x":171,"y":313,"urlImage":"img/magnet.gif"}
+                "className":"Well","shape":{"x":450,"y":313,"urlImage":"img/magnet.gif"}
             },
             {
                 "className":"Wall","shape":{"x":400,"y":0,"width":35,"height":100,"urlImage":"img/wall_pattern.gif"}
@@ -24,7 +24,7 @@ var maps = [
         ],
         "startSource":
         {
-            "degreeBlob":180,"shape":{"x":400,"y":500,"urlImage":"img/source.gif"}},
+            "degreeBlob":145,"shape":{"x":300,"y":150,"urlImage":"img/source.gif"}},
             "endWell":{"shape":{"x":736,"y":128,"urlImage":"img/well.gif","color":"#FF00AA"}}
         },
     {

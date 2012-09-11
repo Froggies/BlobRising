@@ -19,6 +19,7 @@
 			this.physic = new app.physics.Physic(this, 2, startDegree);
 		    this.shape = new app.shapes.Rectangle(0,0,width,height,true,true,"#00FF00", "img/goutte.png");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
+		    this.attratedBy = [];
 		};
 		
 		Blob.prototype.update = function(translation, context, map) {
@@ -50,14 +51,16 @@
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction)) {
-		        		if(entity.attracted <= 7) {
+		        		if(entity.attracted < 8) {
 			        		this.physic.attractTo(entity.attraction);
+			        		this.attratedBy.push(entity);
 			        		entity.attracted++;
 			        		returnToMainLoop = true;
 			        	}
 		        	} else {
-		        		entity.attracted = 0;
+		        		//entity.attracted = 0;
 		        	}
+		        	app.js.log(2, "m@n", "entity.attracted="+entity.attracted, this);
 				}
 			}
 
@@ -65,7 +68,7 @@
 				var orbitalEntities = map.getOrbitalEntities();
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
-			        if(this.physic.isInRadius(entity.orbit)) {
+			        if(this.physic.isInRadius(entity.orbit) && entity === this.attratedBy[this.attratedBy.length-1]) {
 			            newCoordinate = this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			            break;	            
