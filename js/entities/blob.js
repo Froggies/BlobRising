@@ -30,7 +30,7 @@
 			var deadlyEntities = map.getDeadlyEntities();
 			for(var i = 0; i < deadlyEntities.length; i++) {
 				var entity = deadlyEntities[i];
-	        	if(this.physic.isInRectangle(this, entity)) {
+	        	if(this.physic.isInRectangle(this, entity) && entity.draggable === false) {
 	        		this.dead(map);
 	        		classicMovement = false;
 	        		returnToMainLoop = true;
@@ -42,7 +42,7 @@
 				var attractiveEntities = map.getAttractiveEntities();
 				for(var i = 0; i < attractiveEntities.length; i++) {
 					var entity = attractiveEntities[i];
-		        	if(this.physic.isInRadius(entity.attraction)) {
+		        	if(this.physic.isInRadius(entity.attraction) && entity.draggable === false) {
 		        	    //collision with final well
 		        	    if(app.js.getObjectClass(entity) == "Well") {
 		        	        this.dead(map);
@@ -74,7 +74,7 @@
 				var orbitalEntities = map.getOrbitalEntities();
 				for(var i = 0; i < orbitalEntities.length; i++) {
 					var entity = orbitalEntities[i];
-			        if(this.physic.isInRadius(entity.orbit)) {
+			        if(this.physic.isInRadius(entity.orbit) && entity.draggable === false) {
 			            this.physic.rotateAround(entity.orbit);
 			            classicMovement = false;
 			        }

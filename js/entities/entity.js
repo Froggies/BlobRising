@@ -10,6 +10,7 @@
 		    this.age = 0;
 		    this.imAlive = true;
 		    this.shape = new app.shapes.Rectangle();
+		    this.draggable = false;
 		}
 		
 		Entity.prototype.update = function(translation, map) {

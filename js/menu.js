@@ -27,7 +27,7 @@
                 e = e || window.event;
                 var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
                 if (charCode) {
-                    //console.log("Character typed: " + charCode);
+                    // console.log("Character typed: " + charCode);
                     if(charCode == 32) {
                         if(game.isRun) {
 	                        game.pause();
@@ -87,6 +87,7 @@
 	        entity.draw(game.context, game.currentMap);
 	        entity.isFromMenu = true;
 	        this.entitySelected = entity;
+	        entity.draggable = true;
 	        //just for see it ! 
 	        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
 	        game.currentMap.staticEntities.push(entity);

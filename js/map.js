@@ -78,6 +78,7 @@
 		}
 
 		Map.prototype.addEntity = function(entity) {
+			entity.draggable = false;
 			this.staticEntities.push(entity);
 			this.clearIterators();
 		}
