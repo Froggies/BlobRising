@@ -23,7 +23,7 @@
 
 			var height = this.entity.shape.height;
 			var width = this.entity.shape.width;
-
+    
             var rawX = x + (this.speed * this.angle.elements[0]);
             var rawY = y + (this.speed * this.angle.elements[1]);
             // optimization, we dont need much precision
@@ -48,14 +48,10 @@
 		Physic.prototype.setCoordinate = function(x, y) {
 			this.entity.shape.x = x; 
 			this.entity.shape.y = y;
-			app.js.log(1, "m@n", "coordinate="+x+" : "+y, this);
 		}
 
         Physic.prototype.attractTo = function(circle) {
-            var newAngle = this.calculAngle(this.entity.shape, circle);
-            if(this.angle.angleFrom(newAngle) < 1) {
-                this.angle = newAngle;
-            }
+            this.angle = this.calculAngle(this.entity.shape, circle);
         }
 
         Physic.prototype.calculAngle = function(blob, entity) {
@@ -63,7 +59,6 @@
             var Ya = blob.y;
             var Xb = entity.x;
             var Yb = entity.y;
-            app.js.log(1, "m@n", Xa + " : " + Ya + " | " + Xb + " : " + Yb, this);
             
             var relativX = Xb - Xa;
             var relativY = Yb - Ya;
@@ -74,8 +69,6 @@
             
             var newX = Math.cos(angle); 	  	
             var newY = Math.sin(angle);
-            
-            app.js.log(1, "m@n", "angle="+angle, this);
             
             var newAngle = $V([newX, newY]);
             
