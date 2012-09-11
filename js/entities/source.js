@@ -33,8 +33,7 @@
 			else if(this.age < this.firstAgeForLostBlob && this.age % 100 == 0) {
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'block';
-			    divTime.style.top = this.shape.y + 'px';
-			    divTime.style.left = this.shape.x + 'px';
+			    divTime.style.margin = this.shape.y + 'px' + ' ' + this.shape.x + 'px';
 			    divTime.innerHTML = this.firstAgeForLostBlob/100 - this.age/100;
 			} else if(this.age >= this.firstAgeForLostBlob) {
 			    var divTime = document.getElementById('startBlob');
