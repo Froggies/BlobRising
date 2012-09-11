@@ -108,6 +108,25 @@
             var ya = this.entity.shape.y;
 		    return Math.sqrt(Math.pow(xa-xb, 2)+Math.pow(ya-yb, 2));
 		}
+		
+		Physic.prototype.isInRectangle = function(blob, entity) {
+		    if(entity.radius > 0) {
+                var x = blob.shape.x;
+                var y = blob.shape.y;
+                var h = blob.shape.height;
+                var l = blob.shape.width;
+                var x2 = entity.shape.x - entity.radius/4;
+                var y2 = entity.shape.y - entity.radius/4;
+                var h2 = entity.radius;
+                var l2 = entity.radius;
+                if(x2+l2 < x || x2 > x+l || y2+h2 < y || y2 > y+h) {
+                    return false;
+                } else {        
+                    return true;
+                }
+            }
+            return false;
+		}
 
 		Physic.prototype.isInRadius = function(circle) {
             var radius = circle.getRadius();

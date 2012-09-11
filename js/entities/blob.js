@@ -37,7 +37,7 @@
 		        		return Math.max(entity.shape.width, entity.shape.height) / 2;
 		        	}
 	        	};
-	        	if(this.physic.isInRadius(collisionCircle)) {
+	        	if(this.physic.isInRectangle(this, entity)) {
 	        		this.dead(map);
 	        		classicMovement = false;
 	        		returnToMainLoop = true;

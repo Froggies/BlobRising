@@ -78,6 +78,8 @@
 		        entity.draw(game.context, game.currentMap);
 		        entity.isFromMenu = true;
 		        this.entitySelected = entity;
+		        //just for see it ! 
+		        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
 		        game.currentMap.staticEntities.push(entity);
             }
 		}
