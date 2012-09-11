@@ -5,6 +5,33 @@ console.log("Logs start for " + devName + " with " + logLevel + " level");
 
 var maps = [
     {
+        "menuRotate":{"className":"Rotate","nb":5},
+        "menuMagnet":{"className":"Magnet","nb":5},
+        "staticEntities":
+        [
+            {"className":"Well","shape": {"x":300,"y":200}},
+            {"className":"Wall","shape": {"x":550,"y":200,"height":180}}
+        ],
+        "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
+        "endWell":{"shape": {"x":500,"y":250}}
+    },
+    {
+        "menuRotate":{"className":"Rotate","nb":10},
+        "menuMagnet":{"className":"Magnet","nb":10},
+        "staticEntities":
+        [
+            {"className":"Wall","shape": {"x":500,"y":150,"width":35,"height":300}},
+            {"className":"Wall","shape": {"x":700,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":700,"y":415,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":415,"width":300,"height":35}},
+            {"className":"Well","shape": {"x":500,"y":150}},
+            {"className":"Well","shape": {"x":500,"y":415}}
+        ],
+        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":500,"shape": {"x":550,"y":250}},
+        "endWell":{"shape": {"x":400,"y":250}}
+    },
+    {
         "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":10},
         "menuMagnet":{"className":"Magnet","nb":2},
@@ -45,17 +72,13 @@ var maps = [
                 }
             }
         ],
-        "startSource":{"degreeBlob":0,"shape": {"x":10,"y":10}},
+        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":700,"shape": {"x":10,"y":10}},
         "endWell":{"shape": {"x":850,"y":500}}
     },
     {
         "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":4},
         "menuMagnet":{"className":"Magnet","nb":4},
-        "menuEntities":
-        [
-            {"className":"Well","nb":5,"nbBlobMax":10}
-        ],
         "staticEntities":
         [
             {"className":"Wall","shape":{"x":200,"y":10,"width":35,"height":300}},
@@ -78,53 +101,7 @@ var maps = [
                 }
             }
         ],
-        "startSource":{"degreeBlob":55,"shape": {"x":50,"y":50}},
+        "startSource":{"degreeBlob":55,"firstAgeForLostBlob":800,"shape": {"x":50,"y":50}},
         "endWell":{"shape": {"x":800,"y":100}}
-    },
-    {
-        "initSize":{"width":1301,"height":656},
-        "menuRotate":{"className":"Rotate","nb":10},
-        "menuMagnet":{"className":"Magnet","nb":10},
-        "staticEntities":
-        [
-            {"className":"Magnet","shape":{"x":450,"y":313}},
-            {"className":"Well","shape":{"x":560,"y":450}},
-            {"className":"Wall","shape":{"x":743,"y":500,"width":35,"height":100}}
-        ],
-        "startSource":{"degreeBlob":345,"shape":{"x":300,"y":150}},
-        "endWell":{"shape":{"x":736,"y":128}}
-    },
-    {
-        "initSize":{"width":1301,"height":656},
-        "menuRotate":{"className":"Rotate","nb":5},
-        "menuMagnet":{"className":"Magnet","nb":5},
-        "staticEntities":
-        [
-            {"className":"Well","shape": {"x":300,"y":200}},
-            {"className":"Wall","shape": {"x":550,"y":200,"height":180}}
-        ],
-        "startSource":{"degreeBlob":40,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":250}}
-    },
-    {
-        "initSize":{"width":1301,"height":411},
-        "menuRotate":{"className":"Rotate","nb":5},
-        "menuMagnet":{"className":"Magnet","nb":5},
-        "menuEntities":
-        [
-            {"className":"Well","nb":5,"nbBlobMax":10}
-        ],
-        "staticEntities":
-        [
-            {
-                "className":"Well",
-                "shape": {
-                    "x":200,
-                    "y":200
-                }
-            }
-        ],
-        "startSource":{"degreeBlob":60,"shape": {"x":50,"y":100}},
-        "endWell":{"shape": {"x":500,"y":100}}
     }
 ];
