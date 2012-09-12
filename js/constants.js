@@ -29,8 +29,8 @@ var maps = [
     {
         "mapName":"BLOB",
         "initSize":{"width":1301,"height":411},
-        "menuRotate":{"className":"Rotate","nb":10},
-        "menuMagnet":{"className":"Magnet","nb":2},
+        "menuRotate":{"className":"Rotate","nb":3},
+        "menuMagnet":{"className":"Magnet","nb":5},
         "staticEntities":
         [
             {"className":"Wall","shape":{"x":100,"y":100,"width":150,"height":35}},
