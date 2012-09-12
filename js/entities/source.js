@@ -21,6 +21,26 @@
 		    this.shape = new app.shapes.Rectangle(0,0,50,35,"#00FFFF","img/source.gif");
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
+
+		Source.prototype.draw = function(context, map) {
+			if(this.age < this.firstAgeForLostBlob && this.age % 100 == 0) {
+				var radian = Math.PI * (this.degreeBlob) / 180, 
+			        xV = Number(Math.cos(radian).toFixed(2)),
+			        yV = Number(Math.sin(radian).toFixed(2)),
+					startX = this.shape.x + this.shape.width /2, 
+					startY = this.shape.y + this.shape.height /2, 
+					size = 100;
+
+	            context.beginPath();
+	            context.strokeStyle = "#18f9ff";
+	            context.moveTo(startX, startY); 
+	            context.lineTo(startX + xV*size, startY + yV*size); 
+	            context.lineWidth = 2;
+	            context.lineCap = "round";
+	            context.stroke(); 
+	        }
+            Source.parent.draw.call(this, context, map);
+		}
 		
 		Source.prototype.update = function(map) {
 			if(this.isBirthday() && this.nbBlob > 0) {
