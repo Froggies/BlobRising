@@ -4,7 +4,7 @@ body {
     font-size: 13px;
     width: 1024px;
     margin: 10px auto;
-    color: white;
+    color: #FFF;
 }
 
 p {
@@ -17,14 +17,14 @@ p {
 }
 
 .title {
-    color: #FFCC00;
+    color: #FC0;
     font-size: 15px;
     font-weight: bold;
 }
 
 #canvas {
     background-color: black;
-    background-image: url('../img/background_pattern.gif');
+    background-image: url('../img/bgPattern.gif');
     background-repeat: repeat;
     display:inline;
     border: 2px solid #18F9FF;
@@ -114,11 +114,11 @@ p {
     font-size: 30px;
     color:red;
     display: none;
-    border:3px solid white;
+    border:3px dotted red;
     width:60px;
     height:60px;
     text-align:center;
-    background-color:white;
+    background-color:#FFF;
     opacity:0.8;
     border-radius:30px;
 }
@@ -169,15 +169,7 @@ p {
     margin: 30px 20px;
 }
 
-#nextLevel, #replayGame{
-    color:#FC0;
-}
-
-#tweetScore a {
-    color:#18F9FF;
-}
-
-.button {
+#nextLevel, #replayGame, #replayLevel, #tweetScore{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -185,14 +177,17 @@ p {
     -ms-user-select: none;
     user-select: none;
     cursor:pointer;
-    width: 100px;
+    width: 117px;
     background-color: #262625;
     border: 3px dashed #18F9FF;
     padding: 10px;
     margin: 15px;
     z-index: 1;
 }
+#nextLevel, #replayGame {
+    color:#FC0;    
+}
 
-.btnTweet {
-    width: 150px;
+#tweetScore a {
+    color:#18F9FF;
 }

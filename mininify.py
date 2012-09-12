@@ -29,10 +29,10 @@ files = [
     "css/game.min.css", 
     "img/magnet.gif", 
     "img/source.gif", 
-    "img/wall_pattern.gif", 
+    "img/wall.gif", 
     "img/well.gif",  
     "img/wellFinal.gif",
-    "img/background_pattern.gif",
+    "img/bgPattern.gif",
     "img/rotate.gif",
     "img/blobSprite.gif",
     compressed
