@@ -15,6 +15,7 @@
 		};
 
 		Ellipse.prototype.draw = function(context) {
+    		context.save();
 			context.beginPath();
             context.arc(this.x, this.y, this.width / 2, 0, Math.PI*2, false); 
             context.closePath();
@@ -23,6 +24,7 @@
             }
             context.strokeStyle = this.color;
             context.stroke();
+            context.restore();
 		};
 
 		Ellipse.prototype.getRadius = function() {
