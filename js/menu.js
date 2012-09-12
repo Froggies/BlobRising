@@ -44,7 +44,7 @@
                         that.showHelp();
                         game.restart();
                         game.init();
-                    } else if(charCode == 98) {
+                    } else if(charCode == 38) {
                         game.currentIndexMap++;
                         game.init();
                     } else if (charCode == 108) {
