@@ -51,22 +51,7 @@ var maps = [
             {"className":"Wall","shape":{"x":800,"y":100,"width":35,"height":300}},
             {"className":"Wall","shape":{"x":800,"y":250,"width":150,"height":35}},
             {"className":"Wall","shape":{"x":800,"y":400,"width":150,"height":35}},
-            {"className":"Wall","shape":{"x":950,"y":100,"width":35,"height":335}},
-            
-            {
-                "className":"Well",
-                "shape": {
-                    "x":100,
-                    "y":300
-                }
-            },
-            {
-                "className":"Well",
-                "shape": {
-                    "x":1000,
-                    "y":450
-                }
-            }
+            {"className":"Wall","shape":{"x":950,"y":100,"width":35,"height":335}}
         ],
         "startSource":{"degreeBlob":0,"firstAgeForLostBlob":700,"shape": {"x":10,"y":10}},
         "endWell":{"shape": {"x":850,"y":500}}
