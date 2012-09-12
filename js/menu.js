@@ -99,20 +99,25 @@
 		}
 		
 		Menu.prototype.addEntity = function(game, entity) {
-            var canvas = game.canvas;
-            var x = -1000;
-            var y = -1000;
-	        entity.shape.x = x;
-	        entity.shape.y = y;
-	        entity.draw(game.context, game.currentMap);
-	        entity.isFromMenu = true;
-	        entity.isDraggable = true;
-	        this.entitySelected = entity;
-	        entity.draggable = true;
-	        game.currentMap.menuEntities = [];
-	        //just for see it ! 
-	        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
-	        game.currentMap.menuEntities.push(entity);
+		    if(this.entitySelected != null && this.entitySelected.hasPosed) {
+		        this.showHelp("You must put your machine before add another !", "1000");
+		    } else {
+                var canvas = game.canvas;
+                var x = -1000;
+                var y = -1000;
+	            entity.shape.x = x;
+	            entity.shape.y = y;
+	            entity.draw(game.context, game.currentMap);
+	            entity.isFromMenu = true;
+	            entity.isDraggable = true;
+	            this.entitySelected = entity;
+	            entity.draggable = true;
+	            entity.hasPosed = false;
+	            game.currentMap.menuEntities = [];
+	            //just for see it ! 
+	            //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
+	            game.currentMap.menuEntities.push(entity);
+            }
 		}
 		
 		Menu.prototype.showHelp = function(msg, time) {
@@ -195,11 +200,12 @@
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
-	            if(this.entitySelected.className == "Rotate") {
+	            if(this.entitySelected.className == "Rotate" && this.entitySelected.hasPosed === false) {
                     this.nbRotate--;
-                } else {
+                } else if(this.entitySelected.hasPosed === false) {
                     this.nbMagnet--;
                 }
+                this.entitySelected.hasPosed = true;
 	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
 	            this.entitySelected.draggable = false;
