@@ -94,7 +94,13 @@
         }
         
         Game.prototype.onReplayGameClick = function(event) {	
-              this.createStartGame();
+               this.endOfGameDiv.style.display = "none";
+               this.pause();
+               this.menu.showHelp();
+               this.restart();
+               this.init();
+               this.menu.showMapName();
+               document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
         }
         
         Game.prototype.createStartGame = function() {	
