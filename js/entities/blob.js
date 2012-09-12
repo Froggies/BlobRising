@@ -45,7 +45,7 @@
 					var entity = attractiveEntities[i];
 		        	if(this.physic.isInRadius(entity.attraction) && entity.draggable === false) {
 		        	    //collision with final well
-		        	    if(app.js.getObjectClass(entity) == "Well") {
+		        	    if(entity.className == "Well") {
 		        	        this.dead(map);
 		        	        entity.nbBlob++;
 		        	        return;

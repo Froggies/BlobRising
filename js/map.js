@@ -118,7 +118,7 @@
 			}
 
 			for(var i = 0; i < this.staticEntities.length; i++) {
-				if("Wall" === getClass(this.staticEntities[i])) {
+				if("Wall" === this.staticEntities[i].className) {
 					this.deadlyEntities.push(this.staticEntities[i]);
 				}
 			}
