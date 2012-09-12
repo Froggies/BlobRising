@@ -10,6 +10,7 @@
 		    this.scoreDiv = document.getElementById('score');
 		    this.helpDiv = document.getElementById('mainMenu');
 		    this.endOfGameDiv = document.getElementById('endOfGame');
+		    this.startBlobDiv = document.getElementById('startBlob');
 		    this.endOfGameDiv.style.display = "none";
             this.firstInnerHTML = this.helpDiv.innerHTML;
             this.firstDisplay = this.helpDiv.style.display;
@@ -57,6 +58,7 @@
 	                        if(!game.currentMap.showNoneEntities) {
 	                            game.currentMap.noneEntities = [];
 	                        }
+	                        game.currentMap.staticBuffering = false;
 	                        game.clear();
 	                        game.currentMap.draw(game.context, false);
                         } else if(charCode == 120 || charCode == 99) {
@@ -110,7 +112,9 @@
 		
 		Menu.prototype.showHelp = function(msg, time) {
             this.helpDiv.style.display = 'block';
+            this.lastStartBlobDiv = this.startBlobDiv.style.display;
 		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal menu
+		        this.startBlobDiv.style.display = 'none';
 		        this.helpDiv.className = "mainMenu";
 		        this.scoreDiv.style.display = 'block';
 		        this.helpDiv.innerHTML = this.firstInnerHTML;
@@ -140,6 +144,7 @@
 		
 		Menu.prototype.hideHelp = function() {
 		    if(this.game.isRun) {
+		        this.startBlobDiv.style.display = this.lastStartBlobDiv;
 		        this.helpDiv.style.display = 'none';
                 this.scoreDiv.style.display = 'none';
             }
