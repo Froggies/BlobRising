@@ -48,21 +48,35 @@
 		Game.prototype.end = function() {
 		    var that = this;
 		    this.pause();
+		    
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 		        this.calculScore();
 		       
-                this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div></div>");
+                this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    } else if(this.currentMap.isWin()) {
 		        //game win
-		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
+		       
+		        this.createPopup("Congrats ! You won the Blob Rising game !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />Your final score is : "+this.scoreLastMap+" points. <br /> <br /><div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='replayGame' class='button'>Replay game</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    } else {
 		        //map loose
 		        this.score = this.score - 100;
-		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div id='replayLevel' class='button'>Replay level</div>");
+		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    }
 		    document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		}
+		
+		Game.prototype.createTweetUrl(isEndGame, numLevel, score, nbBlobSaved) {
+		    var urlTweeterIntent = "https://twitter.com/intent/tweet?text=I played Blob Rising";
+		    var endOfUrl = this.score+" points. I saved "+this.currentMap.endWell.nbBlob+" Blobs. Try it yourself !&url=http://blobrising.github.com/BlobRising/&via=blobRising&related=BlobRising";
+		    if (isEndGame) {
+		        return encodeURI(urlTweeterIntent+" and I won the game with "+endOfUrl);
+		    }
+		    else {
+		        return encodeURI(urlTweeterIntent+", I reach level "+numLevel+" my score is "+endOfUrl);
+		    }
+		}
+		
 		
         Game.prototype.onNextLevelClick = function(event) {	
 		      this.currentIndexMap = this.currentIndexMap + 1;
@@ -71,6 +85,14 @@
         
         Game.prototype.onReplayLevelClick = function(event) {	
               this.createStartGame();
+        }
+        
+        Game.prototype.onReplayGameClick = function(event) {	
+              this.createStartGame();
+        }
+        
+        Game.prototype.onTweetScoreClick = function(event) {	
+              
         }
         
         Game.prototype.createStartGame = function() {	
@@ -92,6 +114,22 @@
 		        this.endOfGameNextLevel.addEventListener(
                     "mousedown", 
                     function(event) {app.Game.prototype.onNextLevelClick.call(that, event);},
+                    false);
+            }
+            
+            this.endOfGameReplayGame = document.getElementById('replayGame');
+            if(app.js.isDefined(this.endOfGameReplayGame)) {
+		        this.endOfGameReplayGame.addEventListener(
+                    "mousedown", 
+                    function(event) {app.Game.prototype.onReplayGameClick.call(that, event);},
+                    false);
+            }
+            
+            this.endOfGameTweetScore = document.getElementById('tweetScore');
+            if(app.js.isDefined(this.endOfGameTweetScore)) {
+		        this.endOfGameTweetScore.addEventListener(
+                    "mousedown", 
+                    function(event) {app.Game.prototype.onTweetScoreClick.call(that, event);},
                     false);
             }
 	        

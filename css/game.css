@@ -169,8 +169,12 @@ p {
     margin: 30px 20px;
 }
 
-#nextLevel {
+#nextLevel, #replayGame{
     color:#FC0;
+}
+
+#tweetScore a {
+    color:#18F9FF;
 }
 
 .button {
