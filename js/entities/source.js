@@ -23,7 +23,7 @@
 		};
 
 		Source.prototype.draw = function(context, map) {
-			if(this.age < this.firstAgeForLostBlob && this.age % 100 == 0) {
+			if(this.age < this.firstAgeForLostBlob) {
 				var radian = Math.PI * (this.degreeBlob) / 180, 
 			        xV = Number(Math.cos(radian).toFixed(2)),
 			        yV = Number(Math.sin(radian).toFixed(2)),
@@ -58,6 +58,7 @@
 			} else if(this.age >= this.firstAgeForLostBlob) {
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'none';
+			    map.staticBuffering = false;
 			}
 			Source.parent.update.call(this, map);
 		}
