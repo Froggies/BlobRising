@@ -102,13 +102,6 @@
             this.speed = this.speed + 0.01;
 		}
 
-        //unused
-		Physic.prototype.distanceWith = function(xb, yb) {
-		    var xa = this.entity.shape.x;
-            var ya = this.entity.shape.y;
-		    return Math.sqrt(Math.pow(xa-xb, 2)+Math.pow(ya-yb, 2));
-		}
-		
 		Physic.prototype.isInRectangle = function(blob, entity) {
             var x = blob.shape.x;
             var y = blob.shape.y;
