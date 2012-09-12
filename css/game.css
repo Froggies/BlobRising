@@ -192,3 +192,7 @@ p {
     margin: 15px;
     z-index: 1;
 }
+
+.btnTweet {
+    width: 150px;
+}

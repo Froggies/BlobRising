@@ -53,27 +53,26 @@
 		        //map win
 		        this.calculScore();
 		       
-                this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+                this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(false, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    } else if(this.currentMap.isWin()) {
 		        //game win
-		       
-		        this.createPopup("Congrats ! You won the Blob Rising game !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />Your final score is : "+this.scoreLastMap+" points. <br /> <br /><div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='replayGame' class='button'>Replay game</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+		        this.createPopup("Congrats ! You won the Blob Rising game !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />Your final score is : "+this.scoreLastMap+" points. <br /> <br /><div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='replayGame' class='button'>Replay game</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    } else {
 		        //map loose
 		        this.score = this.score - 100;
-		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='tweetScore' class='button'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(false, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
 		    }
 		    document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		}
 		
-		Game.prototype.createTweetUrl(isEndGame, numLevel, score, nbBlobSaved) {
+		Game.prototype.createTweetUrl = function(isEndGame, numLevel, score, nbBlobSaved) {
 		    var urlTweeterIntent = "https://twitter.com/intent/tweet?text=I played Blob Rising";
-		    var endOfUrl = this.score+" points. I saved "+this.currentMap.endWell.nbBlob+" Blobs. Try it yourself !&url=http://blobrising.github.com/BlobRising/&via=blobRising&related=BlobRising";
+		    var endOfUrl = " with "+this.score+" points. I saved "+this.currentMap.endWell.nbBlob+" Blobs. Try it yourself !&url=http://blobrising.github.com/BlobRising/&via=BlobRising&related=BlobRising";
 		    if (isEndGame) {
-		        return encodeURI(urlTweeterIntent+" and I won the game with "+endOfUrl);
+		        return encodeURI(urlTweeterIntent+" and I won the game"+endOfUrl);
 		    }
 		    else {
-		        return encodeURI(urlTweeterIntent+", I reach level "+numLevel+" my score is "+endOfUrl);
+		        return encodeURI(urlTweeterIntent+", I have done the level "+numLevel+endOfUrl);
 		    }
 		}
 		
@@ -120,6 +119,7 @@
             
             this.endOfGameReplayGame = document.getElementById('replayGame');
             if(app.js.isDefined(this.endOfGameReplayGame)) {
+                this.endOfGameReplayGame.style.display = 'inline-block';
 		        this.endOfGameReplayGame.addEventListener(
                     "mousedown", 
                     function(event) {app.Game.prototype.onReplayGameClick.call(that, event);},
@@ -128,6 +128,7 @@
             
             this.endOfGameTweetScore = document.getElementById('tweetScore');
             if(app.js.isDefined(this.endOfGameTweetScore)) {
+                this.endOfGameTweetScore.style.display = 'inline-block';
 		        this.endOfGameTweetScore.addEventListener(
                     "mousedown", 
                     function(event) {app.Game.prototype.onTweetScoreClick.call(that, event);},
@@ -135,11 +136,13 @@
             }
 	        
 	        this.endOfGameReplayLevel = document.getElementById('replayLevel');
-	        this.endOfGameReplayLevel.style.display = 'inline-block';
-	        this.endOfGameReplayLevel.addEventListener(
-                "mousedown", 
-                function(event) {app.Game.prototype.onReplayLevelClick.call(that, event);},
-                false);
+	        if(app.js.isDefined(this.endOfGameTweetScore)) {
+	            this.endOfGameReplayLevel.style.display = 'inline-block';
+	            this.endOfGameReplayLevel.addEventListener(
+                    "mousedown", 
+                    function(event) {app.Game.prototype.onReplayLevelClick.call(that, event);},
+                    false);
+            }
         }
         
 		Game.prototype.calculScore = function() {
