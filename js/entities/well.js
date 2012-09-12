@@ -23,11 +23,11 @@
 		    this.factorAttraction = 2;
 		};
 		
-		Well.prototype.update = function(translation, map) {
+		Well.prototype.update = function(map) {
 		    if(this.nbBlobMax <= this.nbBlob && this.last !== true) {
 		        this.dead(map);
 		    } else {
-		        Well.parent.update.call(this, translation, map);
+		        Well.parent.update.call(this, map);
 		    }
 		}
 

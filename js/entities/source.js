@@ -22,7 +22,7 @@
 		    this.timeToLostMolecule = Number((this.maxAge / this.nbBlob).toFixed(0));
 		};
 		
-		Source.prototype.update = function(translation, map) {
+		Source.prototype.update = function(map) {
 			if(this.isBirthday() && this.nbBlob > 0) {
 			    this.nbBlob--;
 			    var subblob = new app.entities.Blob(30,30,this.degreeBlob);
@@ -39,7 +39,7 @@
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'none';
 			}
-			Source.parent.update.call(this, translation, map);
+			Source.parent.update.call(this, map);
 		}
 		
 		Source.prototype.isBirthday = function() {

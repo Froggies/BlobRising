@@ -13,7 +13,7 @@
 		    this.draggable = false;
 		}
 		
-		Entity.prototype.update = function(translation, map) {
+		Entity.prototype.update = function(map) {
 			this.incrementMyAge(map);
 		}
 

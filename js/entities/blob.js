@@ -23,7 +23,7 @@
 		};
 		
 	
-		Blob.prototype.update = function(translation, context, map) {
+		Blob.prototype.update = function(context, map) {
 
 			var classicMovement = true;
 			var returnToMainLoop = false;

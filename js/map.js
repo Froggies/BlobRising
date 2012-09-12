@@ -34,7 +34,7 @@
 		        entity = this.staticEntities[entityIndex];
 		        if(app.js.isDefined(entity)) {
 		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
-	                    entity.update($V([1, 1]), this);
+	                    entity.update(this);
                     }
 		            entity.draw(context, this);
 	            }
@@ -44,7 +44,7 @@
 		        entity = this.blobEntities[entityIndex];
 		        if(app.js.isDefined(entity)) {
 		            if(app.js.isDefined(withUpdate) && withUpdate === true) {
-	                    entity.update($V([1, 1]), context, this);
+	                    entity.update(context, this);
 	                }
 		            entity.draw(context, this);
 	            }
@@ -55,7 +55,7 @@
 		            entity = this.noneEntities[entityIndex];
 		            if(app.js.isDefined(entity)) {
 		                if(app.js.isDefined(withUpdate) && withUpdate === true) {
-                            entity.update($V([1, 1]), this);
+                            entity.update(this);
                         }
                         entity.draw(context, this);
                     }
