@@ -46,6 +46,11 @@
                     } else if(charCode == 98) {
                         game.currentIndexMap++;
                         game.init();
+                    } else if (charCode == 108) {
+                        game.clear();
+                        game.init();
+                        game.start();    
+                        that.showHelp("This level has been restarted", "2000");                
                     } else if(game.isRun) {
                         if(charCode == 115) {
                             game.currentMap.showNoneEntities = !game.currentMap.showNoneEntities;

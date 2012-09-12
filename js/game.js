@@ -59,7 +59,7 @@
 		    } else {
 		        //map loose
 		        this.score = this.score - 100;
-		        this.createPopup("Unfortunatly you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div id='replayLevel' class='button'>Replay level</div>");
+		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div id='replayLevel' class='button'>Replay level</div>");
 		    }
 		    document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		}
