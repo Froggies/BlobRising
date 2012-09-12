@@ -49,25 +49,33 @@
 		    var that = this;
 		    this.pause();
 		    
+	        var deb = "Congrats ! You won";
+	        var bySaving = "<br /> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />";
+	        var strPoints = " points. <br /> <br />";
+	        var divReplay = "<div id='replayLevel' class='button'>Replay level</div>";
+	        var divTweetDeb = "<div id='tweetScore' class='button btnTweet'><a href='";
+	        var endPopup = "' target='_blank'>Tweet my score</a></div></div>";
+	        var strLevelScore = "In this level your score is :";
+
+
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
-		        this.calculScore();
-		       
-                this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(false, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+	            this.calculScore();
+                this.createPopup(deb+" this level !! "+bySaving+strLevelScore+this.scoreLastMap+strPoints+"Let's see how you will deal with the next level !<br /> <div style='float:right'>"+divReplay+"<div id='nextLevel' class='button'>Next level</div>"+divTweetDeb+this.createTweetUrl(false, this.currentIndexMap, this.scoreLastMap, this.currentMap.endWell.nbBlob)+endPopup);
 		    } else if(this.currentMap.isWin()) {
 		        //game win
-		        this.createPopup("Congrats ! You won the Blob Rising game !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />Your final score is : "+this.scoreLastMap+" points. <br /> <br /><div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='replayGame' class='button'>Replay game</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(true, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+		        this.createPopup(deb+" the Blob Rising game !! "+bySaving+"Your final score is : "+this.scoreLastMap+strPoints+"<div style='float:right'>"+divReplay+"<div id='replayGame' class='button'>Replay game</div>"+divTweetDeb+this.createTweetUrl(true, this.currentIndexMap,this.scoreLastMap,this.currentMap.endWell.nbBlob)+endPopup);
 		    } else {
 		        //map loose
 		        this.score = this.score - 100;
-		        this.createPopup("Unfortunately you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='tweetScore' class='button btnTweet'><a href='"+this.createTweetUrl(false, this.currentIndexMap, this.currentMap.endWell.nbBlob)+"' target='_blank'>Tweet my score</a></div></div>");
+		        this.createPopup("Unfortunately you lost this level... <br /> <br />"+strLevelScore+this.score+strPoints+" <br />Try again to save Blobs ! <br /><div style='float:right'>"+divReplay+divTweetDeb+this.createTweetUrl(false,this.currentIndexMap,this.score,this.currentMap.endWell.nbBlob)+endPopup);
 		    }
 		    document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		}
 		
 		Game.prototype.createTweetUrl = function(isEndGame, numLevel, score, nbBlobSaved) {
 		    var urlTweeterIntent = "https://twitter.com/intent/tweet?text=I played Blob Rising";
-		    var endOfUrl = " with "+this.score+" points. I saved "+this.currentMap.endWell.nbBlob+" Blobs. Try it yourself !&url=http://blobrising.github.com/BlobRising/&via=BlobRising&related=BlobRising";
+		    var endOfUrl = " with "+score+" points. I saved "+nbBlobSaved+" Blobs. Try it yourself !&url=http://blobrising.github.com/BlobRising/&via=BlobRising&related=BlobRising";
 		    if (isEndGame) {
 		        return encodeURI(urlTweeterIntent+" and I won the game"+endOfUrl);
 		    }
