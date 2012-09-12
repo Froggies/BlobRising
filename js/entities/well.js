@@ -13,6 +13,7 @@
 		
 		function Well() {
 			Well.parent.constructor.apply(this);
+			this.className = "Well";
 			this.nbBlobMax = 5;
 			this.nbBlob = 0;
 			this.last = false;

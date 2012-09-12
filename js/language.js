@@ -86,16 +86,4 @@
         return idx!=-1;
     }
     
-    // Returns the class name of the argument or undefined if
-    // it's not a valid JavaScript object.
-    app.js.getObjectClass = function(obj) {
-        if (obj && obj.constructor && obj.constructor.toString) {
-            var arr = obj.constructor.toString().match(/function\s*(\w+)/);
-            if (arr && arr.length == 2) {
-                return arr[1];
-            }
-        }
-        return undefined;
-    }
-
 })();
