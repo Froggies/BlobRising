@@ -88,6 +88,7 @@
 	        this.endOfGameDiv.style.display = "block";
             
 			this.endOfGameNextLevel = document.getElementById('nextLevel');
+			this.endOfGameNextLevel.style.display = 'inline-block';
             if(app.js.isDefined(this.endOfGameNextLevel)) {
 		        this.endOfGameNextLevel.addEventListener(
                     "mousedown", 
@@ -96,6 +97,7 @@
             }
 	        
 	        this.endOfGameReplayLevel = document.getElementById('replayLevel');
+	        this.endOfGameReplayLevel.style.display = 'inline-block';
 	        this.endOfGameReplayLevel.addEventListener(
                 "mousedown", 
                 function(event) {app.Game.prototype.onReplayLevelClick.call(that, event);},
