@@ -80,7 +80,7 @@
 		        return encodeURI(urlTweeterIntent+" and I won the game"+endOfUrl);
 		    }
 		    else {
-		        return encodeURI(urlTweeterIntent+", I have done the level "+numLevel+endOfUrl);
+		        return encodeURI(urlTweeterIntent+", I have done the level "+(numLevel+1)+endOfUrl);
 		    }
 		}
 		
