@@ -57,6 +57,7 @@
 	                        if(!game.currentMap.showNoneEntities) {
 	                            game.currentMap.noneEntities = [];
 	                        }
+	                        game.currentMap.staticBuffering = false;
 	                        game.clear();
 	                        game.currentMap.draw(game.context, false);
                         } else if(charCode == 120 || charCode == 99) {
