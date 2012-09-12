@@ -169,8 +169,12 @@ p {
     margin: 30px 20px;
 }
 
-#nextLevel {
+#nextLevel, #replayGame{
     color:#FC0;
+}
+
+#tweetScore a {
+    color:#18F9FF;
 }
 
 .button {
@@ -187,4 +191,8 @@ p {
     padding: 10px;
     margin: 15px;
     z-index: 1;
+}
+
+.btnTweet {
+    width: 150px;
 }
