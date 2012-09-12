@@ -100,7 +100,7 @@
 	        entity.draggable = true;
 	        //just for see it ! 
 	        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
-	        game.currentMap.staticEntities.push(entity);
+	        game.currentMap.menuEntities.push(entity);
 		}
 		
 		Menu.prototype.showHelp = function(msg, time) {
@@ -173,14 +173,17 @@
 	            if(this.isClick(entity, x, y)) {
 	                found = true;
 	                this.entitySelected = entity;
-	                this.entitySelected.draggable = true;
+	                app.js.arrayRemove(this.game.currentMap.staticEntities, this.entitySelected);
+	                this.game.currentMap.staticBuffering = false;
+	                this.game.currentMap.menuEntities.push(this.entitySelected);
+	                this.game.currentMap.clearIterators();
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
 	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
 	            this.entitySelected.draggable = false;
-	            app.js.arrayRemove(this.game.currentMap.staticEntities, this.entitySelected);
+	            app.js.arrayRemove(this.game.currentMap.menuEntities, this.entitySelected);
 	            this.game.currentMap.addEntity(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
