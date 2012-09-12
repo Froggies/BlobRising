@@ -172,11 +172,13 @@
 	            if(this.isClick(entity, x, y)) {
 	                found = true;
 	                this.entitySelected = entity;
+	                this.entitySelected.draggable = true;
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
 	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
+	            this.entitySelected.draggable = false;
 	            this.game.currentMap.addEntity(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);
