@@ -107,6 +107,7 @@
 	        entity.shape.y = y;
 	        entity.draw(game.context, game.currentMap);
 	        entity.isFromMenu = true;
+	        entity.isDraggable = true;
 	        this.entitySelected = entity;
 	        entity.draggable = true;
 	        //just for see it ! 
@@ -211,7 +212,7 @@
 		}
 		
 		Menu.prototype.isClick = function(entity, x, y) {
-		    if(entity.isFromMenu === true) {
+		    if(entity.isFromMenu === true && entity.isDraggable === true) {
                 var h = 1;
                 var l = 1;
 		        

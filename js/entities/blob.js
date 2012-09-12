@@ -56,6 +56,7 @@
 		        		        this.physic.angle = $V([this.oldAngle.x, this.oldAngle.y]);
 		        		    }
 			        		this.physic.attractTo(entity.attraction);
+			        		entity.isDraggable = false;//for no click anymore
 			        		this.firstAttract = false;
 			        		entity.attracted++;
 			        		returnToMainLoop = true;
@@ -77,6 +78,7 @@
 					var entity = orbitalEntities[i];
 			        if(this.physic.isInRadius(entity.orbit) && entity.draggable === false) {
 			            this.physic.rotateAround(entity.orbit);
+			            entity.isDraggable = false;//for no click anymore
 			            classicMovement = false;
 			        }
 			    }
