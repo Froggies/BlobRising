@@ -10,6 +10,7 @@
 		    this.scoreDiv = document.getElementById('score');
 		    this.helpDiv = document.getElementById('mainMenu');
 		    this.endOfGameDiv = document.getElementById('endOfGame');
+		    this.startBlobDiv = document.getElementById('startBlob');
 		    this.endOfGameDiv.style.display = "none";
             this.firstInnerHTML = this.helpDiv.innerHTML;
             this.firstDisplay = this.helpDiv.style.display;
@@ -111,6 +112,7 @@
 		
 		Menu.prototype.showHelp = function(msg, time) {
             this.helpDiv.style.display = 'block';
+            this.startBlobDiv.style.display = 'none';
 		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal menu
 		        this.helpDiv.className = "mainMenu";
 		        this.scoreDiv.style.display = 'block';
@@ -141,6 +143,7 @@
 		
 		Menu.prototype.hideHelp = function() {
 		    if(this.game.isRun) {
+		        this.startBlobDiv.style.display = 'block';
 		        this.helpDiv.style.display = 'none';
                 this.scoreDiv.style.display = 'none';
             }

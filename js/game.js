@@ -88,8 +88,8 @@
 	        this.endOfGameDiv.style.display = "block";
             
 			this.endOfGameNextLevel = document.getElementById('nextLevel');
-			this.endOfGameNextLevel.style.display = 'inline-block';
             if(app.js.isDefined(this.endOfGameNextLevel)) {
+                this.endOfGameNextLevel.style.display = 'inline-block';
 		        this.endOfGameNextLevel.addEventListener(
                     "mousedown", 
                     function(event) {app.Game.prototype.onNextLevelClick.call(that, event);},
