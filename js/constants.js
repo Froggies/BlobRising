@@ -28,7 +28,6 @@ var maps = [
     },
     {
         "mapName":"BLOB",
-        "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":3},
         "menuMagnet":{"className":"Magnet","nb":5},
         "staticEntities":
@@ -58,7 +57,6 @@ var maps = [
     },
     {
         "mapName":"Jail",
-        "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":4},
         "menuMagnet":{"className":"Magnet","nb":4},
         "staticEntities":
