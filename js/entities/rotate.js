@@ -12,23 +12,12 @@
 		
 		function Rotate() {
 			Rotate.parent.constructor.apply(this);
-			this.nbBlobMax = 5;
-			this.nbBlob = 0;
-			this.last = false;
 			this.shape = new app.shapes.Rectangle(0,0,50,52,"#FFCC00","img/rotate.gif");
 			this.orbit = new app.shapes.Ellipse();
 		    this.orbit.color = "rgba(0,0,0,1)";
 		    this.attracted = 0;
 		};
 		
-		Rotate.prototype.update = function(translation, map) {
-		    if(this.nbBlobMax <= this.nbBlob && this.last !== true) {
-		        this.dead(map);
-		    } else {
-		        Rotate.parent.update.call(this, translation, map);
-		    }
-		}
-
 		Rotate.prototype.draw = function(context, map) {
 		    if(map.showNoneEntities) {
 			    this.orbit.x = this.shape.x + (this.shape.width / 2);

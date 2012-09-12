@@ -14,8 +14,6 @@
 		function Wall() {
 			Wall.parent.constructor.apply(this);
 			this.shape = new app.shapes.Rectangle(0,0,50,50,"#A0CD6C",null,"img/wall_pattern.gif");
-			//for debug
-			//this.radius = Math.max(this.shape.width, this.shape.height);
 		};
 		
 		Wall.prototype.update = function(translation, map) {
