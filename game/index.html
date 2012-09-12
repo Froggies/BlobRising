@@ -4,14 +4,10 @@
   <title>
    Blob Rising
   </title>
-  <link rel="stylesheet" media="screen" href="css/game.css" />
+  <link rel="stylesheet" media="screen" href="css/game.min.css" />
   <meta charset="UTF-8" />
  </head>
  <body>
-  <!--No include that for contest -->
-  <!-- // &lt;script src="js/editor/editor.js"&gt;&lt;/script&gt; -->
-  <!-- // &lt;script src="js/editor/serialization.js"&gt;&lt;/script&gt; -->
-  <!-- main included last, will start the game -->
   <div id="content">
    <div id="score">
     <span class="title">
@@ -22,7 +18,7 @@
      0
     </span>
    </div>
-   <div id="mainMenu">
+   <div id="mainMenu" class="mainMenu">
     <div class="keyboard">
      Press space to start/resume game
     </div>
@@ -31,7 +27,7 @@
     </div>
     <p>
      Blobs
-     <img src="img/imgTrans.gif" class="blob" />
+     <img src="" class="blob" />
      are coming from your main source
      <img src="img/source.gif" width="20px" height="20px" />
      . Your goal is to carry them to the final well
@@ -47,7 +43,7 @@
     </p>
     <p>
      Beware, on your path there are traps, like wall
-     <img src="img/wall_pattern.gif" width="20px" height="20px" />
+     <img src="img/wall.gif" width="20px" height="20px" />
      or fake well
      <img src="img/well.gif" width="20px" height="20px" />
      .
@@ -62,6 +58,10 @@
      : Pause/Resume game
     </p>
     <p>
+     <div class="keyboard">
+      L
+     </div>
+     : Restart the level ---
      <div class="keyboard">
       R
      </div>
@@ -110,6 +110,8 @@
     <div id="nbMenuMagnet" style="display:inline">
     </div>
     (C)
+   </div>
+   <div id="endOfGame">
    </div>
    <canvas id="canvas">
     Your browser doesn't support canvas element !
