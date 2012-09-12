@@ -112,8 +112,9 @@
 		
 		Menu.prototype.showHelp = function(msg, time) {
             this.helpDiv.style.display = 'block';
-            this.startBlobDiv.style.display = 'none';
+            this.lastStartBlobDiv = this.startBlobDiv.style.display;
 		    if(!app.js.isDefined(msg) && !app.js.isDefined(time)) {//normal menu
+		        this.startBlobDiv.style.display = 'none';
 		        this.helpDiv.className = "mainMenu";
 		        this.scoreDiv.style.display = 'block';
 		        this.helpDiv.innerHTML = this.firstInnerHTML;
@@ -143,7 +144,7 @@
 		
 		Menu.prototype.hideHelp = function() {
 		    if(this.game.isRun) {
-		        this.startBlobDiv.style.display = 'block';
+		        this.startBlobDiv.style.display = this.lastStartBlobDiv;
 		        this.helpDiv.style.display = 'none';
                 this.scoreDiv.style.display = 'none';
             }

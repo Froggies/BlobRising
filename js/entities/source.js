@@ -34,7 +34,7 @@
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'block';
 			    divTime.style.margin = this.shape.y + 'px' + ' ' + this.shape.x + 'px';
-			    divTime.innerHTML = this.firstAgeForLostBlob/100 - this.age/100;
+		        divTime.innerHTML = this.firstAgeForLostBlob/100 - this.age/100;
 			} else if(this.age >= this.firstAgeForLostBlob) {
 			    var divTime = document.getElementById('startBlob');
 			    divTime.style.display = 'none';
