@@ -150,3 +150,41 @@ p {
     border: 1px dashed #18F9FF;
     padding: 10px;
 }
+
+#endOfGame {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+    width: 965px;
+    position:absolute;
+    background-color: #262625;
+    border: 1px dashed #18F9FF;
+    padding: 10px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 30px 20px;
+}
+
+#nextLevel {
+    color:#FC0;
+}
+
+.button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:pointer;
+    width: 100px;
+    background-color: #262625;
+    border: 3px dashed #18F9FF;
+    padding: 10px;
+    margin: 15px;
+    z-index: 1;
+}

@@ -9,6 +9,8 @@
 		    this.isFirstAddWell = true;
 		    this.scoreDiv = document.getElementById('score');
 		    this.helpDiv = document.getElementById('mainMenu');
+		    this.endOfGameDiv = document.getElementById('endOfGame');
+		    this.endOfGameDiv.style.display = "none";
             this.firstInnerHTML = this.helpDiv.innerHTML;
             this.firstDisplay = this.helpDiv.style.display;
             var that = this;
