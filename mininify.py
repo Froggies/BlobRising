@@ -33,7 +33,6 @@ files = [
     "img/well.gif",  
     "img/wellFinal.gif",
     "img/background_pattern.gif",
-    "img/imgTrans.gif",
     "img/rotate.gif",
     "img/blobSprite.gif",
     compressed
