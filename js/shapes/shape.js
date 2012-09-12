@@ -26,6 +26,8 @@
                     
                     var angleDegres = (physic.radian * 180) / Math.PI;
                     
+                    console.log("angle degres "+angleDegres);
+                    
                     if(angleDegres > 0 && angleDegres <= 45) {
                         spriteY = 132;
                     }
@@ -38,16 +40,16 @@
                     else if(angleDegres > 135 && angleDegres <= 180) {
                         spriteY = 22;
                     }
-                    else if(angleDegres > 180 && angleDegres <= 225) {
+                    else if(angleDegres <= -135 && angleDegres > -180) {
                         spriteY = 44;
                     }
-                    else if(angleDegres > 225 && angleDegres <= 270) {
+                    else if(angleDegres <= -90 && angleDegres > -135) {
                         spriteY = 66;
                     }
-                    else if(angleDegres > 270 && angleDegres <= 315) {
+                    else if(angleDegres <= -45 && angleDegres > -90) {
                         spriteY = 88;
                     }
-                    else if(angleDegres > 315 && angleDegres <= 360) {
+                    else if(angleDegres <= 0 && angleDegres > -45) {
                         spriteY = 110;
                     }
                     
