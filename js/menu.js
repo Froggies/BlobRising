@@ -179,6 +179,7 @@
 	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
 	            this.entitySelected.draggable = false;
+	            app.js.arrayRemove(this.game.currentMap.staticEntities, this.entitySelected);
 	            this.game.currentMap.addEntity(this.entitySelected);
 	            this.game.clear();
 	            this.game.currentMap.draw(this.game.context, false);

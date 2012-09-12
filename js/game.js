@@ -100,7 +100,6 @@
                 "mousedown", 
                 function(event) {app.Game.prototype.onReplayLevelClick.call(that, event);},
                 false);
-        
         }
         
 		Game.prototype.calculScore = function() {
@@ -108,13 +107,18 @@
 		    var len = this.currentMap.staticEntities.length;
 		    for(var index=0; index<len; index++) {
 		        var entity = this.currentMap.staticEntities[index];
-		        if(entity.isFromMenu) {
+		        if(entity.isFromMenu === true) {
 		            nbEntitiesUses++;
 		        }
 		    }
 		    var nbEntitiesInit = this.currentMap.menuRotate.nb + this.currentMap.menuMagnet.nb;
+		    var nbBlobDead = this.currentMap.nbBlobDead - this.currentMap.endWell.nbBlob;
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
-		    this.scoreLastMap = (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (this.currentMap.nbBlobDead * 100);
+		    this.scoreLastMap = (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (nbBlobDead * 100);
+		    console.log("this.currentMap.endWell.nbBlob="+this.currentMap.endWell.nbBlob);
+		    console.log("nbEntitiesInit="+nbEntitiesInit);
+		    console.log("nbEntitiesUses="+nbEntitiesUses);
+		    console.log("nbBlobDead="+nbBlobDead);
 		    this.score += this.scoreLastMap;
 		}
 
