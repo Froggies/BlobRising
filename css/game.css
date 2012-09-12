@@ -59,7 +59,7 @@ p {
     font-size: 15px;
 }
 
-#mainMenu {
+.mainMenu {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
