@@ -37,7 +37,7 @@
 	                        that.showHelp();
 	                    } else {
 	                        game.start();
-	                        that.hideHelp();
+	                        that.showMapName();
                         }
                     } else if(charCode == 114) {
                         game.pause();
@@ -95,6 +95,10 @@
 		    this.updateMenuEntities();
 		}
 		
+		Menu.prototype.showMapName = function() {
+		    this.showHelp("You are on <div class='keyboard'>"+this.game.currentMap.mapName+"</div> map", 3000);
+		}
+		
 		Menu.prototype.addEntity = function(game, entity) {
             var canvas = game.canvas;
             var x = -1000;
@@ -103,6 +107,7 @@
 	        entity.shape.y = y;
 	        entity.draw(game.context, game.currentMap);
 	        entity.isFromMenu = true;
+	        entity.isDraggable = true;
 	        this.entitySelected = entity;
 	        entity.draggable = true;
 	        //just for see it ! 
@@ -207,7 +212,7 @@
 		}
 		
 		Menu.prototype.isClick = function(entity, x, y) {
-		    if(entity.isFromMenu === true) {
+		    if(entity.isFromMenu === true && entity.isDraggable === true) {
                 var h = 1;
                 var l = 1;
 		        

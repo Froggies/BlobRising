@@ -1,5 +1,6 @@
 var maps = [
     {
+        "mapName":"Semi arc",
         "menuRotate":{"className":"Rotate","nb":0},
         "menuMagnet":{"className":"Magnet","nb":1},
         "staticEntities":
@@ -14,6 +15,7 @@ var maps = [
         "endWell":{"shape": {"x":200,"y":100}}
     },
     {
+        "mapName":"Simple effect",
         "menuRotate":{"className":"Rotate","nb":3},
         "menuMagnet":{"className":"Magnet","nb":1},
         "staticEntities":
@@ -25,22 +27,7 @@ var maps = [
         "endWell":{"shape": {"x":500,"y":250}}
     },
     {
-        "menuRotate":{"className":"Rotate","nb":10},
-        "menuMagnet":{"className":"Magnet","nb":10},
-        "staticEntities":
-        [
-            {"className":"Wall","shape": {"x":500,"y":150,"width":35,"height":300}},
-            {"className":"Wall","shape": {"x":700,"y":150,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":700,"y":415,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":10,"y":150,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":10,"y":415,"width":300,"height":35}},
-            {"className":"Well","shape": {"x":500,"y":150}},
-            {"className":"Well","shape": {"x":500,"y":415}}
-        ],
-        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":500,"shape": {"x":550,"y":250}},
-        "endWell":{"shape": {"x":400,"y":250}}
-    },
-    {
+        "mapName":"BLOB",
         "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":10},
         "menuMagnet":{"className":"Magnet","nb":2},
@@ -85,6 +72,24 @@ var maps = [
         "endWell":{"shape": {"x":850,"y":500}}
     },
     {
+        "mapName":"Inverse",
+        "menuRotate":{"className":"Rotate","nb":10},
+        "menuMagnet":{"className":"Magnet","nb":10},
+        "staticEntities":
+        [
+            {"className":"Wall","shape": {"x":500,"y":150,"width":35,"height":300}},
+            {"className":"Wall","shape": {"x":700,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":700,"y":415,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":415,"width":300,"height":35}},
+            {"className":"Well","shape": {"x":500,"y":150}},
+            {"className":"Well","shape": {"x":500,"y":415}}
+        ],
+        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":500,"shape": {"x":550,"y":250}},
+        "endWell":{"shape": {"x":400,"y":250}}
+    },
+    {
+        "mapName":"Jail",
         "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":4},
         "menuMagnet":{"className":"Magnet","nb":4},
