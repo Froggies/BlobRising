@@ -52,8 +52,8 @@
 	        var deb = "Congrats ! You won";
 	        var bySaving = "<br /> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />";
 	        var strPoints = " points. <br /> <br />";
-	        var divReplay = "<div id='replayLevel' class='button'>Replay level</div>";
-	        var divTweetDeb = "<div id='tweetScore' class='button btnTweet'><a href='";
+	        var divReplay = "<div id='replayLevel'>Replay level</div>";
+	        var divTweetDeb = "<div id='tweetScore'><a href='";
 	        var endPopup = "' target='_blank'>Tweet my score</a></div></div>";
 	        var strLevelScore = "In this level your score is :";
 
@@ -61,10 +61,10 @@
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 	            this.calculScore();
-                this.createPopup(deb+" this level !! "+bySaving+strLevelScore+this.scoreLastMap+strPoints+"Let's see how you will deal with the next level !<br /> <div style='float:right'>"+divReplay+"<div id='nextLevel' class='button'>Next level</div>"+divTweetDeb+this.createTweetUrl(false, this.currentIndexMap, this.scoreLastMap, this.currentMap.endWell.nbBlob)+endPopup);
+                this.createPopup(deb+" this level !! "+bySaving+strLevelScore+this.scoreLastMap+strPoints+"Let's see how you will deal with the next level !<br /> <div style='float:right'>"+divReplay+"<div id='nextLevel'>Next level</div>"+divTweetDeb+this.createTweetUrl(false, this.currentIndexMap, this.scoreLastMap, this.currentMap.endWell.nbBlob)+endPopup);
 		    } else if(this.currentMap.isWin()) {
 		        //game win
-		        this.createPopup(deb+" the Blob Rising game !! "+bySaving+"Your final score is : "+this.scoreLastMap+strPoints+"<div style='float:right'>"+divReplay+"<div id='replayGame' class='button'>Replay game</div>"+divTweetDeb+this.createTweetUrl(true, this.currentIndexMap,this.scoreLastMap,this.currentMap.endWell.nbBlob)+endPopup);
+		        this.createPopup(deb+" the Blob Rising game !! "+bySaving+"Your final score is : "+this.scoreLastMap+strPoints+"<div style='float:right'>"+divReplay+"<div id='replayGame'>Replay game</div>"+divTweetDeb+this.createTweetUrl(true, this.currentIndexMap,this.scoreLastMap,this.currentMap.endWell.nbBlob)+endPopup);
 		    } else {
 		        //map loose
 		        this.score = this.score - 100;
