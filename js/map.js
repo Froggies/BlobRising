@@ -30,9 +30,13 @@
 		}
 		
 		Map.prototype.buffering = function() {
-		    this.canvasBuffer = document.createElement('canvas');
-		    this.canvasBuffer.width = 1024;
-	        this.canvasBuffer.height = 600;
+		    if(!app.js.isDefined(this.canvasBuffer)) {
+		        this.canvasBuffer = document.createElement('canvas');
+		        this.canvasBuffer.width = 1024;
+	            this.canvasBuffer.height = 600;
+            } else {
+                this.canvasBuffer.width = this.canvasBuffer.width;
+            }
 		    var context = this.canvasBuffer.getContext('2d');
 		    var len = this.staticEntities.length;
 		    var entity;
