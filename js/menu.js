@@ -137,7 +137,8 @@
 		    if(this.game.isRun) {
 		        this.helpDiv.style.display = 'none';
                 this.scoreDiv.style.display = 'none';
-            } else {
+            }
+            else if (!this.game.currentMap. isFinish()){
                 //return to standard menu
                 this.showHelp();
             }
