@@ -32,10 +32,10 @@
                 if (charCode) {
                     //console.log("Character typed: " + charCode);
                     if(charCode == 32) {
-                        if(game.isRun) {
+                        if(game.isRun && !game.currentMap.isFinish()) {
 	                        game.pause();
 	                        that.showHelp();
-	                    } else {
+	                    } else if(!game.currentMap.isFinish()) {
 	                        game.start();
 	                        that.showMapName();
                         }
@@ -111,6 +111,7 @@
 	        entity.isDraggable = true;
 	        this.entitySelected = entity;
 	        entity.draggable = true;
+	        game.currentMap.menuEntities = [];
 	        //just for see it ! 
 	        //it really added (recalcul staticEntities tab with map.addEntity()) in mousedown
 	        game.currentMap.menuEntities.push(entity);
