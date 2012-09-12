@@ -32,12 +32,11 @@
 		}
 
 		Well.prototype.draw = function(context, map) {
+		    this.attraction.x = this.shape.x + (this.shape.width / 2);
+	        this.attraction.y = this.shape.y + (this.shape.height / 2);
+	        this.attraction.width = this.shape.width * this.factorAttraction;
+	        this.attraction.height = this.attraction.width;
 		    if(map.showNoneEntities) {
-		        this.attraction.x = this.shape.x + (this.shape.width / 2);
-		        this.attraction.y = this.shape.y + (this.shape.height / 2);
-		        this.attraction.width = this.shape.width * this.factorAttraction;
-		        this.attraction.height = this.attraction.width;
-
                 context.save();                
 		        context.shadowColor = this.shape.color;
                 context.shadowOffsetX = 0;
