@@ -51,7 +51,6 @@
 		    if(this.currentMap.isWin() && this.currentIndexMap + 1 < this.listSerializedMap.length) {
 		        //map win
 		        this.calculScore();
-		        document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		       
                 this.createPopup("Congrats ! You won this level !! <br :/> <br />You won by saving  "+this.currentMap.endWell.nbBlob+" Blobs. <br />In this level your score is : "+this.scoreLastMap+" points. <br /> <br />Let's see how you will deal with the next level !<br /> <div style='float:right'><div id='replayLevel' class='button'>Replay level</div><div id='nextLevel' class='button'>Next level</div></div>");
 		    } else if(this.currentMap.isWin()) {
@@ -59,9 +58,10 @@
 		        window.alert("YOU WIN GAME !! With "+this.score+" Blob");
 		    } else {
 		        //map loose
-		        this.score--;
-		        this.createPopup("Unfortunatly you lost this level... <br /> <br />In this level your score is : "+this.scoreLastMap+" points. <br />Try again to save Blobs ! <div id='replayLevel' class='button'>Replay level</div>");
+		        this.score = this.score - 100;
+		        this.createPopup("Unfortunatly you lost this level... <br /> <br />In this level your score is : -100 points. <br />Try again to save Blobs ! <div id='replayLevel' class='button'>Replay level</div>");
 		    }
+		    document.getElementById('score').innerHTML = "Score : "+this.score+" Blob";
 		}
 		
         Game.prototype.onNextLevelClick = function(event) {	
@@ -115,10 +115,6 @@
 		    var nbBlobDead = this.currentMap.nbBlobDead - this.currentMap.endWell.nbBlob;
 		    //calcul score : (nbBlobArrivés * 100 + (wellDépart - wellUtilisées) * 100) - (nbBlobMorts * 100)
 		    this.scoreLastMap = (this.currentMap.endWell.nbBlob * 100 + (nbEntitiesInit - nbEntitiesUses) * 100) - (nbBlobDead * 100);
-		    console.log("this.currentMap.endWell.nbBlob="+this.currentMap.endWell.nbBlob);
-		    console.log("nbEntitiesInit="+nbEntitiesInit);
-		    console.log("nbEntitiesUses="+nbEntitiesUses);
-		    console.log("nbBlobDead="+nbBlobDead);
 		    this.score += this.scoreLastMap;
 		}
 
