@@ -84,7 +84,6 @@
 		    }
 		}
 		
-		
         Game.prototype.onNextLevelClick = function(event) {	
 		      this.currentIndexMap = this.currentIndexMap + 1;
               this.createStartGame();
@@ -98,10 +97,6 @@
               this.createStartGame();
         }
         
-        Game.prototype.onTweetScoreClick = function(event) {	
-              
-        }
-        
         Game.prototype.createStartGame = function() {	
 		      this.endOfGameDiv.style.display = "none";
               var showNoneEntities = this.currentMap.showNoneEntities;
@@ -109,6 +104,7 @@
               this.init();
 		      this.currentMap.showNoneEntities = showNoneEntities;
 		      this.start();
+              this.menu.showMapName();
         }
         
         Game.prototype.createPopup = function(text) {
