@@ -37,7 +37,7 @@
 	                        that.showHelp();
 	                    } else {
 	                        game.start();
-	                        that.hideHelp();
+	                        that.showMapName();
                         }
                     } else if(charCode == 114) {
                         game.pause();
@@ -93,6 +93,10 @@
 		    this.nbMagnet = map.menuMagnet.nb;
 		    this.nbMagnetInit = this.nbMagnet;
 		    this.updateMenuEntities();
+		}
+		
+		Menu.prototype.showMapName = function() {
+		    this.showHelp("You are on <div class='keyboard'>"+this.game.currentMap.mapName+"</div> map", 3000);
 		}
 		
 		Menu.prototype.addEntity = function(game, entity) {
