@@ -16,6 +16,7 @@
 			this.orbit = new app.shapes.Ellipse();
 		    this.orbit.color = "rgba(0,0,0,1)";
 		    this.attracted = 0;
+		    this.className = "Rotate";
 		};
 		
 		Rotate.prototype.draw = function(context, map) {

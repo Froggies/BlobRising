@@ -69,14 +69,12 @@
                             }
                             if(charCode == 120) {
                                 if(that.nbRotate > 0) {
-                                    that.nbRotate--;
                                     that.addEntity(game, app.js.clone(game.currentMap.menuRotate));
                                 } else {
                                     that.showHelp("You have no more rotate machine !", "1000");
                                 }
                             } else {
                                 if(that.nbMagnet > 0) {
-                                    that.nbMagnet--;
                                     that.addEntity(game, app.js.clone(game.currentMap.menuMagnet));
                                 } else {
                                     that.showHelp("You have no more magnet machine !", "1000");
@@ -197,6 +195,11 @@
 	            }
 	          }  
 	        } else if(app.js.isDefined(this.entitySelected)) {
+	            if(this.entitySelected.className == "Rotate") {
+                    this.nbRotate--;
+                } else {
+                    this.nbMagnet--;
+                }
 	            this.updateMenuEntities();
 	            this.setEntityPosition(x,y);
 	            this.entitySelected.draggable = false;
