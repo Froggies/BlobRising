@@ -26,7 +26,7 @@ compressed = 'game.min.js'
 # files to be included in the zip
 files = [
     'index.html', 
-    "css/game.css", 
+    "css/game.min.css", 
     "img/magnet.gif", 
     "img/source.gif", 
     "img/wall_pattern.gif", 
