@@ -72,23 +72,6 @@ var maps = [
         "endWell":{"shape": {"x":850,"y":500}}
     },
     {
-        "mapName":"Inverse",
-        "menuRotate":{"className":"Rotate","nb":10},
-        "menuMagnet":{"className":"Magnet","nb":10},
-        "staticEntities":
-        [
-            {"className":"Wall","shape": {"x":500,"y":150,"width":35,"height":300}},
-            {"className":"Wall","shape": {"x":700,"y":150,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":700,"y":415,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":10,"y":150,"width":300,"height":35}},
-            {"className":"Wall","shape": {"x":10,"y":415,"width":300,"height":35}},
-            {"className":"Well","shape": {"x":500,"y":150}},
-            {"className":"Well","shape": {"x":500,"y":415}}
-        ],
-        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":500,"shape": {"x":550,"y":250}},
-        "endWell":{"shape": {"x":400,"y":250}}
-    },
-    {
         "mapName":"Jail",
         "initSize":{"width":1301,"height":411},
         "menuRotate":{"className":"Rotate","nb":4},
@@ -117,5 +100,37 @@ var maps = [
         ],
         "startSource":{"degreeBlob":55,"firstAgeForLostBlob":800,"shape": {"x":50,"y":50}},
         "endWell":{"shape": {"x":800,"y":100}}
+    },
+    {
+        "mapName":"Patience",
+        "menuRotate":{"className":"Rotate","nb":2},
+        "menuMagnet":{"className":"Magnet","nb":10},
+        "staticEntities":
+        [
+            {"className":"Wall","shape": {"x":500,"y":0,"width":5,"height":100}},
+            {"className":"Wall","shape": {"x":500,"y":125,"width":5,"height":100}},
+            {"className":"Wall","shape": {"x":500,"y":245,"width":5,"height":100}},
+            {"className":"Wall","shape": {"x":500,"y":365,"width":5,"height":100}},
+            {"className":"Wall","shape": {"x":500,"y":485,"width":5,"height":100}}
+        ],
+        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":300,"shape": {"x":50,"y":250}},
+        "endWell":{"shape": {"x":750,"y":250}}
+    },
+    {
+        "mapName":"Inverse",
+        "menuRotate":{"className":"Rotate","nb":10},
+        "menuMagnet":{"className":"Magnet","nb":10},
+        "staticEntities":
+        [
+            {"className":"Wall","shape": {"x":500,"y":150,"width":35,"height":300}},
+            {"className":"Wall","shape": {"x":700,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":700,"y":415,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":150,"width":300,"height":35}},
+            {"className":"Wall","shape": {"x":10,"y":415,"width":300,"height":35}},
+            {"className":"Well","shape": {"x":500,"y":150}},
+            {"className":"Well","shape": {"x":500,"y":415}}
+        ],
+        "startSource":{"degreeBlob":0,"firstAgeForLostBlob":500,"shape": {"x":550,"y":250}},
+        "endWell":{"shape": {"x":400,"y":250}}
     }
 ];
